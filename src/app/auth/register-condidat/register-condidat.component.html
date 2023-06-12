@@ -1,0 +1,124 @@
+<div class="container  content-card ">
+    <div id="signup-header">
+    <div class="col-sm-6 col-xs-12 "> <h1> Créer votre profil candidat</h1>
+    <h2>Ça prend uniquement 5 secondes :)</h2>
+    </div>
+    <div class="col-sm-6">
+    <div class="  radiochoice">
+    <label for="">Je cherche </label>
+    <span><a href="https://www.tanitjobs.com/registration/?user_group_id=JobSeeker">
+    <input type="radio" name="group1-radio" checked="">
+    <label> Un emploi</label>
+    </a> </span> <span> <a href="https://www.tanitjobs.com/registration/?user_group_id=Employer">
+    <input type="radio" name="group1-radio">
+    <label> À publier des annonces </label>
+    </a> </span> </div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <div class=" col-md-6  f-right">
+    <div class=" signup-form-header"> </div>
+    <form class="form" method="post" action="" enctype="multipart/form-data" id="registr-form">
+    <input type="hidden" name="action" value="register">
+    <input type="hidden" name="return_url" value="">
+    <input type="hidden" name="form_token" value="c6d1cfd63f94787c7295bc039d98cef4">
+    <div class="form-group fullname">
+    <label class="form-label">Nom &amp; Prénom: </label>
+    <input id="FullName" type="text" value="" class="form-control " name="FullName">
+    </div>
+    <div class="form-group username">
+    <label class="form-label form-label__error">Cette adresse email est déjà utilisée.</label>
+    <span id="am_username" class="form-message form-message__error"></span>
+    <input type="email" value="" class="form-control" name="username" onblur="checkField($(this), 'username')"> </div>
+    <div class="form-group gender">
+    <label class="form-label">Civilité *</label>
+    <select class="form-control" name="Gender">
+    <option value="">Sélectionnez Civilité</option> <option value="707">M</option>
+    <option value="708">Mme</option>
+    <option value="709">Mlle</option>
+    </select>
+    </div>
+    <div class="form-group">
+    <label class="form-label">Mot de Passe *</label>
+    <input type="password" name="password[original]" class="form-control">
+    </div>
+    <div class="form-group">
+    <label class="form-label">Confirmer le mot de passe *</label>
+    <input type="password" name="password[confirmed]" class="form-control">
+    </div>
+    <div class="form-group birth">
+    <label class="form-label">Date de Naissance *</label>
+    <input type="text" class="form-control input-date" name="birth" value="">
+    <img class="ui-datepicker-trigger" src="https://www.tanitjobs.com/templates/Bootstrap/assets/images/icon-calendar.svg" alt="..." title="...">
+    </div>
+    <div class="form-group gouvernorat">
+    <label class="form-label">Gouvernorat *</label>
+    <select class="form-control" name="Gouvernorat">
+    <option value="">Sélectionnez Gouvernorat</option> <option value="710">Ariana</option>
+    <option value="711">Béja</option>
+    <option value="712">Ben Arous</option>
+    <option value="713">Bizerte</option>
+    <option value="714">Gabès</option>
+    <option value="715">Gafsa</option>
+    <option value="716">Jendouba</option>
+    <option value="717">Kairouan</option>
+    <option value="718">Kasserine</option>
+    <option value="719">Kébili</option>
+    <option value="720">Le Kef</option>
+    <option value="721">Mahdia</option>
+    <option value="722">La Manouba</option>
+    <option value="723">Médenine</option>
+    <option value="724">Monastir</option>
+    <option value="725">Nabeul</option>
+    <option value="726">Sfax</option>
+    <option value="727">Sidi Bouzid</option>
+    <option value="728">Siliana</option>
+    <option value="729">Sousse</option>
+    <option value="730">Tataouine</option>
+    <option value="731">Tozeur</option>
+    <option value="732">Tunis</option>
+    <option value="733">Zaghouan</option>
+    </select>
+    </div>
+    <div class="form-group">
+    <label class="form-label hidden-xs-480"></label>
+    <div class="form--move-left">
+    <div class="inline-block checkbox-field">
+    <input type="checkbox" name="terms" checked="checked" id="terms">
+    </div>
+    <span class="form-label inline"> <a class="link" target="_blank" href="https://www.tanitjobs.com/terms-of-use/">J'accepte les conditions d'utilisation *</a> </span> </div>
+    </div>
+    <div class="form-group form-group__btns text-center">
+    <input type="hidden" name="user_group_id" value="JobSeeker">
+    <input type="submit" class="register btn btn__orange btn__bold" value="Enregistrer">
+    </div>
+    </form>
+    <div class="clear"></div>
+    <div class="text-center form-group "> <a class="link" href="https://www.tanitjobs.com/login/">Vous avez déjà un compte? se connecter</a> </div>
+    </div>
+    <div class=" col-md-6"> <div class="left-section-wrp">
+    <div id="information">
+    <h3><span class="bulb"></span>Créer un profil Tanitjobs vous aidera à </h3>
+    <ul>
+    <li> Recevoir des alertes pour les meilleurs emplois </li>
+    <li> Rechercher des emplois à l'aide de filtres avancés </li>
+    <li> Ajouter votre CV et soyez vu par les meilleurs employeurs </li>
+    </ul>
+    <h3> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Se connecter via les réseaux sociaux </h3>
+    <div class="social-registration">
+    <span class="social-registration__buttons">
+    <a href="https://www.tanitjobs.com/login/?network=linkedin&amp;user_group_id=JobSeeker" class="social-registration__linkedin" title="Connexion avec LinkedIn">
+    </a>
+     <a href="https://www.tanitjobs.com/login/?network=facebook&amp;user_group_id=JobSeeker" class="social-registration__facebook" title="Sign in with Facebook">
+    Sign in with Facebook
+    </a>
+    </span>
+    </div>
+    <div class="clear"></div>
+    <p class="employer-title">Employeur qui cherche à recruter?</p>
+    <p class="employer-click-here"> Si vous représentez une entreprise / organisation et souhaitez embaucher, <a href="https://www.tanitjobs.com/registration/?user_group_id=Employer"> créez un compte employeur </a>pour publier des offres d'emploi et rechercher des CV. </p>
+    </div>
+    </div>
+    </div>
+    <div class="clear"></div>
+    </div>
