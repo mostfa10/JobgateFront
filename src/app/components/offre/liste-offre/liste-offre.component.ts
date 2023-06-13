@@ -15,11 +15,11 @@ export class ListeOffreComponent implements OnInit {
   }
 
   listoffre(){
-    this.offre.alloffre().subscribe((res:any)=>{
-      this.offres=res["data"]
-      console.log("listes product",this.offres)
+    // this.offre.alloffre().subscribe((res:any)=>{
+    //   this.offres=res["data"]
+    //   console.log("listes product",this.offres)
 
-    })
+    // })
   }
 
 }

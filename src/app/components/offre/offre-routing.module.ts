@@ -4,12 +4,8 @@ import { ListeOffreComponent } from './liste-offre/liste-offre.component';
 import { DetailoffreComponent } from './detailoffre/detailoffre.component';
 
 const routes: Routes = [
-  
-  
-  
   {path:"",component:ListeOffreComponent},
   {path:"details/:id",component:DetailoffreComponent}
-
 ]
 
 @NgModule({

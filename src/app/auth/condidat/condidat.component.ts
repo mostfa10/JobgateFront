@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-entreprise',
-  templateUrl: './entreprise.component.html',
-  styleUrls: ['./entreprise.component.css']
+  selector: 'app-condidat',
+  templateUrl: './condidat.component.html',
+  styleUrls: ['./condidat.component.css']
 })
-export class EntrepriseComponent implements OnInit {
-
-  formE!:FormGroup
+export class CondidatComponent implements OnInit {
+  formD!:FormGroup
   fileToUpload: Array<File> = [];
   submitted=false
 
@@ -20,27 +19,16 @@ export class EntrepriseComponent implements OnInit {
 
   ngOnInit(): void {
      
-    this.formE= this.formB.group(
+    this.formD= this.formB.group(
       {
-        fullname:  ['', Validators.required],
-        description:  ['', Validators.required],
+        name:  ['', Validators.required],
+        lastname:  ['', Validators.required],
         password:  ['', [Validators.required,Validators.minLength(6)]],
-        email:  ['', Validators.required],
+        email:  ['', Validators.required,Validators.email],
         confirmPassword:  ['', Validators.required],
         adress:  ['', Validators.required],
-       speciality:  ['', Validators.required],
-
-
-
-       
-
-
+        date_naissance:  ['', Validators.required],
         acceptTerms: [false]
-        
-
-        
-
-
       })
   }
 
@@ -52,42 +40,44 @@ export class EntrepriseComponent implements OnInit {
   // }// bsh ndaakhlou image f cote front 
 
   get f(): { [key: string]: AbstractControl } {
-    return this.formE.controls;
+    return this.formD.controls;
   } //ta3ml control ala les champs
 
   onSubmit(): void {
     this.submitted = true;
 
-    if (this.formE.invalid) {
+    if (this.formD.invalid) {
       return;
      }
     let formdata=new FormData()
-    formdata.append('fullname',this.formE.value.fullname)
-    formdata.append('description',this.formE.value.description)
-    formdata.append('password',this.formE.value.password)
-    formdata.append('email',this.formE.value.email)
-    formdata.append('adress',this.formE.value.adress)
-    
- formdata.append('speciality',this.formE.value.speciality)
- this.login.createentreprise(this.formE.value).subscribe((res:any)=>{
-      console.log(this.formE.value)
-      Swal.fire('you are  added like employer')
+    formdata.append('name',this.formD.value.name)
+    formdata.append('lastname',this.formD.value.lastname)
+    formdata.append('password',this.formD.value.password)
+    formdata.append('email',this.formD.value.email)
+    formdata.append('adress',this.formD.value.adress)
+    formdata.append('schoollevel',this.formD.value.schoollevel)
+
+    formdata.append('biographie',this.formD.value.biographie)
+    formdata.append('date_naissance',this.formD.value.date_naissance)
+
+    this.login.createCondidat(this.formD.value).subscribe((res:any)=>{
+      Swal.fire('you are  added')
       console.log('res',res)
       this.route.navigateByUrl('/')
   
     })
 
-    console.log(JSON.stringify(this.formE.value, null, 2));
+    console.log(JSON.stringify(this.formD.value, null, 2));
   }
 
   onReset(): void {
     this.submitted = false;
-    this.formE.reset();
+    this.formD.reset();
   }
 
   // addUser(){
   
-  //   let formdata=new formdata()
+  //   let formdata=new FormData()
   //   formdata.append('name',this.form.value.name)
   //   formdata.append('lastname',this.form.value.username)
   //   formdata.append('password',this.form.value.password)
