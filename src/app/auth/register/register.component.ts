@@ -29,10 +29,6 @@ export class RegisterComponent implements OnInit {
         acceptTerms: [false],
         condidatTerms:[false],
         entrepriseTerms:[false]
-
-        
-
-
       })
   }
 
@@ -41,7 +37,7 @@ export class RegisterComponent implements OnInit {
   // handleFileInput(files: any) {
   //   this.fileToUpload = <Array<File>>files.target.files;
   //   console.log(this.fileToUpload);
-  // }// bsh ndaakhlou image f cote front 
+  // }// bsh ndaakhlou image f co te front 
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;

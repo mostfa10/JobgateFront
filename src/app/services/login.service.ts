@@ -12,6 +12,14 @@ export class LoginService {
   signin(login:any){
     return this.http.post(`${environment.JobGateBD}/auth/signin`,login)
   }
+  createCondidat(condidat:any){
+    return this.http.post(`${environment.JobGateBD}/condidat`,condidat)
+  }
+
+  createentreprise(entreprise:any){
+    return this.http.post(`${environment.JobGateBD}/entreprise`,entreprise)
+  }
+
 
   signup(register:any){
     console.log(register,"reg")

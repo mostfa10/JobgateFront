@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListeOffreComponent } from './offre/liste-offre/liste-offre.component';
 import { ContactComponent } from './component/contact/contact.component';
 import { DetailoffreComponent } from './offre/detailoffre/detailoffre.component';
+import { CondidatComponent } from './condidat/condidat.component';
+import { EntrepriseComponent } from './entreprise/entreprise.component';
+
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { DetailoffreComponent } from './offre/detailoffre/detailoffre.component'
     RegisterComponent,
     ListeOffreComponent,
     ContactComponent,
-    DetailoffreComponent
+    DetailoffreComponent,
+    CondidatComponent,
+    EntrepriseComponent
   
   ],
   imports: [

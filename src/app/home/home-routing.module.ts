@@ -5,8 +5,11 @@ import { LayoutComponent } from '../component/layout/layout.component';
 import { ContactComponent } from '../component/contact/contact.component';
 import { AboutComponent } from '../component/about/about.component';
 import { ListeOffreComponent } from '../offre/liste-offre/liste-offre.component';
-import { RegisterCondidatComponent } from '../auth/register-condidat/register-condidat.component';
 import { DetailoffreComponent } from '../offre/detailoffre/detailoffre.component';
+import { InterfaceComponent } from '../auth/interface/interface.component';
+import { CondidatComponent } from '../condidat/condidat.component';
+import { EntrepriseComponent } from '../entreprise/entreprise.component';
+
 
 
 
@@ -17,8 +20,11 @@ const routes: Routes = [
   {path:"",component:LayoutComponent},
   {path:"about",component:AboutComponent},
   {path:"Contact",component:ContactComponent},
-  
-  {path:"condidat",component:RegisterCondidatComponent}
+  {path:"inscription",component:InterfaceComponent},
+  {path:"condidat",component:CondidatComponent},
+  {path:"entreprise",component:EntrepriseComponent},
+
+
   
    ]
  
