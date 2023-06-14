@@ -1,6 +1,9 @@
 .no-js .owl-carousel, .owl-carousel.owl-loaded {
     display: block;
 }
+.center{
+    text-align: -webkit-center;
+}
 .quick-search__wrapper {
     margin: 10px 0px;
     background: #86e7c3 !important;

@@ -12,6 +12,9 @@ export class OffreService {
   alloffre(){
     return this.http.get(`${environment.JobGateBD}/offre`)
    }
+   lastoffres(){
+    return this.http.get(`${environment.JobGateBD}/offre/all`)
+   }
    getoffreyid(id:any){
     return this.http.get(`${environment.JobGateBD}/offre/${id}`)
    }

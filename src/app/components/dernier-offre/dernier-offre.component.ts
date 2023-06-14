@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { OffreService } from 'src/app/services/offre.service';
 
 @Component({
   selector: 'app-dernier-offre',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DernierOffreComponent implements OnInit {
 
-  constructor() { }
+  offres:any
+ 
+  constructor(private offre:OffreService,private router:Router) { }
 
   ngOnInit(): void {
+    this.lastoffres();
   }
+  
+  
 
+  lastoffres(){
+    this.offre.lastoffres().subscribe((res:any)=>{
+      this.offres=res["data"]
+      console.log("listes offres",this.offres)
+
+    })
+  }
 }
