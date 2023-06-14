@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../auth/auth.module';
+import { SearchComponent } from './search/search.component';
+import { DernierOffreComponent } from './dernier-offre/dernier-offre.component';
 
 
 
@@ -15,7 +17,9 @@ import { AuthModule } from '../auth/auth.module';
   declarations: [
     ContactComponent,
     AboutComponent,
-    HomeComponent
+    HomeComponent,
+    SearchComponent,
+    DernierOffreComponent
   ],
   imports: [
     ComponentsRoutingModule,

@@ -1,171 +1,44 @@
-<section>
-    <div class="container">
-         <div class="text-center">
-              <h1>Car Listing</h1>
 
-              <br>
-
-              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, alias.</p>
-         </div>
+<div class="container">
+     <div class="row">
+          <div class="col-md-12 col-sm-12">
+               
+    <div class="listing-item__list "  *ngFor="let p of offres | paginate:{ itemsPerPage: 2,currentPage: c}  ">
+     
+     <article id="1301206" class="media cl well listing-item listing-item__jobs  listing-item__no-logo">
+          <div class="media-body">
+          <div class="media-heading listing-item__title">
+          <a [routerLink]="['details/',p._id]" class="link">
+        {{p.titre}}
+          </a>
+          </div>
+          <div class="listing-item__desc hidden-sm hidden-xs">{{p.description}}</div>
+          <div class="listing-item__info clearfix">
+          <span class="listing-item__info--item listing-item__info--item-company">
+          Sagemcom Tunisie
+          </span>
+          <span class="listing-item__info--item listing-item__info--item-location">
+          {{p.place}}
+          </span>
+          </div>
+          </div>
+          <div class="media-right text-right">
+          <div class="listing-item__date">
+          14/06/2023 </div>
+          <a [routerLink]="['details/',p._id]"><span class="listing-item__employment-type">Voir Plus</span></a>
+          </div>
+          <div class="listing-item__desc visible-sm visible-xs">
+          Mission
+          {{p.description}}
+          </div>
+          </article>
+          
+          
     </div>
-</section>
-
-<section class="section-background">
-    <div class="container">
-
-         <div class="row">
-              <div class="col-lg-3 col-xs-12">
-                   <div class="form">
-                        <form action="#">
-                             <h4>Type</h4>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Contract (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Full time (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Internship (5)
-                                  </label>
-                             </div>
-
-                             <br>
-
-                             <h4>Category</h4>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Accounting / Finance / Insurance Jobs (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Accounting / Finance / Insurance Jobs (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Accounting / Finance / Insurance Jobs (5)
-                                  </label>
-                             </div>
-
-                             <br>
-
-                             <h4>Career levels</h4>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Entry Level (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Entry Level (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Entry Level (5)
-                                  </label>
-                             </div>
-
-                             <br>
-
-                             <h4>Education levels</h4>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Associate Degree (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Associate Degree (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                       Associate Degree (5)
-                                  </label>
-                             </div>
-
-                             <br>
+    <pagination-controls (pageChange)="c = $event"></pagination-controls>
+</div>
+</div>
+</div>
 
 
-                             <h4>Years of experience</h4>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                        < 1 (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                        < 1 (5)
-                                  </label>
-                             </div>
-
-                             <div>
-                                  <label>
-                                       <input type="checkbox">
-
-                                         1 (5)
-                                  </label>
-                             </div>
-                        </form>
-                   </div>
-              </div>
-
-              <div class="col-lg-9 col-xs-12">
-                   <div class="row">
-                        <div class="col-lg-6 col-md-4 col-sm-6" *ngFor="let offer of offres">
-                              <app-offer-card [offre]="offer"></app-offer-card>
-                        </div>
-                   </div>
-              </div>
-         </div>
-    </div>
-</section>
+    
