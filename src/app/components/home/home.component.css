@@ -1,0 +1,127 @@
+.categories .browse-by__list, .location .browse-by__list {
+    columns: 4;
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    font-size: 16px;
+    margin-top: 22px;
+    margin-left: 10px;
+}
+.col-xs-6 {
+    width: 50%;
+}
+.main-sections {
+    padding: 20px 0px 0px;
+    border: none;
+    background: transparent;
+}
+.main-sections {
+    padding: 55px 0 0;
+}
+.container {
+    max-width: 1130px;
+}
+.container {
+    width:fit-content;
+}
+.categories .browse-by__list, .location .browse-by__list {
+    columns: 4;
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    font-size: 16px;
+    margin-top: 22px;
+    margin-left: 10px;
+}
+.link, a {
+    /* color: #2bade7; */
+    text-decoration: none!important;
+}
+.categories ul li a, .location ul li a {
+    margin-top: 12px;
+    display: block;
+    color: #4D6182;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.browse-by__list {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    font-size: 16px;
+    margin-top: 22px;
+    margin-left: 20px;
+}
+.browse-by__item {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 82%;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+.row1 {
+    margin-right: -15px;
+    margin-left: 15px;
+}
+
+.line {
+    width: 64px;
+    height: 4px;
+    background: #4D6182;
+    margin-bottom: 32px;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width:inherit;
+}
+header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+    display: table;
+    content: " ";
+}
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    float: left;
+}
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    float: left;
+}
+.find{
+    text-align: center;
+}
+.image{
+    background-image: url("src/assets/images/banner-image-1-1920x500.jpg");
+
+}
+.career-level .container .browse-jobs .category-title, .categories .container .browse-jobs .category-title, .location .container .browse-jobs .category-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: linear-gradient(to bottom,rgba(255,255,255,0),transparent,rgba(0,0,0,.1),rgba(0,0,0,.5));
+    text-shadow: 2px 3px 5px rgba(0,0,0,.3);
+    font-size: 14px;
+    color: #fff;
+    border-radius: 2px;
+}
+.categories .browse-jobs, .location .browse-jobs {
+    margin-bottom: 8px;
+}
+.browse-by__list {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    font-size: 16px;
+    margin-top: 22px;
+    margin-left: 20px;
+}
+.categories ul li a, .location ul li a {
+    margin-top: 12px;
+    display: block;
+    color: #4D6182;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

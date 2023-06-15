@@ -420,6 +420,8 @@ background-position: center;
 }
 
 .home-slider .item-second {
+      /* border-style: solid; */
+      /* background-blend-mode: multiply !important; */
   background-image: url(assets/images/slider-image-2-1920x700.jpg);
 }
 

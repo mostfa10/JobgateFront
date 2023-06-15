@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../auth/auth.module';
 import { SearchComponent } from './search/search.component';
 import { DernierOffreComponent } from './dernier-offre/dernier-offre.component';
+import { ListeOffreComponent } from './offre/liste-offre/liste-offre.component';
 
 
 

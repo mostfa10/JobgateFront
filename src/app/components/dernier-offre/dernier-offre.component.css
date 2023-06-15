@@ -108,6 +108,7 @@ html {
 }
 .well {
     border-radius: 6px;
+    border-style: outset !important;
 }
 .listing-item {
     min-height: 104px;
