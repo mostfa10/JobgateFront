@@ -10,6 +10,7 @@ import { OffreService } from 'src/app/services/offre.service';
 export class CardoffreComponent implements OnInit {
   offres:any
   c:number=1
+  p:number=1
   constructor(private offre:OffreService,private router:Router) { }
 
   ngOnInit(): void {

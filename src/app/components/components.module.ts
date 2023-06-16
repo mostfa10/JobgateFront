@@ -18,6 +18,8 @@ import { FilterComponent } from './filter/filter.component';
 import { CardoffreComponent } from './cardoffre/cardoffre.component';
 import { CondidatureComponent } from './condidature/condidature.component';
 import { ProfilComponent } from './profil/profil.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -37,6 +39,8 @@ import { ProfilComponent } from './profil/profil.component';
    
   ],
   imports: [
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
     ComponentsRoutingModule,
     FormsModule,
     RouterModule,

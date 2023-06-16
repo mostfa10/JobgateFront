@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { PlaceService } from 'src/app/services/place.service';
 
@@ -10,12 +11,17 @@ import { PlaceService } from 'src/app/services/place.service';
 export class HeaderComponent implements OnInit {
   places:any
   categories:any
-  constructor(private place:PlaceService,private category:CategoryService) { }
+  constructor(private place:PlaceService,private category:CategoryService,private route:Router) { }
 
   ngOnInit(): void {
     this.listville()
 this.listcategory()
   }
+  Logout(){
+    localStorage.clear()
+    this.route.navigateByUrl('/')
+  }
+
   listville(){
     this.place.allPlace().subscribe((res:any)=>{
       this.places=res["data"]

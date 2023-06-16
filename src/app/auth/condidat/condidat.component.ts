@@ -28,6 +28,8 @@ export class CondidatComponent implements OnInit {
         confirmPassword:  ['', Validators.required],
         adress:  ['', Validators.required],
         date_naissance:  ['', Validators.required],
+      //  file:  ['', Validators.required],
+
         acceptTerms: [false]
       })
   }
@@ -55,9 +57,11 @@ export class CondidatComponent implements OnInit {
     formdata.append('password',this.formD.value.password)
     formdata.append('email',this.formD.value.email)
     formdata.append('adress',this.formD.value.adress)
-    formdata.append('schoollevel',this.formD.value.schoollevel)
+    formdata.append('file',this.formD.value.file)
 
-    formdata.append('biographie',this.formD.value.biographie)
+    // formdata.append('schoollevel',this.formD.value.schoollevel)
+
+    // formdata.append('biographie',this.formD.value.biographie)
     formdata.append('date_naissance',this.formD.value.date_naissance)
 
     this.login.createCondidat(this.formD.value).subscribe((res:any)=>{
@@ -75,23 +79,27 @@ export class CondidatComponent implements OnInit {
     this.formD.reset();
   }
 
-  // addUser(){
+  addC(){
   
-  //   let formdata=new FormData()
-  //   formdata.append('name',this.form.value.name)
-  //   formdata.append('lastname',this.form.value.username)
-  //   formdata.append('password',this.form.value.password)
-  //   formdata.append('email',this.form.value.email)
+    let formdata=new FormData()
+    formdata.append('name',this.formD.value.name)
+    formdata.append('lastname',this.formD.value.username)
+    formdata.append('password',this.formD.value.password)
+    formdata.append('email',this.formD.value.email)
+    // formdata.append('file',this.formD.value.file)
+    formdata.append('date_naissance',this.formD.value.date_naissance)
+
+
    
 
    
     
-  //   this.login.signup(formdata).subscribe((res:any)=>{
-  //     Swal.fire('user added')
-  //     console.log('res',res)
+    this.login.createCondidat(formdata).subscribe((res:any)=>{
+      Swal.fire('condidat added')
+      console.log('res',res)
 
-  //   })
+    })
 
 
-  // }
+   }
 }
