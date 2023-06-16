@@ -143,13 +143,94 @@
          </div>
 
          <div class="clearfix">
-              <a routerLink="/condidature" class="section-btn btn btn-primary pull-left">Apply for this job</a>
+              <a class="section-btn btn btn-primary pull-left" data-toggle="modal" data-target="#exampleModalLong">Apply for this job</a>
 
+
+
+      
               <ul class="social-icon pull-right">
                    <li><a href="#" class="fa fa-facebook"></a></li>
                    <li><a href="#" class="fa fa-envelope-o"></a></li>
                    <li><a href="#" class="fa fa-linkedin"></a></li>
               </ul>
          </div>
+                 <!-- Modal -->
+   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+          
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">						Postuler à Prof langue RUSSE chez INSPIRE TRAINING CENTER
+            </h4>
     </div>
+    <div class="modal-body">
+    <form method="post" enctype="multipart/form-data" action="https://www.tanitjobs.com/apply-now/" id="apply-form" class="form">
+    <input type="hidden" name="is_data_submitted" value="1">
+    <input type="hidden" name="listing_id" value="1302239">
+    <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
+    <div class="form group">
+    <label>Votre nom</label><br> <br>
+    <input type="text" name="name" value="{{userconnect.condidat.name}}" class="form-control">
+    </div>
+    <div class="form-group text-center">
+    <label class="form-label">Votre email</label><br> <br>
+    <input type="email" name="email" value="{{userconnect.email}}" class="form-control">{{userconnect.email}}
+    </div>
+    <div class="form-group">
+    <label class="form-label">Sélectionnez votre CV</label><br> <br>
+    <select class="form-control" name="id_resume">
+    <option value="0">Sélectionnez votre CV</option>
+    <option selected="selected" value="735830">informaticien /technecien superieur</option>
+    </select>
+    </div>
+    <div class="form-group">
+    <label class="form-label">Télécharger votre CV</label><br> <br>
+    <input type="file" name="file_tmp" class="form-control">
+    </div>
+    <div class="form-group">
+    <label class="form-label">Lettre de Motivation</label><br> <br><br> <br><br> <br>
+    <textarea class="form-control" name="comments" rows="5"></textarea>
+    </div>
+    <div class="form-group text-center">
+    <input class="btn__submit-modal btn btn__orange btn__bold" type="submit" value="Envoyez une demande" onclick="return applySubmit();">
+    </div>
+    </form>
+    </div>
+    <script type="text/javascript">
+        function applySubmit() {
+            var options = {
+                target: '.modal-body',
+                url:  $('#apply-form').attr('action'),
+            };0
+            $('#apply-form').ajaxSubmit(options);
+            return false;
+        }
+        $('.application-redirect').click(function() {
+            $('#apply-modal').modal('hide');
+        });
+    </script>
+    </div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+       </div>
+     </div>
+  
+
+
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+     Launch demo modal
+   </button> -->
+   
+   
 </section>

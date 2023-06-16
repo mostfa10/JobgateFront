@@ -1,0 +1,161 @@
+.refine-search {
+    position: relative;
+    top: -60px;
+    background-color: white !important;
+}
+.refine-search {
+    margin-bottom: 25px;
+}
+.refine-search__value{
+    color: #7b8c7c;
+}
+/* .image{
+  background-color: dimgray;
+} */
+[role=button] {
+    cursor: pointer;
+}
+.link, a {
+    color: #3e74df;
+    text-decoration: none!important;
+}
+.search{
+    width: -webkit-fill-available !important;
+
+
+}
+.refine-search__item {
+    color: #363636;
+}
+.link, a {
+    color: #3e74df;
+    text-decoration: none!important;
+}
+.link, a {
+    color: #3e74df;
+}
+.refine-search__item {
+    display: block;
+    line-height: 40px;
+    margin-left: 25px;
+    -webkit-transition: color .2s ease-in-out;
+    -moz-transition: color .2s ease-in-out;
+    -o-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+}
+.container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+    display: table;
+    content: " ";
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.collapse {
+    display: none;
+}
+input[type="hidden" i] {
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    display: none !important;
+    padding: initial;
+    border: initial;
+}
+.collapse.in {
+    display: block;
+}
+.refine-search__block {
+    margin-bottom: 25px;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+input {
+    line-height: normal;
+}
+input:not([type="range"]):not([type="color"]) {
+    writing-mode: horizontal-tb !important;
+}
+
+.refine-search__wrapper {
+    min-height: 100px;
+    padding-top: 10px;
+    background: #f9f9f9;
+    padding: 10px;
+    margin-top: 16px;
+}
+.refine-search__wrapper {
+    min-height: 100px;
+    padding-top: 10px;
+}
+.refine-search__wrapper {
+    min-height: 100px;
+    padding-top: 10px;
+}
+a {
+    color: #7ad97c;
+    text-decoration: none;
+}
+a {
+    background-color: transparent;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.toggle--refine-search {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #fbfbfb;
+    border: 1px solid rgba(0,0,0,.4);
+    border-radius: 6px;
+    font-weight: 700;
+    color: rgba(0,0,0,.4);
+    display: block;
+    text-align: center;
+    position: relative;
+}
+.visible-xs {
+    display: none!important;
+}
+.col-sm-3 {
+    width: 25%;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.filtrer {
+    font-size: 18px;
+    margin-top: 47px;
+    border-top: 2px solid #38e72b;
+    padding-top: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    padding-left: 5px;
+}
+.col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+    float: left;
+}
+.col-xs-12 {
+    width: 100%;
+}
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    float: left;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.refine-search {
+    position: relative;
+    top: 0px;
+}

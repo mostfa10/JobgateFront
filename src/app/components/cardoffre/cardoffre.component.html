@@ -1,0 +1,40 @@
+<div class="col-4 col-sm-6">
+    <!-- <div class="container"> -->
+        <!-- <div class="row"> -->
+             <!-- <div class="col-md-12 col-sm-12"> -->
+                 
+                  
+       <div class="listing-item__list "  *ngFor="let p of offres ">
+        
+        <article id="1301206" class="media cl well listing-item listing-item__jobs  listing-item__no-logo">
+             <div class="media-body">
+             <div class="media-heading listing-item__title">
+             <a [routerLink]="['details/',p._id]" class="link">
+           {{p.titre}}
+             </a>
+             </div>
+             <div class="listing-item__desc hidden-sm hidden-xs">{{p.description}}</div>
+             <div class="listing-item__info clearfix">
+             <span class="listing-item__info--item listing-item__info--item-company">
+             Sagemcom Tunisie
+             </span>
+             <span class="listing-item__info--item listing-item__info--item-location">
+             {{p.place}}
+             </span>
+             </div>
+             </div>
+             <div class="media-right text-right">
+             <div class="listing-item__date">
+             14/06/2023 </div>
+             <a [routerLink]="['details/',p._id]"><span class="listing-item__employment-type">Voir Plus</span></a>
+             </div>
+             <div class="listing-item__desc visible-sm visible-xs">
+             Mission
+             {{p.description}}
+             </div>
+             </article>
+             
+             
+       </div>
+       <!-- <pagination-controls (pageChange)="c = $event"></pagination-controls> -->
+   </div>

@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detailoffre.component.css']
 })
 export class DetailoffreComponent implements OnInit {
+  userconnect=JSON.parse(localStorage.getItem("userconnect")!)//tjib les contenu de userconnect de localstorege enregistree lors de login
+
   id=this.Activeroute.snapshot.params['id']
   ofre:any
 
