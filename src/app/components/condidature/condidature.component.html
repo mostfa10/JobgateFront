@@ -12,16 +12,16 @@
     <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
     <div class="form-group text-center">
     <label class="form-label">Votre nom</label><br> <br>
-    <input type="text" name="name" value="{{userconnect.name}}" class="form-control">
+    <input type="text" name="name" value="{{userconnect.user.name}}" class="form-control">
     </div>
     <div class="form-group text-center">
     <label class="form-label">Votre email</label><br> <br>
-    <input type="email" name="email" value="{{userconnect.email}}" class="form-control">
+    <input type="email" name="email" value="{{userconnect.user.email}}" class="form-control">
     </div>
     <div class="form-group">
     <label class="form-label">Sélectionnez votre CV</label><br> <br>
     <select class="form-control" name="id_resume">
-    <option value="0">Sélectionnez votre CV</option>
+    <option value="0">Sélectionnez votre poste</option>
     <option selected="selected" value="735830">informaticien /technecien superieur</option>
     </select>
     </div>

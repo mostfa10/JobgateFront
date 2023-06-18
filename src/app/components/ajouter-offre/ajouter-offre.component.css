@@ -1,0 +1,9 @@
+.top{
+padding-top:100px !important;
+}
+.size{
+    min-inline-size: -webkit-fill-available !important;
+}
+.height{
+    height: 200px !important;
+}

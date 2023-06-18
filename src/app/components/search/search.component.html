@@ -4,10 +4,10 @@
     <input type="hidden" name="listing_type[equal]" value="Job">
     <input type="hidden" name="action" value="search">
     <div class="form-group form-group__input ">
-    <input type="text" value="" class="form-control form-control__centered" name="keywords[all_words]" id="keywords" placeholder="Mots Clés">
+    <input type="text" value="" class="form-control form-control__centered" [(ngModel)]="searchterm" (keyup)="search($event)" name="keywords[all_words]" id="keywords" placeholder="Mots Clés">
     </div>
     <div class="form-group form-group__input">
-    <input type="text" name="GooglePlace[location][value]" id="GooglePlace" class="form-control" value="" placeholder="Emplacement (Adresse)">
+    <input type="text" name="GooglePlace[location][value]" id="GooglePlace" class="form-control" placeholder="Emplacement (Adresse)" >
     
     <input type="hidden" name="GooglePlace[location][radius]" value="50" id="radius" class="hidden-radius">
     </div>

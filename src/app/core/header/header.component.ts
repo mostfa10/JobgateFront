@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
+import { LoginService } from 'src/app/services/login.service';
 import { PlaceService } from 'src/app/services/place.service';
 
 @Component({
@@ -11,13 +12,17 @@ import { PlaceService } from 'src/app/services/place.service';
 export class HeaderComponent implements OnInit {
   places:any
   categories:any
-  constructor(private place:PlaceService,private category:CategoryService,private route:Router) { }
+  loggedIn:boolean=true;
+  constructor(private place:PlaceService,private LoginService:LoginService, private category:CategoryService,private route:Router) {}
+ 
+
 
   ngOnInit(): void {
     this.listville()
 this.listcategory()
   }
   Logout(){
+  this.loggedIn=false;
     localStorage.clear()
     this.route.navigateByUrl('/')
   }

@@ -8,13 +8,26 @@ import { OffreService } from 'src/app/services/offre.service';
   styleUrls: ['./cardoffre.component.css']
 })
 export class CardoffreComponent implements OnInit {
+  searchkey:string="";
   offres:any
   c:number=1
   p:number=1
+  selectedPlace: string="";
+ 
+
+
   constructor(private offre:OffreService,private router:Router) { }
 
   ngOnInit(): void {
     this.listoffre();
+    
+    this.offre.search.subscribe((val:any)=>{
+      this.searchkey= val;
+    })
+   
+  }
+  selectPlace(place: string): void {
+    this.selectedPlace = place;
   }
   
   

@@ -52,7 +52,7 @@
                    <li><a routerLink="/contact">Contact Us</a></li>
                    <li><a routerLink="/login">Login</a></li>
               <li><a routerLink="/inscription">inscription</a></li>
-              <li><a routerLink="/profil">Profil</a></li>
+              <li><a *ngIf="loggedIn" routerLink="/profil">Profil</a></li>
               <li><a class="dropdown-item" (click)="Logout()" data-toggle="modal" data-target="#logoutModal">
                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                Logout

@@ -296,7 +296,7 @@ section {
   -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
-  padding: 12px 0;
+  /* padding: 12px 0; */
   margin-bottom: 0;
   padding: 0;
 }
@@ -305,16 +305,16 @@ section {
   color: #454545;
   font-size: 18px;
   font-weight: bold;
-  line-height: 40px;
+  /* line-height: 40px; */
 }
 
 .custom-navbar .navbar-nav.navbar-nav-first {
-  margin-left: 8em;
+  /* margin-left: 8em; */
 }
 
 .custom-navbar .navbar-nav.navbar-right li a {
-  padding-right: 12px;
-  padding-left: 12px;
+  /* padding-right: 12px;
+  padding-left: 12px; */
 }
 
 .custom-navbar .navbar-nav.navbar-right li a .fa {
@@ -326,14 +326,14 @@ section {
   line-height: 30px;
   text-align: center;
   display: inline-block;
-  margin-right: 5px;
+  /* margin-right: 5px; */
 }
 
 .custom-navbar .nav li a {
   line-height: 40px;
   color: #575757;
-  padding-right: 22px;
-  padding-left: 22px;
+  /* padding-right: 22px;
+  padding-left: 22px; */
 }
 
 .custom-navbar .navbar-nav > li > a:hover,
@@ -1079,6 +1079,7 @@ main > section:nth-child(even) { background: #f8f8f8; }
 display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
   display: flex;
   display: -webkit-flex; }
+  
 
 /* @extend list-type-ulli; */
 list-type-ulli, .socials {
@@ -1932,6 +1933,7 @@ label.valid {
   }
   .navbar-collapse {
       text-align: center;
+          margin-left: -10px !important;
   }
   .navbar .navbar-nav .nav-item {
       margin: 0px 15px;

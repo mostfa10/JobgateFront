@@ -20,6 +20,8 @@ import { CondidatureComponent } from './condidature/condidature.component';
 import { ProfilComponent } from './profil/profil.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FilterPipe } from './shared/filter.pipe';
+import { AjouterOffreComponent } from './ajouter-offre/ajouter-offre.component';
 
 
 
@@ -35,7 +37,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FilterComponent,
     CardoffreComponent,
     CondidatureComponent,
-    ProfilComponent
+    ProfilComponent,
+    AjouterOffreComponent,
+ 
    
   ],
   imports: [
@@ -48,6 +52,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CommonModule,
   OffreRoutingModule
   ],
+  // exports: [
+  //   FilterPipe // Ajoutez FilterPipe à la liste des exports
+  // ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ComponentsModule { }

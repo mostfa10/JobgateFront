@@ -9,12 +9,16 @@ import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
+import { RecherchePipe } from './recherche/recherche.pipe';
+import { LoginService } from './services/login.service';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RecherchePipe
+ 
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,7 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,    
     AuthModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -58,11 +58,12 @@ export class EntrepriseComponent implements OnInit {
     formdata.append('adress',this.formE.value.adress)
     
  formdata.append('speciality',this.formE.value.speciality)
+ 
  this.login.createentreprise(this.formE.value).subscribe((res:any)=>{
       console.log(this.formE.value)
       Swal.fire('you are  added like employer')
       console.log('res',res)
-      this.route.navigateByUrl('/')
+      this.route.navigateByUrl('/CreateOffre')
   
     })
 

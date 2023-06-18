@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   form!:FormGroup
+ 
   
 
   constructor(private login:LoginService,private formB:FormBuilder,private route:Router) { }
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
 
 
   signi(){
+   
     this.login.signin(this.form.value).subscribe((res:any)=>{
       console.log("user",res)
       Swal.fire('you are welcome') // ki 3malna login sajilna f localstoraje kol shy

@@ -6,10 +6,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
+  loggedIn: boolean = true;
 
   constructor(private http:HttpClient) { }
 
   signin(login:any){
+    this.loggedIn= true;
     return this.http.post(`${environment.JobGateBD}/auth/signin`,login)
   }
   createCondidat(condidat:any){

@@ -10,6 +10,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchComponent } from '../search/search.component';
 import { ComponentsRoutingModule } from '../components-routing.module';
 import { TopsearchComponent } from '../topsearch/topsearch.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -19,10 +21,13 @@ import { TopsearchComponent } from '../topsearch/topsearch.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     OffreRoutingModule,
     RouterModule,
     NgxPaginationModule
   ],
+  
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class OffreModule { }
