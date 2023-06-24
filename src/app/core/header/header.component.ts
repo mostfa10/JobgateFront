@@ -12,17 +12,18 @@ import { PlaceService } from 'src/app/services/place.service';
 export class HeaderComponent implements OnInit {
   places:any
   categories:any
-  loggedIn:boolean=true;
+  loggedIn:boolean=false;
   constructor(private place:PlaceService,private LoginService:LoginService, private category:CategoryService,private route:Router) {}
  
 
 
   ngOnInit(): void {
     this.listville()
-this.listcategory()
+    this.listcategory()
   }
+
   Logout(){
-  this.loggedIn=false;
+    this.loggedIn=false;
     localStorage.clear()
     this.route.navigateByUrl('/')
   }

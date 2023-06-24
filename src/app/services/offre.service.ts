@@ -11,8 +11,8 @@ export class OffreService {
 
   constructor(private http:HttpClient) { }
 
-  alloffre(){
-    return this.http.get(`${environment.JobGateBD}/offre`)
+  getOffers(query:string = ''){
+    return this.http.get(`${environment.JobGateBD}/offre?${query}`)
    }
    createOffre(offre:any){
     return this.http.post(`${environment.JobGateBD}/offre`,offre)

@@ -51,14 +51,26 @@
                         </div>
                   </div> -->
                     
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="date_naissace"><i class="zmdi zmdi-account material-icons-name"></i></label>
                         <input type="text" name="name" formControlName="date_naissance"
                         id="date_naissanceC" placeholder="Your date naissance"/>
                         <div *ngIf="submitted && f['date_naissace'].errors" class="invalid-feedback">
                             <div *ngIf="f['date_naissace'].errors['required']">name is required</div>
                           </div>
-                    </div>
+                    </div>  -->
+                    <form class="form-inline">
+                          <div class="relative">
+                            <input type="date"
+                                   class="
+                                     w-full
+                                     placeholder:text-sm"
+                                    formControlName="date_naissance"                        
+                            >
+                            <svg width="24" height="24" viewBox="0 0 44 44" fill="none" class="fill-ca-primary absolute top-1/2 -translate-y-1/2 right-0 -translate-x-4 pointer-events-none"> <path d="M38.446 22.137V34.882C38.446 35.8477 38.0624 36.7738 37.3796 37.4566C36.6968 38.1394 35.7707 38.523 34.805 38.523H9.31501C8.34936 38.523 7.42326 38.1394 6.74044 37.4566C6.05762 36.7738 5.67401 35.8477 5.67401 34.882V22.137H38.446ZM29.343 5.75101C29.826 5.75101 30.2892 5.94286 30.6307 6.28437C30.9722 6.62587 31.164 7.08905 31.164 7.57201V9.39201H34.805C35.7707 9.39201 36.6968 9.77561 37.3796 10.4584C38.0624 11.1413 38.446 12.0674 38.446 13.033V18.495H5.67401V13.034C5.67388 12.5558 5.76796 12.0822 5.95088 11.6403C6.1338 11.1985 6.40197 10.797 6.74008 10.4588C7.07819 10.1206 7.47962 9.8523 7.92143 9.66926C8.36324 9.48622 8.83678 9.39201 9.31501 9.39201H12.956V7.57201C12.9672 7.09657 13.1638 6.64435 13.504 6.31204C13.8442 5.97972 14.3009 5.79368 14.7765 5.79368C15.2521 5.79368 15.7088 5.97972 16.049 6.31204C16.3892 6.64435 16.5859 7.09657 16.597 7.57201V9.39201H27.522V7.57201C27.522 7.08905 27.7139 6.62587 28.0554 6.28437C28.3969 5.94286 28.8601 5.75101 29.343 5.75101Z" /> </svg>
+                        
+                          </div>
+                    </form>
                     <div class="form-group">
                         <label for="email"><i class="zmdi zmdi-email"></i></label>
                         <input type="email" name="email"  formControlName="email"

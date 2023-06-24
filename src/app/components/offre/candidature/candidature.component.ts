@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-condidature',
-  templateUrl: './condidature.component.html',
-  styleUrls: ['./condidature.component.css']
+  selector: 'app-candidature',
+  templateUrl: './candidature.component.html',
+  styleUrls: ['./candidature.component.css']
 })
-export class CondidatureComponent implements OnInit {
+export class CandidatureComponent implements OnInit {
   userconnect=JSON.parse(localStorage.getItem("userconnect")!)//tjib les contenu de userconnect de localstorege enregistree lors de login
 
 

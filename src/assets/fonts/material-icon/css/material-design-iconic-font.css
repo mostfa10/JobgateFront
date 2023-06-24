@@ -295,13 +295,13 @@
 .zmdi-card:before {
   content: '\f129';
 }
-.zmdi-case-check:before {
+.zmdi-cacheck:before {
   content: '\f12a';
 }
-.zmdi-case-download:before {
+.zmdi-cadownload:before {
   content: '\f12b';
 }
-.zmdi-case-play:before {
+.zmdi-caplay:before {
   content: '\f12c';
 }
 .zmdi-case:before {
@@ -325,10 +325,10 @@
 .zmdi-city:before {
   content: '\f133';
 }
-.zmdi-close-circle-o:before {
+.zmdi-clocircle-o:before {
   content: '\f134';
 }
-.zmdi-close-circle:before {
+.zmdi-clocircle:before {
   content: '\f135';
 }
 .zmdi-close:before {
@@ -352,7 +352,7 @@
 .zmdi-collection-bookmark:before {
   content: '\f13c';
 }
-.zmdi-collection-case-play:before {
+.zmdi-collection-caplay:before {
   content: '\f13d';
 }
 .zmdi-collection-folder-image:before {
@@ -2200,10 +2200,10 @@
 .zmdi-hearing:before {
   content: '\f3a4';
 }
-.zmdi-pause-circle-outline:before {
+.zmdi-paucircle-outline:before {
   content: '\f3a5';
 }
-.zmdi-pause-circle:before {
+.zmdi-paucircle:before {
   content: '\f3a6';
 }
 .zmdi-pause:before {
@@ -2626,13 +2626,13 @@
 .zmdi-card:before {
   content: '\f129';
 }
-.zmdi-case-check:before {
+.zmdi-cacheck:before {
   content: '\f12a';
 }
-.zmdi-case-download:before {
+.zmdi-cadownload:before {
   content: '\f12b';
 }
-.zmdi-case-play:before {
+.zmdi-caplay:before {
   content: '\f12c';
 }
 .zmdi-case:before {
@@ -2656,10 +2656,10 @@
 .zmdi-city:before {
   content: '\f133';
 }
-.zmdi-close-circle-o:before {
+.zmdi-clocircle-o:before {
   content: '\f134';
 }
-.zmdi-close-circle:before {
+.zmdi-clocircle:before {
   content: '\f135';
 }
 .zmdi-close:before {
@@ -2683,7 +2683,7 @@
 .zmdi-collection-bookmark:before {
   content: '\f13c';
 }
-.zmdi-collection-case-play:before {
+.zmdi-collection-caplay:before {
   content: '\f13d';
 }
 .zmdi-collection-folder-image:before {
@@ -4531,10 +4531,10 @@
 .zmdi-hearing:before {
   content: '\f3a4';
 }
-.zmdi-pause-circle-outline:before {
+.zmdi-paucircle-outline:before {
   content: '\f3a5';
 }
-.zmdi-pause-circle:before {
+.zmdi-paucircle:before {
   content: '\f3a6';
 }
 .zmdi-pause:before {

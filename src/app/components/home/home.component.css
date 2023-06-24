@@ -1,4 +1,4 @@
-.categories .browse-by__list, .location .browse-by__list {
+.categories .browby__list, .location .browby__list {
     columns: 4;
     -webkit-columns: 4;
     -moz-columns: 4;
@@ -14,23 +14,21 @@
     border: none;
     background: transparent;
 }
-.main-sections {
+/* .main-sections {
     padding: 55px 0 0;
-}
+} */
 .container {
     max-width: 1130px;
-}
-.container {
     width:fit-content;
 }
-.categories .browse-by__list, .location .browse-by__list {
+/* .categories .browby__list, .location .browby__list {
     columns: 4;
     -webkit-columns: 4;
     -moz-columns: 4;
     font-size: 16px;
     margin-top: 22px;
     margin-left: 10px;
-}
+} */
 .link, a {
     /* color: #2bade7; */
     text-decoration: none!important;
@@ -43,7 +41,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.browse-by__list {
+.browby__list {
     columns: 3;
     -webkit-columns: 3;
     -moz-columns: 3;
@@ -51,7 +49,7 @@
     margin-top: 22px;
     margin-left: 20px;
 }
-.browse-by__item {
+.browby__item {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -92,9 +90,8 @@ header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:af
 }
 .image{
     background-image: url("src/assets/images/banner-image-1-1920x500.jpg");
-
 }
-.career-level .container .browse-jobs .category-title, .categories .container .browse-jobs .category-title, .location .container .browse-jobs .category-title {
+.career-level .container .browjobs .category-title, .categories .container .browjobs .category-title, .location .container .browjobs .category-title {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -106,10 +103,10 @@ header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:af
     color: #fff;
     border-radius: 2px;
 }
-.categories .browse-jobs, .location .browse-jobs {
+.categories .browjobs, .location .browjobs {
     margin-bottom: 8px;
 }
-.browse-by__list {
+.browby__list {
     columns: 3;
     -webkit-columns: 3;
     -moz-columns: 3;
@@ -124,4 +121,19 @@ header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:af
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.card-cat{
+    margin: 3px;
+    text-align: center;
+    /* border: 1px solid black; */
+    border-radius: 2;
+    padding: 5px;
+    font-weight: bold;
+    font-size: medium;
+    text-transform: uppercase;
+}
+
+.card-cat:hover {
+    background-color: #29ca8e;
 }

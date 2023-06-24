@@ -5,27 +5,31 @@ import { OffreRoutingModule } from './offre-routing.module';
 import { RouterModule } from '@angular/router';
 import { ListeOffreComponent } from './liste-offre/liste-offre.component';
 import { DetailoffreComponent } from './detailoffre/detailoffre.component';
-import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SearchComponent } from '../search/search.component';
-import { ComponentsRoutingModule } from '../components-routing.module';
-import { TopsearchComponent } from '../topsearch/topsearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AjouterOffreComponent } from './ajouter-offre/ajouter-offre.component';
+import { CandidatureComponent } from './candidature/candidature.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { FilterComponent } from './filter/filter.component';
 
 
 
 @NgModule({
   declarations: [
    ListeOffreComponent,
-    DetailoffreComponent
+    DetailoffreComponent,
+    AjouterOffreComponent,
+    CandidatureComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     OffreRoutingModule,
-    RouterModule,
-    NgxPaginationModule
+    // RouterModule,
+    NgxPaginationModule,
+    SharedModule
   ],
   
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

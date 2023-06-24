@@ -11,3 +11,11 @@
     display:none !important;
     content: " ";
 }
+
+.navbar-nav-second {
+    float: right;
+}
+
+.bg-ca-accent{
+    background-color: '#29ca8e';
+}

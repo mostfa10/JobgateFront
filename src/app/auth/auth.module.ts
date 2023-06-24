@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth-routing.module';
 import { CondidatComponent } from './condidat/condidat.component';
 import { EntrepriseComponent } from './entreprise/entreprise.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     AuthRoutingModule,
-    RouterModule
+    RouterModule,
   ],
   exports:[
     RegisterComponent,

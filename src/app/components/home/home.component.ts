@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
+import { OffreService } from 'src/app/services/offre.service';
 import { PlaceService } from 'src/app/services/place.service';
 
 @Component({
@@ -10,29 +11,32 @@ import { PlaceService } from 'src/app/services/place.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private category:CategoryService,private router:Router,private place:PlaceService) { }
+  constructor(private category:CategoryService,private router:Router,private place:PlaceService,private offersService:OffreService) { }
   categories:any
   places:any
+  topOffers!: any
   ngOnInit(): void {
+    this.getTopOffers()
     this.listcategory();
     this.listville();
   }
   
   
-
+  getTopOffers(){
+    this.offersService.getOffers().subscribe((offers:any) => {
+      this.topOffers = offers.data
+      console.log(offers)
+    })
+  }
   listcategory(){
     this.category.allCategory().subscribe((res:any)=>{
       this.categories=res["data"]
-      console.log("listes offres",this.categories)
-
     })
   }
 
   listville(){
     this.place.allPlace().subscribe((res:any)=>{
       this.places=res["data"]
-      console.log("listes places",this.places)
-
     })
   }
 }

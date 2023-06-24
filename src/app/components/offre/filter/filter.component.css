@@ -1,0 +1,85 @@
+.filter-header {
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.d-flex {
+    align-items: center;
+}
+
+.collapheader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    cursor: pointer;
+    /* background-color: white; */
+    border: 0;
+    padding: 0.75rem;
+    color: #1D3037;
+}
+
+.collapbody {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s eaout;
+    margin-top: 10px;
+}
+
+.opened-collapse {
+    max-height: 15em !important;
+    margin-bottom: 20px;
+}
+
+.loader-svg {
+    margin-top: 50px;
+}
+
+.text-center {
+    height: 128px;
+}
+
+.badge span {
+    font-weight: 600;
+}
+
+
+
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.display-flex {
+    display: flex !important;
+}
+
+.overflow-x {
+    overflow-x: auto;
+}
+
+.overflow-y {
+    overflow-y: auto;
+}
+
+.opacity {
+    opacity: 0.3;
+}
+
+.height-35 {
+    height : 35px;
+}
+
+.box-shadow {
+    box-shadow: 0px 0px 10px 5px #cbcbcb;
+}
+
+.contract-checked {
+    background-color: #29ca8e;
+}
+@media all and (min-width: 768px) {
+    .show-sm {
+        display: none;  
+    }
+}
+
