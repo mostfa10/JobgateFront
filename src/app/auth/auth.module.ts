@@ -8,17 +8,23 @@ import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth-routing.module';
 import { CondidatComponent } from './condidat/condidat.component';
 import { EntrepriseComponent } from './entreprise/entreprise.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+
+
+
 
 @NgModule({
   declarations: [
+  
     RegisterComponent,
     LoginComponent,
     InterfaceComponent,
     CondidatComponent,
-    EntrepriseComponent
+    EntrepriseComponent,
+    ForgetpasswordComponent
   ],
   imports: [
+  
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

@@ -29,6 +29,8 @@ export class EntrepriseComponent implements OnInit {
         confirmPassword:  ['', Validators.required],
         adress:  ['', Validators.required],
         speciality:  ['', Validators.required],
+        file:  ['', Validators.required],
+
         acceptTerms: [false]
       })
   }
@@ -56,6 +58,8 @@ export class EntrepriseComponent implements OnInit {
     formdata.append('password',this.formE.value.password)
     formdata.append('email',this.formE.value.email)
     formdata.append('adress',this.formE.value.adress)
+    formdata.append('logo',this.formE.value.logo)
+
     
  formdata.append('speciality',this.formE.value.speciality)
  

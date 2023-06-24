@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import { ContratService } from 'src/app/services/contrat.service';
+import { OffreService } from 'src/app/services/offre.service';
 import { PlaceService } from 'src/app/services/place.service';
 
 @Component({
@@ -13,7 +14,9 @@ contrats:any
 categories:any
 places:any
 term:any
-  constructor(private contrat:ContratService,private category:CategoryService,private place:PlaceService) { }
+
+  constructor(private contrat:ContratService,private offre:OffreService,
+    private category:CategoryService,private place:PlaceService) { }
 
   ngOnInit(): void {
     this.listcontrat()
@@ -41,5 +44,6 @@ term:any
 
     })
   }
+ 
 
 }

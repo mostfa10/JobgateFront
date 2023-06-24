@@ -13,7 +13,7 @@
 
               <div class="col-lg-9 col-md-9 col-xs-12">
                    <form action="#" method="post" class="form">
-                        <h2>Security Officer - Luxury Retail</h2>
+                        <h2>{{ofre?.place}}</h2>
 
                         <p class="lead"><strong class="text-primary">$38000</strong> <small> per year</small></p>
 
@@ -159,7 +159,7 @@
      <div class="modal-dialog" role="document">
        <div class="modal-content">
          <div class="modal-header">
-           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+           <h5 class="modal-title" id="exampleModalLongTitle">Inscription</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
@@ -167,7 +167,7 @@
          <div class="modal-body">
           
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-    <h4 class="modal-title">						Postuler à Prof langue RUSSE chez INSPIRE TRAINING CENTER
+    <h4 class="modal-title">	Postuler for this offre
             </h4>
     </div>
     <div class="modal-body">
@@ -176,22 +176,22 @@
     <input type="hidden" name="listing_id" value="1302239">
     <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
     <div class="form group">
-    <label>Votre nom</label><br> <br>
-    <input type="text" name="name" value="{{userconnect.condidat.name}}" class="form-control">
+    <label class="form-label top">Votre nom</label>
+    <input type="text" name="name" value="{{userconnect.user.name}}" class="form-control">
     </div>
     <div class="form-group text-center">
-    <label class="form-label">Votre email</label><br> <br>
-    <input type="email" name="email" value="{{userconnect.email}}" class="form-control">{{userconnect.email}}
+    <label class="form-label">Votre email</label><br> <br><br> <br>
+    <input type="email" name="email" value="{{userconnect.user.email}}" class="form-control">
     </div>
     <div class="form-group">
-    <label class="form-label">Sélectionnez votre CV</label><br> <br>
+    <label class="form-label">Sélectionnez votre CV</label><br> <br><br> <br>
     <select class="form-control" name="id_resume">
-    <option value="0">Sélectionnez votre CV</option>
+    <option value="0">Sélectionnez votre poste name</option>
     <option selected="selected" value="735830">informaticien /technecien superieur</option>
     </select>
     </div>
     <div class="form-group">
-    <label class="form-label">Télécharger votre CV</label><br> <br>
+    <label class="form-label">Télécharger votre CV</label><br> <br><br> <br>
     <input type="file" name="file_tmp" class="form-control">
     </div>
     <div class="form-group">
