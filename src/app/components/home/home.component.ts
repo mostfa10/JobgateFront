@@ -15,18 +15,18 @@ export class HomeComponent implements OnInit {
   categories:any
   
   places:any
-  topOffers!: any
+  offer!: any
   ngOnInit(): void {
-    this.getTopOffers()
+    this.getLastOffers()
     this.listcategory();
     this.listville();
   }
   
   
-  getTopOffers(){
-    this.offersService.getOffers().subscribe((offers:any) => {
-      this.topOffers = offers.data
-      console.log(offers)
+  getLastOffers(){
+    this.offersService.getOffersL().subscribe((offer:any) => {
+      this.offer = offer.data
+      console.log(offer)
     })
   }
   listcategory(){

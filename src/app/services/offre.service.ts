@@ -14,6 +14,9 @@ export class OffreService {
   getOffers(query:string = ''){
     return this.http.get(`${environment.JobGateBD}/offre?${query}`)
    }
+   getOffersL(){
+    return this.http.get(`${environment.JobGateBD}/offre/latest`)
+   }
    createOffre(offre:any){
     return this.http.post(`${environment.JobGateBD}/offre`,offre)
    }
