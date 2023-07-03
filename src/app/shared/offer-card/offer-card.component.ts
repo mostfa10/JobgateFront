@@ -9,16 +9,16 @@ import { OffreService } from 'src/app/services/offre.service';
   styleUrls: ['./offer-card.component.css']
 })
 export class OfferCardComponent implements OnInit {
-  offerId = 'ID_DE_offre'
-  userId = 'ID_DE_LUTILISATEUR';
+  user !:any;
   @Input() offer!: any
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.user =   JSON.parse(localStorage.getItem("userconnect")!)['user'];
   }
   toggleFavorite(): void {
     this.http
-      .post<void>(`/api/users/${this.userId}/favorite-offers/${this.offerId}`, {})
+      .post<void>(`http://localhost:3000/user/${this.user._id}/favorite-offers/${this.offer._id}`, {})
       .subscribe(
         () => {
           console.log('Offre ajoutée ou supprimée des favoris avec succès');
