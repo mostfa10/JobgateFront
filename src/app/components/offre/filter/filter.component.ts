@@ -1,8 +1,11 @@
+import { Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { ContratService } from 'src/app/services/contrat.service';
 import { PlaceService } from 'src/app/services/place.service';
+
+
 
 @Component({
   selector: 'app-filter',
@@ -10,6 +13,15 @@ import { PlaceService } from 'src/app/services/place.service';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
+   
+  priceselection=""
+  minValue: number = 100;
+  maxValue: number = 10000;
+  options: Options = {
+    floor: 0,
+    ceil: 10000,
+}
+
   contracts:any = []
   categories:any = []
   states:any

@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private category:CategoryService,private router:Router,private place:PlaceService,private offersService:OffreService) { }
   categories:any
+  
   places:any
   topOffers!: any
   ngOnInit(): void {
