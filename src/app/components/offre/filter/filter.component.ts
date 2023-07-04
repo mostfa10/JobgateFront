@@ -1,4 +1,5 @@
 import { Options } from '@angular-slider/ngx-slider';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
@@ -26,7 +27,10 @@ export class FilterComponent implements OnInit {
   categories:any = []
   states:any
   term:any
+  offres!: any[];
   totalResults:number = 0
+  minSalaireRange!: number;
+  maxSalaireRange!: number;
   
   collapsedSalary: boolean = false;
   collapsedCategories: boolean = true;
@@ -39,7 +43,8 @@ export class FilterComponent implements OnInit {
     private contract:ContratService,
     private category:CategoryService,
     private place:PlaceService,
-    private router:Router) {
+    private router:Router,
+    private http: HttpClient) {
       this.router.events.subscribe((e: any) => {
         if (e instanceof NavigationEnd && this.filterInitialzed) {
             this.checkSelected()
@@ -110,6 +115,16 @@ export class FilterComponent implements OnInit {
     }
     this.router.navigateByUrl(urlTree); 
   }
+  filterBySalaireRange() {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = { minSalaire: this.minSalaireRange, maxSalaire: this.maxSalaireRange };
+
+    this.http.post<any[]>('http://localhost:3000/offres/filter', body, { headers })
+      .subscribe((data) => {
+        this.offres = data;
+      });
+  }
+ 
 
 
 }

@@ -15,13 +15,13 @@
                    <form action="#" method="post" class="form">
                         <h2>{{ofre?.titre}}</h2>
 
-                        <p class="lead"><strong class="text-primary">$38000</strong> <small> per year</small></p>
+                        <p class="lead"><strong class="text-primary">${{ofre?.salaire}}</strong> <small> per year</small></p>
 
                         <p class="lead">
                              <i class="fa fa-briefcase"></i> {{ofre?.titre}} &nbsp;&nbsp;
                              <i class="fa fa-map-marker"></i> {{ofre?.placeId.place}} &nbsp;&nbsp;
                              <i class="fa fa-calendar"></i> {{ofre?.createdAt | date:'yyyy-MM-dd'}} &nbsp;&nbsp;
-                             <i class="fa fa-file"></i> {{ofre?.contratId}}
+                             <i class="fa fa-file"></i> {{ofre?.contratId.type}}
                         </p>
 
                         
@@ -31,30 +31,25 @@
 
          <div class="panel panel-default">
               <div class="panel-heading">
-                   <h4>{{ofre?.description}}</h4>
+                   <h4>description</h4>
               </div>
 
               <div class="panel-body">
-                   <p>Pro Active Retail Security Officer required to operate in luxury retail environment. Searching for self-motivated individuals who are always looking to achieve the highest standards.</p>
-
-                   <h4>Responsibillitites:</h4>
-
-                   <p>Regular Report Writing, Liaison between the team and the client and head office, Door Supervision, Staff Search, Random Searches, TAG detector procedures, Risk Assessment, Fire Drills, Alarm Checks, immaculate customer services, deterrent and apprehension of offenders, liaisons with emergency services.</p>
-
-                   <h4>Qualifications:</h4>
-                   <p>- MUST have minimum 1 year experience in RETAIL security (shops).</p>
-                   <p>- MUST be Fluent in the English Language (speaking and writing).</p>
-                   <p>- MUST hold a valid SIA Door Supervisor Licence.</p>
+               {{ofre?.description}}
+                  
+                   <h4>sklis:</h4>
+                   <h4>{{ofre?.skilsId.skil}}</h4>
+                
               </div>
          </div>
 
          <div class="panel panel-default">
               <div class="panel-heading">
-                   <h4>About Cannon Guards Security ltd</h4>
+                   <h4>About  entreprise: {{ofre?.entrepriseId.fullname}} </h4>
               </div>
 
               <div class="panel-body">
-                   <p>Looking to improve the security at your place of business? If so, we will provide you with the trained security officers and professionally licensed personnel needed for any business. From a security guard for construction site security to private event security, you can be sure to get the very best from our staff. Alternatively we provide tailor-made security guard training for your existing security staff.</p>
+                   <p>{{ofre?.entrepriseId.description}} </p>
 
                    <div class="row">
                         <div class="col-lg-6">
@@ -69,11 +64,11 @@
                    <div class="row">
                         <div class="col-md-6">
                              <p>
-                                  <span>Company name</span>
+                                  <span>spiciality domaine</span>
 
                                   <br>
 
-                                  <strong>Cannon Guards Security Ltd</strong>
+                                  <strong>{{ofre.entrepriseId.speciality}}</strong>
                              </p>
                         </div>
 
@@ -117,7 +112,7 @@
 
                                   <br>
 
-                                  <strong><a href="mailto:john@carsales.com">john@carsales.com</a></strong>
+                                  <strong><a href="mailto:john@carsales.com">{{ofre?.entrepriseId.email}}</a></strong>
                              </p>
                         </div>
 
@@ -137,7 +132,7 @@
 
                         <br>
 
-                        <strong>Manchester</strong>
+                        <strong>{{ofre.entrepriseId.adress}}</strong>
                    </p>
               </div>
          </div>
@@ -228,7 +223,7 @@
          <div class="modal-body">
           
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-    <h4 class="modal-title">						Postuler à Prof langue RUSSE chez INSPIRE TRAINING CENTER
+    <h4 class="modal-title">
             </h4>
     </div>
     <div class="modal-body">
@@ -237,17 +232,17 @@
     <input type="hidden" name="listing_id" value="1302239">
     <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
     <div class="form group">
-    <label>Votre nom</label><br> <br>
-    <input type="text" value="{{userconnect.condidat.name}}" class="form-control">
+    <label class="top">Votre nom</label><br> <br>
+    <input type="text" value="{{userconnect.user.email}}" class="form-control" >
     </div>
     <div class="form-group text-center">
     <label class="form-label">Votre email</label><br> <br>
-    <input type="email" name="email" value="{{userconnect.email}}" class="form-control">{{userconnect.email}}
+    <input type="email" name="email" value="" class="form-control">
     </div>
     <div class="form-group">
     <label class="form-label">Sélectionnez votre CV</label><br> <br>
     <select class="form-control" name="id_resume">
-    <option value="0">Sélectionnez votre CV</option>
+    <option value="0">Sélectionnez votre poste</option>
     <option selected="selected" value="735830">informaticien /technecien superieur</option>
     </select>
     </div>
@@ -255,7 +250,7 @@
     <label class="form-label">Télécharger votre CV</label><br> <br>
     <input type="file" name="file_tmp" class="form-control">
     </div>
-    <div class="form-group">
+    <div class="form-group mrg pg">
     <label class="form-label">Lettre de Motivation</label><br> <br><br> <br><br> <br>
     <textarea class="form-control" name="comments" rows="5"></textarea>
     </div>
@@ -279,10 +274,7 @@
     </script>
     </div>
          </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           <button type="button" class="btn btn-primary">Save changes</button>
-         </div>
+      
        </div>
      </div>
   

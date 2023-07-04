@@ -26,12 +26,13 @@ export class DetailoffreComponent implements OnInit {
     this.offrebyid();
     this.formE= this.formB.group(
       {
+        
         contenu:  ['', Validators.required]})
   }
   offrebyid(){
     this.offre.getoffreyid(this.id).subscribe((res:any)=>{
       this.ofre=res["data"]
-      console.log(" offre",this.offre)
+      console.log(" offre",this.ofre)
     })
 }
 onSubmit(): void {
@@ -40,7 +41,12 @@ onSubmit(): void {
   if (this.formE.invalid) {
     return;
    }
-   this.commantaire.createcomm(this.formE.value[this.id]).subscribe((res:any)=>{
+   const contenu=this.formE.value.contenu;
+   const commentaire={
+    offreId:this.ofre._id,
+    contenu:contenu
+   }
+   this.commantaire.createcomm(commentaire).subscribe((res:any)=>{
     console.log(this.formE.value)
     Swal.fire('your commantaire was added ')
     console.log('res',res)

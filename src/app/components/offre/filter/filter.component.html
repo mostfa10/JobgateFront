@@ -88,7 +88,7 @@
     
     
 </button>
-<input type="range" class="form-range" id="customRange1">
+<input type="range" class="form-range" id="minSalaireRange" [(ngModel)]="minSalaireRange" (change)="filterBySalaireRange()">
 
 <div class="collapbody" [ngClass]="{'opened-collapse':collapsedSalary}">
   

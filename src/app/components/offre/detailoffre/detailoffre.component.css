@@ -2,7 +2,12 @@ body {
     background-color: #eee;
     
 }
-
+.mrg{
+  margin-bottom: 0% !important;
+}
+.pg{
+  margin-top:-127px;
+}
 .bdge {
   height: 21px;
   background-color: orange;
@@ -18,7 +23,13 @@ body {
   text-underline-position: under;
   cursor: pointer;
 }
-
+.top{
+  top: 7%;
+  left: 16px;
+}
+.form-label{
+  top: 42%;
+}
 .dot {
   height: 7px;
   width: 7px;

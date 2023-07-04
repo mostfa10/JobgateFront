@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OffreService } from 'src/app/services/offre.service';
@@ -11,12 +11,18 @@ import { OffreService } from 'src/app/services/offre.service';
 export class OfferCardComponent implements OnInit {
   user !:any;
   @Input() offer!: any
+  isFavorite = false;
+  minSalaireRange!: number;
+  maxSalaireRange!: number;
+  offres!:any[];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.user =   JSON.parse(localStorage.getItem("userconnect")!)['user'];
   }
+  
   toggleFavorite(): void {
+    this.isFavorite = !this.isFavorite;
     this.http
       .post<void>(`http://localhost:3000/user/${this.user._id}/favorite-offers/${this.offer._id}`, {})
       .subscribe(

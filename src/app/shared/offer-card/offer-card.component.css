@@ -1,3 +1,12 @@
+.star {
+    color: rgb(224, 230, 230);
+  }
+  .star.selected {
+    color: rgb(51, 51, 235);
+  }
+  .favorite {
+    fill: hwb(80 96% 0%) !important;
+  }
 /* * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -6,6 +15,7 @@
 div {
     display: block;
 }
+
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
