@@ -2,6 +2,9 @@ body {
     background-color: #eee;
     
 }
+.l{
+  width: 81rem !important;
+}
 .mrg{
   margin-bottom: 0% !important;
 }

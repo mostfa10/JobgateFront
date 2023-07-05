@@ -12,4 +12,8 @@ export class CommantaireService {
     console.log(comm)
     return this.http.post(`${environment.JobGateBD}/commentaire`,comm)
    }
+  //  comm(id:any){
+  //   console.log(comm)
+  //   return this.http.get(`${environment.JobGateBD}/commentaire/id`,)
+  //  }
   }

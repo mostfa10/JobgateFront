@@ -12,14 +12,15 @@ import { CommantaireService } from 'src/app/services/commantaire.service';
   styleUrls: ['./detailoffre.component.css']
 })
 export class DetailoffreComponent implements OnInit {
-  userconnect=JSON.parse(localStorage.getItem("userconnect")!)//tjib les contenu de userconnect de localstorege enregistree lors de login
+  userconnect=JSON.parse(localStorage.getItem("userconnect")!) //tjib les contenu de userconnect de localstorege enregistree lors de login
 
   id=this.Activeroute.snapshot.params['id']
   ofre:any
+  
   formE!:FormGroup
   submitted:boolean=false;
 
-  constructor(private offre:OffreService,private commantaire:CommantaireService  ,private Activeroute:ActivatedRoute,private formB:FormBuilder
+  constructor(private offre:OffreService, private commantaire:CommantaireService  ,private Activeroute:ActivatedRoute,private formB:FormBuilder
     ) { }
 
   ngOnInit(): void {
@@ -35,16 +36,24 @@ export class DetailoffreComponent implements OnInit {
       console.log(" offre",this.ofre)
     })
 }
+
+
+
 onSubmit(): void {
   this.submitted = true;
 
   if (this.formE.invalid) {
     return;
    }
+   
+   
    const contenu=this.formE.value.contenu;
+   
    const commentaire={
+    
     offreId:this.ofre._id,
-    contenu:contenu
+    contenu:contenu,
+    userId:this.userconnect.user._id
    }
    this.commantaire.createcomm(commentaire).subscribe((res:any)=>{
     console.log(this.formE.value)
