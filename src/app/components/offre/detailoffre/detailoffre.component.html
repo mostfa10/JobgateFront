@@ -1,291 +1,289 @@
 <section>
     <div class="container">
-         <div class="row">
-              <div class="col-lg-3 col-md-3 col-xs-12">
-                   <div>
-                        <br>
+               <div class="row">
+                              <div class="col-lg-3 col-md-3 col-xs-12">
+                                                  <div>
+                                                       <br>
 
-                        <img src="assets/images/product-1-720x480.jpg" alt="" class="img-responsive wc-image">
+                                                       <img src="assets/images/product-1-720x480.jpg" alt="" class="img-responsive wc-image">
 
-                        <br>
-                   </div>
-              </div>
-
-              <div class="col-lg-9 col-md-9 col-xs-12">
-                   <form action="#" method="post" class="form">
-                        <h2>{{ofre?.titre}}</h2>
-
-                        <p class="lead"><strong class="text-primary">${{ofre?.salaire}}</strong> <small> per year</small></p>
-
-                        <p class="lead">
-                             <i class="fa fa-briefcase"></i> {{ofre?.titre}} &nbsp;&nbsp;
-                             <i class="fa fa-map-marker"></i> {{ofre?.placeId.place}} &nbsp;&nbsp;
-                             <i class="fa fa-calendar"></i> {{ofre?.createdAt | date:'yyyy-MM-dd'}} &nbsp;&nbsp;
-                             <i class="fa fa-file"></i> {{ofre?.contratId.type}}
-                        </p>
-
-                        
-                   </form>
-              </div>
-         </div>
-
-         <div class="panel panel-default">
-              <div class="panel-heading">
-                   <h4>description</h4>
-              </div>
-
-              <div class="panel-body">
-               {{ofre?.description}}
-                  
-                   <h4>sklis:</h4>
-                   <span *ngIf="ofre.skilsId"> <!-- vérifier s'il existe des skills dans cette offre et les parcourir-->
-                        <h4 *ngFor="let s of ofre.skilsId">{{s.name}}</h4>
-                   </span>
-                
-              </div>
-         </div>
-
-         <div class="panel panel-default">
-              <div class="panel-heading">
-                   <h4>About  entreprise: {{ofre?.entrepriseId.fullname}} </h4>
-              </div>
-
-              <div class="panel-body">
-                   <p>{{ofre?.entrepriseId.description}} </p>
-
-                   <div class="row">
-                        <div class="col-lg-6">
-                             
-                        </div>
-
-                        <div class="col-lg-6">
-                             
-                        </div>
-                   </div>
-
-                   <div class="row">
-                        <div class="col-md-6">
-                             <p>
-                                  <span>spiciality domaine</span>
-
-                                  <br>
-
-                                  <strong>{{ofre.entrepriseId.speciality}}</strong>
-                             </p>
-                        </div>
-
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Contact name</span>
-
-                                  <br>
-
-                                  <strong>Paul Gordon</strong>
-                             </p>
-                        </div>
-                   </div>
-
-                   <div class="row">
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Phone</span>
-
-                                  <br>
-
-                                  <strong><a href="tel:123-456-789">123-456-789</a></strong>
-                             </p>
-                        </div>
-
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Mobile phone</span>
-
-                                  <br>
-
-                                  <strong><a href="tel:456789123">456789123</a></strong>
-                             </p>
-                        </div>
-                   </div>
-
-                   <div class="row">
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Email</span>
-
-                                  <br>
-
-                                  <strong><a href="mailto:john@carsales.com">{{ofre?.entrepriseId.email}}</a></strong>
-                             </p>
-                        </div>
-
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Website</span>
-
-                                  <br>
-
-                                  <strong><a href="http://www.cannonguards.com/">http://www.cannonguards.com/</a></strong>
-                             </p>
-                        </div>
-                   </div>
-
-                   <p>
-                        <span>City</span>
-
-                        <br>
-
-                        <strong>{{ofre.entrepriseId.adress}}</strong>
-                   </p>
-              </div>
-         </div>
-         <form  [formGroup]="formE" (ngSubmit)="onSubmit()">
-         <div class="panel panel-default">
-         
-        
-          <div class="container row">
-              <div class="d-flex flex-column ">
-                  <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
-                      <div class="profile-image"><img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg" width="70"></div>
-                      <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"><i class="fa fa-sort-up fa-2x hit-voting"></i><span>127</span><i class="fa fa-sort-down fa-2x hit-voting"></i></div>
-                      <div class="d-flex flex-column ml-3">
-                          <div class="d-flex flex-row post-title">
-                             
-                              <h5>Is sketch 3.9.1 stable?</h5><span class="ml-2">(Jesshead)</span></div>
-                          <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">video</span><span class="mr-2 comments">13 comments&nbsp;</span><span class="mr-2 dot"></span><span>6 hours ago</span></div>
-                      </div>
-                  </div>
-                  <div class="coment-bottom bg-white p-2 px-4 l" *ngIf="ofre.commantaires">
-                      <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" formControlName="contenu" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="submit">Comment</button></div>
-                      <div
-                          class="commented-section mt-2" *ngFor="let com of ofre.commantaires">
-                          <div class="d-flex flex-row align-items-center commented-user">
-                              <h5 class="mr-2">{{com.userId.condidatId.name}}  {{com.userId.condidatId.lastname}}</h5><span class="dot mb-1"></span> <span>{{ com.createdAt | date: 'medium' }}</span></div>
-                          <div class="comment-text-sm"><span>{{com.contenu}}</span></div>
-                          <div
-                              class="reply-section">
-                              <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
-                                  <h6 class="ml-2 mt-1">Reply</h6>
+                                                       <br>
+                                                  </div>
                               </div>
+
+                    <div class="col-lg-9 col-md-9 col-xs-12">
+                              <form action="#" method="post" class="form">
+                                   <h2>{{ofre?.titre}}</h2>
+
+                                   <p class="lead"><strong class="text-primary">${{ofre?.salaire}}</strong> <small> per year</small></p>
+
+                                   <p class="lead">
+                                        <i class="fa fa-briefcase"></i> {{ofre?.titre}} &nbsp;&nbsp;
+                                        <i class="fa fa-map-marker"></i> {{ofre?.placeId.place}} &nbsp;&nbsp;
+                                        <i class="fa fa-calendar"></i> {{ofre?.createdAt | date:'yyyy-MM-dd'}} &nbsp;&nbsp;
+                                        <i class="fa fa-file"></i> {{ofre?.contratId.type}}
+                                   </p>
+
+                                   
+                              </form>
+                    </div>
+               </div>
+
+               <div class="panel panel-default">
+                    <div class="panel-heading">
+                         <h4>description</h4>
+                    </div>
+
+                    <div class="panel-body">
+                         {{ofre?.description}}
+                         
+                         <h4>sklis:</h4>
+                         <span *ngIf="ofre.skilsId"> <!-- vérifier s'il existe des skills dans cette offre et les parcourir-->
+                              <h4 *ngFor="let s of ofre.skilsId">{{s.name}}</h4>
+                         </span>
+                         
+                    </div>
+               </div>
+
+               <div class="panel panel-default">
+                    <div class="panel-heading">
+                         <h4>About  entreprise: {{ofre?.entrepriseId.fullname}} </h4>
+                    </div>
+
+                    <div class="panel-body">
+                         <p>{{ofre?.entrepriseId.description}} </p>
+
+                         <div class="row">
+                              <div class="col-lg-6">
+                                   
+                              </div>
+
+                              <div class="col-lg-6">
+                                   
+                              </div>
+                         </div>
+
+                         <div class="row">
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>spiciality domaine</span>
+
+                                        <br>
+
+                                        <strong>{{ofre.entrepriseId.speciality}}</strong>
+                                   </p>
+                              </div>
+
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Contact name</span>
+
+                                        <br>
+
+                                        <strong>Paul Gordon</strong>
+                                   </p>
+                              </div>
+                         </div>
+
+                         <div class="row">
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Phone</span>
+
+                                        <br>
+
+                                        <strong><a href="tel:123-456-789">123-456-789</a></strong>
+                                   </p>
+                              </div>
+
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Mobile phone</span>
+
+                                        <br>
+
+                                        <strong><a href="tel:456789123">456789123</a></strong>
+                                   </p>
+                              </div>
+                         </div>
+
+                         <div class="row">
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Email</span>
+
+                                        <br>
+
+                                        <strong><a href="mailto:john@carsales.com">{{ofre?.entrepriseId.email}}</a></strong>
+                                   </p>
+                              </div>
+
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Website</span>
+
+                                        <br>
+
+                                        <strong><a href="http://www.cannonguards.com/">http://www.cannonguards.com/</a></strong>
+                                   </p>
+                              </div>
+                         </div>
+
+                         <p>
+                              <span>City</span>
+
+                              <br>
+
+                              <strong>{{ofre.entrepriseId.adress}}</strong>
+                         </p>
+                    </div>
+               </div>
+                         <form  [formGroup]="formE" (ngSubmit)="onSubmit()">
+                         <div class="panel panel-default">
+                    
+                    
+                                   <div class="container row">
+                                   <div class="d-flex flex-column ">
+                                        <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                                             <div class="profile-image"><img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg" width="70">
+                                             </div>
+                                             <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"><i class="fa fa-sort-up fa-2x hit-voting"></i><span>127</span><i class="fa fa-sort-down fa-2x hit-voting"></i></div>
+                                             <div class="d-flex flex-column ml-3">
+                                                  <div class="d-flex flex-row post-title">
+                                                  
+                                                       <h5>Is sketch 3.9.1 stable?</h5><span class="ml-2">(Jesshead)</span></div>
+                                                  <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">video</span><span class="mr-2 comments">13 comments&nbsp;</span><span class="mr-2 dot"></span><span>6 hours ago</span></div>
+                                             </div>
+                                        </div>
+                                        <div class="coment-bottom bg-white p-2 px-4 l" *ngIf="ofre.commantaires">
+                                             <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" formControlName="contenu" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="submit">Comment</button></div>
+                                             <div
+                                                  class="commented-section mt-2" *ngFor="let com of ofre.commantaires">
+                                                  <div class="d-flex flex-row align-items-center commented-user">
+                                                       <h5 class="mr-2">{{com.userId.condidatId.name}}  {{com.userId.condidatId.lastname}}</h5><span class="dot mb-1"></span> <span>{{ com.createdAt | date: 'medium' }}</span>
+                                                  </div>
+                                                       <div class="comment-text-sm"><span>{{com.contenu}}</span>
+                                                       </div>
+                                                  <div
+                                                                 class="reply-section">
+                                                                 <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
+                                                                 <h6 class="ml-2 mt-1">Reply</h6>
+                                                       </div>
+                                        </div>
+                                        
+
+                                   </div>
+                                   <!-- <div class="commented-section mt-2">
+                                        <div class="d-flex flex-row align-items-center commented-condidatIduser">
+                                             <h5 class="mr-2">Samoya Johns</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">5 hours ago</span></div>
+                                        <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span></div>
+                                        <div class="reply-section">
+                                             <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">15</span><span class="dot ml-2"></span>
+                                                  <h6 class="ml-2 mt-1">Reply</h6>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="commented-section mt-2"> -->
+                                        <!-- <div class="d-flex flex-row align-items-center commented-user">
+                                             <h5 class="mr-2">Makhaya andrew</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">10 hours ago</span></div>
+                                        <div class="comment-text-sm"><span>Nunc sed id semper risus in hendrerit gravida rutrum. Non odio euismod lacinia at quis risus sed. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Enim facilisis gravida neque convallis a. In mollis nunc sed id. Adipiscing elit pellentesque habitant morbi tristique senectus et netus. Ultrices mi tempus imperdiet nulla malesuada pellentesque.</span></div>
+                                        <div class="reply-section">
+                                             <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">25</span><span class="dot ml-2"></span>
+                                                  <h6 class="ml-2 mt-1">Reply</h6>
+                                             </div>
+                                             
+                                   </div> -->
+                              
+                                   <!-- </div> -->
+                         
+                              </div>
+                              
+                              </div>
+                    </div>
+                         </div>
+                         </form>
+
+
+               <div class="clearfix">
+                    <a class="section-btn btn btn-primary pull-left" data-toggle="modal" data-target="#exampleModalLong">Apply for this job</a>
+
+
+
+               
+                    <ul class="social-icon pull-right">
+                         <li><a href="#" class="fa fa-facebook"></a></li>
+                         <li><a href="#" class="fa fa-envelope-o"></a></li>
+                         <li><a href="#" class="fa fa-linkedin"></a></li>
+                    </ul>
                   </div>
-              </div>
-              <!-- <div class="commented-section mt-2">
-                  <div class="d-flex flex-row align-items-center commented-condidatIduser">
-                      <h5 class="mr-2">Samoya Johns</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">5 hours ago</span></div>
-                  <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span></div>
-                  <div class="reply-section">
-                      <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">15</span><span class="dot ml-2"></span>
-                          <h6 class="ml-2 mt-1">Reply</h6>
-                      </div>
-                  </div>
-              </div>
-              <div class="commented-section mt-2"> -->
-                  <!-- <div class="d-flex flex-row align-items-center commented-user">
-                      <h5 class="mr-2">Makhaya andrew</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">10 hours ago</span></div>
-                  <div class="comment-text-sm"><span>Nunc sed id semper risus in hendrerit gravida rutrum. Non odio euismod lacinia at quis risus sed. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Enim facilisis gravida neque convallis a. In mollis nunc sed id. Adipiscing elit pellentesque habitant morbi tristique senectus et netus. Ultrices mi tempus imperdiet nulla malesuada pellentesque.</span></div>
-                  <div
-                      class="reply-section">
-                      <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">25</span><span class="dot ml-2"></span>
-                          <h6 class="ml-2 mt-1">Reply</h6>
-                      </div>
-                      
-              </div> -->
-         
-          <!-- </div> -->
-    
-      </div>
-     
-      </div>
-      </div>
-      </div>
-      </form>
+                         <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                                   <div class="modal-content">
+                                        <div class="modal-header">
+                                             <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                             </button>
+                                        </div>
+                                   <div class="modal-body">
+                                   
+                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                             <h4 class="modal-title">
+                                             </h4>
+                                   </div>
+                                   <div class="modal-body">
+                                   <form method="post" enctype="multipart/form-data"  [formGroup]="form"  id="apply-form" class="form">
+                                                  <input type="hidden" name="is_data_submitted" value="1">
+                                                  <input type="hidden" name="listing_id" value="1302239">
+                                                  <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
+                                                  <div class="form group">
+                                                       <label class="top">Votre fullname</label><br> <br>
+                                                       <input type="text" value="{{userconnect.user.condidatId.name}}" formControlName="name" class="form-control" >
+                                                  </div>
+                                                       <div class="form-group text-center">
+                                                            <label class="form-label">Votre email</label><br> <br>
+                                                            <input type="email" name="email" value="{{userconnect.user.email}}" formControlName="email" class="form-control">
+                                                       </div>
+                                                  <!-- <div class="form-group">
+                                                  <label class="form-label">Sélectionnez votre post</label><br> <br>
+                                                  <select class="form-control" name="id_resume">
+                                                  <option value="0">Sélectionnez votre poste</option>
+                                                  <option selected="selected" value="735830">informaticien /technecien superieur</option>
+                                                  </select>
+                                                  </div> -->
+                                                 <div class="form-group">
+                                                  <label class="form-label">Télécharger votre CV </label> <br> <br>
+                                                  <input type="file" name="file" (change)="onFileChange($event)" class="form-control" />
+                                                  </div>      
+                                                  <div class="form-group ">
+                                                            <label class="form-label">Lettre de Motivation</label><br> <br><br> <br><br> <br>
+                                                            <textarea class="form-control" name="comments" rows="5" formControlName="Motivation" ></textarea>
+                                                  </div>
+                                                  <div class="form-group text-center">
+                                                       <button class="btn__submit-modal btn btn__orange btn__bold" formControlName="cv" (click)="onPostuler()"> Envoyez une demande</button>
 
-
-         <div class="clearfix">
-              <a class="section-btn btn btn-primary pull-left" data-toggle="modal" data-target="#exampleModalLong">Apply for this job</a>
-
-
-
-      
-              <ul class="social-icon pull-right">
-                   <li><a href="#" class="fa fa-facebook"></a></li>
-                   <li><a href="#" class="fa fa-envelope-o"></a></li>
-                   <li><a href="#" class="fa fa-linkedin"></a></li>
-              </ul>
-         </div>
-                 <!-- Modal -->
-   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-           </button>
-         </div>
-         <div class="modal-body">
-          
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-    <h4 class="modal-title">
-            </h4>
-    </div>
-    <div class="modal-body">
-    <form method="post" enctype="multipart/form-data" action="https://www.tanitjobs.com/apply-now/" id="apply-form" class="form">
-    <input type="hidden" name="is_data_submitted" value="1">
-    <input type="hidden" name="listing_id" value="1302239">
-    <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
-    <div class="form group">
-    <label class="top">Votre fullname</label><br> <br>
-    <input type="text" value="{{userconnect.user.condidatId.name}} {{userconnect.user.condidatId.lastname}}" class="form-control" >
-    </div>
-    <div class="form-group text-center">
-    <label class="form-label">Votre email</label><br> <br>
-    <input type="email" name="email" value="{{userconnect.user.email}}" class="form-control">
-    </div>
-    <!-- <div class="form-group">
-    <label class="form-label">Sélectionnez votre post</label><br> <br>
-    <select class="form-control" name="id_resume">
-    <option value="0">Sélectionnez votre poste</option>
-    <option selected="selected" value="735830">informaticien /technecien superieur</option>
-    </select>
-    </div> -->
-    <div class="form-group">
-    <label class="form-label">Télécharger votre CV </label> <br> <br>
-    <input type="file" name="file_tmp" class="form-control">
-    </div>     
-    <div class="form-group mrg pg">
-    <label class="form-label">Lettre de Motivation</label><br> <br><br> <br><br> <br>
-    <textarea class="form-control" name="comments" rows="5"></textarea>
-    </div>
-    <div class="form-group text-center">
-    <input class="btn__submit-modal btn btn__orange btn__bold" type="submit" value="Envoyez une demande" onclick="return applySubmit();">
-    </div>
-    </form>
-    </div>
-    <script type="text/javascript">
-        function applySubmit() {
-            var options = {
-                target: '.modal-body',
-                url:  $('#apply-form').attr('action'),
-            };0
-            $('#apply-form').ajaxSubmit(options);
-            return false;
-        }
-        $('.application-redirect').click(function() {
-            $('#apply-modal').modal('hide');
-        });
-    </script>
-    </div>
-         </div>
-      
-       </div>
+                                                  </div>
+                                   </form>
+                                   </div>
+                         
+                                   <script>
+                                        function applySubmit() {
+                                          var options = {
+                                            target: '.modal-body',
+                                            url: $('#apply-form').attr('action'),
+                                          };
+                                          $('#apply-form').ajaxSubmit(options);
+                                          return false;
+                                        }
+                                        $('.application-redirect').click(function() {
+                                          $('#apply-modal').modal('hide');
+                                        });
+                                      </script>
+                              </div>
+                         </div>
+                         
+                         </div>
      </div>
-  
-
-
-    <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-     Launch demo modal
-   </button> -->
-   
    
 </section>

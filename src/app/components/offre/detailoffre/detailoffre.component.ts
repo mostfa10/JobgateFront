@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { CommantaireService } from 'src/app/services/commantaire.service';
+import { CondidatureService } from 'src/app/services/condidature.service';
 
 
 @Component({
@@ -13,31 +14,73 @@ import { CommantaireService } from 'src/app/services/commantaire.service';
 })
 export class DetailoffreComponent implements OnInit {
   userconnect=JSON.parse(localStorage.getItem("userconnect")!) //tjib les contenu de userconnect de localstorege enregistree lors de login
-
-  id=this.Activeroute.snapshot.params['id']
-  ofre:any
-  
+ id=this.Activeroute.snapshot.params['id']
+  ofre:any 
   formE!:FormGroup
   submitted:boolean=false;
+  form!:FormGroup
 
-  constructor(private offre:OffreService, private commantaire:CommantaireService  ,private Activeroute:ActivatedRoute,private formB:FormBuilder
+  constructor(private offre:OffreService, private condidature:CondidatureService,
+    private commantaire:CommantaireService  ,private Activeroute:ActivatedRoute,private formB:FormBuilder
     ) { }
 
   ngOnInit(): void {
-    this.offrebyid();
-    this.formE= this.formB.group(
-      {
-        
-        contenu:  ['', Validators.required]})
+          this.offrebyid();
+          this.formE= this.formB.group(
+            {
+              
+          contenu:  ['', Validators.required]}
+          )
+
+          this.form= this.formB.group(
+            {
+              name:  ['', Validators.required],
+              email:  ['', Validators.required],
+             cv:['',Validators.required],
+              userId:  ['', Validators.required],
+              status:  ['', Validators.required],
+              offreId:  ['', Validators.required],
+              Motivation:  ['', Validators.required],
+
+              veridied: [false]
+            })
+      
+
   }
-  offrebyid(){
-    this.offre.getoffreyid(this.id).subscribe((res:any)=>{
-      this.ofre=res["data"]
-      console.log(" offre",this.ofre)
-    })
+      offrebyid(){
+        this.offre.getoffreyid(this.id).subscribe((res:any)=>{
+          this.ofre=res["data"]
+          console.log(" offre",this.ofre)
+        })
 }
 
+  
 
+onPostuler(): void {
+  this.submitted = true;
+
+  const formData = new FormData();
+  formData.append('offreId', this.ofre._id);
+  formData.append('name', this.form.value.name);
+  formData.append('cv', this.form.value.cv);
+  formData.append('email', this.form.value.email);
+  formData.append('Motivation', this.form.value.Motivation);
+  formData.append('userId', this.userconnect.user._id);
+
+  this.condidature.createcondidature(formData).subscribe((res: any) => {
+    Swal.fire('Your candidature was added');
+    console.log('res', res);
+  });
+}
+onFileChange(event: any): void {
+  if (event.target.files && event.target.files.length) {
+    const [file] = event.target.files;
+    const fileName = file.name; // Extraire le nom du fichier
+    this.form.patchValue({
+      cv: fileName, // Utiliser le nom du fichier plutôt que le chemin complet
+    });
+  }
+}
 
 onSubmit(): void {
   this.submitted = true;
