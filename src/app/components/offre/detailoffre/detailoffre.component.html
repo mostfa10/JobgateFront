@@ -233,7 +233,7 @@
                                              </h4>
                                    </div>
                                    <div class="modal-body">
-                                   <form method="post" enctype="multipart/form-data"  [formGroup]="form"  id="apply-form" class="form">
+                                   <form method="post" enctype="multipart/form-data"  [formGroup]="form" (ngSubmit)="onPostuler()" id="apply-form" class="form">
                                                   <input type="hidden" name="is_data_submitted" value="1">
                                                   <input type="hidden" name="listing_id" value="1302239">
                                                   <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
@@ -254,14 +254,15 @@
                                                   </div> -->
                                                  <div class="form-group">
                                                   <label class="form-label">Télécharger votre CV </label> <br> <br>
-                                                  <input type="file" name="file" (change)="onFileChange($event)" class="form-control" />
+                                                  <input type="file" (change)="onFileChange($event)" formControlName="cv" name="file" class="form-control" />
+
                                                   </div>      
                                                   <div class="form-group ">
                                                             <label class="form-label">Lettre de Motivation</label><br> <br><br> <br><br> <br>
                                                             <textarea class="form-control" name="comments" rows="5" formControlName="Motivation" ></textarea>
                                                   </div>
                                                   <div class="form-group text-center">
-                                                       <button class="btn__submit-modal btn btn__orange btn__bold" formControlName="cv" (click)="onPostuler()"> Envoyez une demande</button>
+                                                       <button class="btn__submit-modal btn btn__orange btn__bold" formControlName="cv" type="submit"> Envoyez une demande</button>
 
                                                   </div>
                                    </form>

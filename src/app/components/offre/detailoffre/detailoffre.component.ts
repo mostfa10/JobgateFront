@@ -47,6 +47,14 @@ export class DetailoffreComponent implements OnInit {
       
 
   }
+    onFileChange(event: any): void {
+      if (event.target.files && event.target.files.length > 0) {
+        const file = event.target.files[0];
+        this.form.patchValue({
+          cv: file,
+        });
+      }
+  }  
       offrebyid(){
         this.offre.getoffreyid(this.id).subscribe((res:any)=>{
           this.ofre=res["data"]
@@ -72,15 +80,10 @@ onPostuler(): void {
     console.log('res', res);
   });
 }
-onFileChange(event: any): void {
-  if (event.target.files && event.target.files.length) {
-    const [file] = event.target.files;
-    const fileName = file.name; // Extraire le nom du fichier
-    this.form.patchValue({
-      cv: fileName, // Utiliser le nom du fichier plutôt que le chemin complet
-    });
-  }
-}
+
+
+
+
 
 onSubmit(): void {
   this.submitted = true;
