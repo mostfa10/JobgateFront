@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PlaceService } from 'src/app/services/place.service';
@@ -13,7 +13,17 @@ export class HeaderComponent implements OnInit {
   places:any
   categories:any
   loggedIn:boolean=false;
-  constructor(private place:PlaceService,private LoginService:LoginService, private category:CategoryService,private route:Router) {}
+  connectedUser:any
+  constructor(private place:PlaceService,private LoginService:LoginService, private category:CategoryService,private route:Router) {
+    this.route.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.loggedIn = localStorage.getItem('accesstoken') ? true : false;
+        console.log(localStorage.getItem('accesstoken'),this.loggedIn)
+        this.connectedUser = localStorage.getItem('userconnect')
+        this.connectedUser ? this.connectedUser = JSON.parse(this.connectedUser).user : null
+      }
+    });
+  }
  
 
 
@@ -31,15 +41,12 @@ export class HeaderComponent implements OnInit {
   listville(){
     this.place.allPlace().subscribe((res:any)=>{
       this.places=res["data"]
-      console.log("listes places",this.places)
 
     })
   }
   listcategory(){
     this.category.allCategory().subscribe((res:any)=>{
       this.categories=res["data"]
-      console.log("listes offres",this.categories)
-
     })
   }
 

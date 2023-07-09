@@ -1,177 +1,1499 @@
-<section style="background-color: #eee;">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col">
-          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-            <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">User</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-            </ol>
-          </nav>
+<section class="w-full container">
+
+  <!-- infos générales -->
+  <div class="flex text-grey-darkest">
+    <div class="flex flex-auto w-full flex-col gap-[12px]">
+      <div class="text-[24px] font-bold w-full hidden desktop-small:block">
+        Profile
+      </div>
+      <span class="ant-avatar ant-avatar-circle ant-avatar-image mr-4 mb-[12px]" style="width: 80px;height: 80px;line-height: 80px;font-size: 18px;">
+        <span style="
+            box-sizing: border-box;
+            display: block;
+            overflow: hidden;
+            width: initial;
+            height: initial;
+            background: none;
+            opacity: 1;
+            border: 0px;
+            margin: 0px;
+            padding: 0px;
+            position: absolute;
+            inset: 0px;
+          "
+          ><img sizes="100vw" src="/assets/images/profile_pic.webp"  decoding="async" data-nimg="fill"
+            style="
+              position: absolute;
+              inset: 0px;
+              box-sizing: border-box;
+              padding: 0px;
+              border: none;
+              margin: auto;
+              display: block;
+              width: 0px;
+              height: 0px;
+              min-width: 100%;
+              max-width: 100%;
+              min-height: 100%;
+              max-height: 100%;
+            " />
+          </span
+      ></span>
+      <div class="flex flex-col tablet:flex-row space-x-4 my-auto">
+        <div class="text-grey-dark tablet:min-w-[160px]">{{ user.isCondidat ? 'Prénom' : 'Nom'}}</div>
+        <div class="text-[16px]">{{user?.isCondidat ? user.condidatId.name : user?.entrepriseId?.name}}</div>
+      </div>
+      <div class="flex flex-col tablet:flex-row space-x-4 my-auto"  *ngIf="user && user.isCondidat">
+        <div class="text-grey-dark tablet:min-w-[160px]">Nom</div>
+        <div class="text-[16px]">{{user.condidatId.lastname}}</div>
+      </div>
+      <div class="flex flex-col tablet:flex-row space-x-4">
+        <div class="text-grey-dark tablet:min-w-[160px]">Email</div>
+        <div class="text-[16px]">{{user.email}}</div>
+      </div>
+      <div class="flex flex-col tablet:flex-row space-x-4" *ngIf="user && user.isCondidat">
+        <div class="text-grey-dark tablet:min-w-[160px]">
+          Date de naissance
+        </div>
+        <div class="text-[16px]">{{user.condidatId?.date_naissance}}</div>
+      </div>
+      <div class="flex flex-col tablet:flex-row space-x-4">
+        <div class="text-grey-dark tablet:min-w-[160px]">
+          Numéro Tel
+        </div>
+        <div class="text-[16px]">{{user?.isCondidat ? user.condidatId.tel : user?.entrepriseId?.tel}}</div>
+      </div>
+    </div>
+    <div class="flex-1 w-[18px] grow">
+      <button type="button" class="ant-btn ant-btn-link p-0" (click)="editMode = 'info'">
+        <span role="img" aria-label="edit" class="anticon anticon-edit text-blue-regular text-lg self-center">
+          <svg viewBox="64 64 896 896" focusable="false" data-icon="edit" width="1em" height="1em" fill="currentColor" aria-hidden="true" > <path d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z" ></path></svg>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div tabindex="-1" class="ant-drawer ant-drawer-right ant-drawer-open profile-basics-drawer_profile-details-drawer__2qvPQ" *ngIf="editMode === 'info'">
+    <div class="ant-drawer-mask"></div>
+    <div class="ant-drawer-content-wrapper top-[75px]" style="width: 600px">
+      <div class="ant-drawer-content">
+        <div class="ant-drawer-wrapper-body">
+          <div class="ant-drawer-header">
+            <div class="ant-drawer-header-title">
+              <button type="button" aria-label="Close" (click)="editMode = 'none'" class="ant-drawer-close">
+                <span role="img" aria-label="close" class="anticon anticon-close">
+                  <svg viewBox="64 64 896 896" focusable="false" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true" > <path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z" ></path></svg>
+                </span>
+              </button>
+              <div class="ant-drawer-title">
+                <div class="font-semibold tablet:font-bold text-[16px]">
+                  Détails de profile
+                </div>
+              </div>
+            </div>
+            <div class="ant-drawer-extra">
+              <div class="ant-space ant-space-horizontal ant-space-align-center" style="gap: 8px">
+                <div class="ant-space-item">
+                  <button type="button" class="ant-btn"  (click)="basics.reset();editMode = 'none'">
+                    <span>Annuler</span>
+                  </button>
+                </div>
+                <div class="ant-space-item">
+                  <button type="button" class="ant-btn btn-primary" (click)="saveProfileDetails()">
+                    <span>Sauvegarder</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ant-drawer-body" style="padding-bottom: 80px; overflow-y: auto">
+            <div class="flex flex-col gap-[24px]">
+              <form [formGroup]="basics" class="ant-form ant-form-vertical ant-form-hide-required-mark">
+                <div class="flex flex-col mt-0 mb-[8px]">
+                  <span class="ant-upload-picture-card-wrapper avatar-uploader"><div class="ant-upload ant-upload-select ant-upload-select-picture-card">
+                      <span tabindex="0" class="ant-upload" role="button" >
+                        <input  type="file" accept=".jpg,.jpeg,.png" formControlName="image" style="display: none" />
+                        <span style="
+                            box-sizing: border-box;
+                            display: inline-block;
+                            overflow: hidden;
+                            width: initial;
+                            height: initial;
+                            background: none;
+                            opacity: 1;
+                            border: 0px;
+                            margin: 0px;
+                            padding: 0px;
+                            position: relative;
+                            max-width: 100%;
+                          ">
+                          <span style="
+                              box-sizing: border-box;
+                              display: block;
+                              width: initial;
+                              height: initial;
+                              background: none;
+                              opacity: 1;
+                              border: 0px;
+                              margin: 0px;
+                              padding: 0px;
+                              max-width: 100%;
+                            ">
+                            <img
+                              alt=""
+                              aria-hidden="true"
+                              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+                              style="
+                                display: block;
+                                max-width: 100%;
+                                width: initial;
+                                height: initial;
+                                background: none;
+                                opacity: 1;
+                                border: 0px;
+                                margin: 0px;
+                                padding: 0px;
+                              " />
+                          </span>
+                          <img
+                            alt="avatar"
+                            src="/assets/images/profile_pic.webp"
+                            decoding="async"
+                            data-nimg="intrinsic"
+                            class="rounded-[4px] pt-[4px]"
+                            style="
+                              position: absolute;
+                              inset: 0px;
+                              box-sizing: border-box;
+                              padding: 0px;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0px;
+                              height: 0px;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            " />
+                          </span>
+                      </span>
+                    </div>
+                  </span>
+                </div>
+                <div class="flex flex-col grow gap-[8px]">
+                  <div class="ant-row ant-form-item" style="row-gap: 0px">
+                    <div class="ant-col ant-form-item-label">
+                      <label for="nom" class="ant-form-item-required">
+                        <span class="text-[16px]">{{user.isCondidat ? 'Prénom' : 'nom'}}</span>
+                      </label
+                      >
+                    </div>
+                    <div class="ant-col ant-form-item-control">
+                      <div class="ant-form-item-control-input">
+                        <div class="ant-form-item-control-input-content">
+                          <input
+                            autocomplete="off"
+                            class="ant-input rounded-[4px]"
+                            maxlength="255"
+                            type="text"
+                            name="name"
+                            formControlName="name"
+                            placeholder="{{user?.isCondidat ? user.condidatId.name : user?.entrepriseId?.name}}"
+                            value="{{user.condidatId.name}}"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col grow gap-[8px]"  *ngIf="user && user.isCondidat">
+                  <div class="ant-row ant-form-item" style="row-gap: 0px">
+                    <div class="ant-col ant-form-item-label">
+                      <label for="nom" class="ant-form-item-required">
+                        <span class="text-[16px]">Nom</span>
+                      </label
+                      >
+                    </div>
+                    <div class="ant-col ant-form-item-control">
+                      <div class="ant-form-item-control-input">
+                        <div class="ant-form-item-control-input-content">
+                          <input
+                            autocomplete="off"
+                            class="ant-input rounded-[4px]"
+                            maxlength="255"
+                            type="text"
+                            name="lastname"
+                            formControlName="lastname"
+                            placeholder="{{user.condidatId.lastname}}"
+                            value="{{user.condidatId.lastname}}"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col grow gap-[8px]">
+                  <div class="ant-row ant-form-item" style="row-gap: 0px">
+                    <div class="ant-col ant-form-item-label">
+                      <label for="email" class="ant-form-item-required">
+                        <span class="text-[16px]">Email</span>
+                      </label>
+                    </div>
+                    <div class="ant-col ant-form-item-control">
+                      <div class="ant-form-item-control-input">
+                        <div class="ant-form-item-control-input-content">
+                          <input
+                            autocomplete="off"
+                            class="ant-input rounded-[4px]"
+                            maxlength="255"
+                            type="text"
+                            name="email"
+                            placeholder="{{user.email}}"
+                            formControlName="email"
+                            [value]="user.email"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col grow gap-[8px]">
+                  <div class="ant-row ant-form-item" style="row-gap: 0px">
+                    <div class="ant-col ant-form-item-label">
+                      <label for="date_naissance"  class="ant-form-item-required">
+                        <span class="text-[16px]">Date de naissance</span>
+                      </label>
+                    </div>
+                    <div class="ant-col ant-form-item-control" *ngIf="user.isCondidat">
+                      <div class="ant-form-item-control-input">
+                        <div class="ant-form-item-control-input-content">
+                          <div class="ant-picker rounded-[4px] w-full">
+                            <div class="ant-picker-input">
+                              <input
+                                name="date_naissance"
+                                readonly
+                                placeholder="Sélectionner date"
+                                title="{{user.condidatId.date_naissance}}"
+                                size="15"
+                                autocomplete="off"
+                                value="{{user.condidatId.date_naissance}}"
+                              /><span class="ant-picker-suffix"
+                                ><span
+                                  role="img"
+                                  aria-label="calendar"
+                                  class="anticon anticon-calendar"
+                                  ><svg
+                                    viewBox="64 64 896 896"
+                                    focusable="false"
+                                    data-icon="calendar"
+                                    width="1em"
+                                    height="1em"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                                    ></path></svg></span
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col grow gap-[8px]">
+                  <div class="ant-row ant-form-item" style="row-gap: 0px">
+                    <div class="ant-col ant-form-item-label">
+                      <label for="tel"  class="ant-form-item-required">
+                        <span class="text-[16px]">Numéro Tel.</span>
+                      </label>
+                    </div>
+                    <div class="ant-col ant-form-item-control">
+                      <div class="ant-form-item-control-input">
+                        <div class="ant-form-item-control-input-content">
+                          <span class="ant-input-group-wrapper rounded-r-[4px]">
+                            <span class="ant-input-wrapper ant-input-group">
+                              <input
+                                autocomplete="off"
+                                maxlength="24"
+                                class="ant-input"
+                                type="text"
+                                name="tel"
+                                formControlName="tel"
+                                placeholder="{{user.isCondidat ? user.condidatId.tel : user.entrepriseId.tel}}"
+                                value="{{user.isCondidat ? user.condidatId.tel : user.entrepriseId.tel}}" /></span
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-  
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">{{userconnect.user.lastname}}</h5>
-              <p class="text-muted mb-1">{{userconnect.user.email}}</p>
-              <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-              <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Follow</button>
-                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-4 mb-lg-0">
-            <div class="card-body p-0">
-              <ul class="list-group list-group-flush rounded-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fas fa-globe fa-lg text-warning"></i>
-                  <p class="mb-0">https://mdbootstrap.com</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                  <p class="mb-0">@mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-              </ul>
-            </div>
-          </div>
+    </div>
+  </div>
+
+  <!-- Langues -->
+  <div class="ant-divider ant-divider-horizontal my-[16px]"role="separator"></div>
+  <div class="flex text-grey-darkest">
+    <div class="flex flex-auto w-full flex-col gap-[12px]">
+      <div class="flex flex-col tablet:flex-row space-x-4">
+        <div class="text-grey-dark tablet:min-w-[160px]">Languages</div>
+        <div class="text-[16px]">
+          Arabic, English, French, Spanish, German
         </div>
-        <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Full Name</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{userconnect.user.name}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Email</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">example@example.com</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Phone</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">(097) 234-5678</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Mobile</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">(098) 765-4321</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Address</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card mb-4 mb-md-0">
-                <div class="card-body">
-                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                  </p>
-                  <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="flex-1 w-[18px] grow">
+      <button type="button" class="ant-btn ant-btn-link p-0" (click)="editMode = 'languages'">
+        <span
+          role="img"
+          aria-label="edit"
+          class="anticon anticon-edit text-blue-regular text-lg self-center"
+          ><svg
+            viewBox="64 64 896 896"
+            focusable="false"
+            data-icon="edit"
+            width="1em"
+            height="1em"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+            ></path></svg></span>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="editMode == 'languages'">
+    <div tabindex="-1" class="ant-drawer ant-drawer-right ant-drawer-open language-drawer_language-drawer__1QVmN">
+      <div class="ant-drawer-mask"></div>
+      <div class="ant-drawer-content-wrapper top-[75px]" style="width: 600px">
+        <div class="ant-drawer-content">
+          <div class="ant-drawer-wrapper-body">
+            <div class="ant-drawer-header">
+              <div class="ant-drawer-header-title">
+                <button type="button" aria-label="Close" (click)="editMode = 'none'" class="ant-drawer-close">
+                  <span
+                    role="img"
+                    aria-label="close"
+                    class="anticon anticon-close"
+                    ><svg
+                      viewBox="64 64 896 896"
+                      focusable="false"
+                      data-icon="close"
+                      width="1em"
+                      height="1em"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+                      ></path></svg></span>
+                </button>
+                <div class="ant-drawer-title">
+                  <div class="font-semibold tablet:font-bold text-[16px]">
+                    Modifier Langues
                   </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="ant-drawer-extra">
+                <div
+                  class="ant-space ant-space-horizontal ant-space-align-center"
+                  style="gap: 8px"
+                >
+                  <div class="ant-space-item" style="">
+                    <button type="button" (click)="editMode = 'none'" class="ant-btn">
+                      <span>Annuler</span>
+                    </button>
                   </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                  <div class="progress rounded mb-2" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="ant-space-item">
+                    <button type="button" class="ant-btn btn-primary">
+                      <span>Sauvegarder</span>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="card mb-4 mb-md-0">
-                <div class="card-body">
-                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                  </p>
-                  <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+            <div
+              class="ant-drawer-body"
+              style="padding-bottom: 80px; overflow-y: auto"
+            >
+              <div class="flex flex-col gap-[24px]">
+                <form
+                  id="language"
+                  class="ant-form ant-form-vertical ant-form-hide-required-mark"
+                >
+                  <div class="flex flex-col gap-[24px] grow">
+                    <div class="flex flex-row gap-[10px] grow">
+                      <div class="flex flex-col grow gap-[8px] w-full">
+                        <span class="text-[16px]">Langue</span>
+                        <div
+                          class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow ant-select-show-search"
+                        >
+                          <div class="ant-select-selector">
+                            <span class="ant-select-selection-search"
+                              ><input
+                                id="language_languages_0_language_id"
+                                autocomplete="off"
+                                type="search"
+                                class="ant-select-selection-search-input"
+                                role="combobox"
+                                aria-haspopup="listbox"
+                                aria-owns="language_languages_0_language_id_list"
+                                aria-autocomplete="list"
+                                aria-controls="language_languages_0_language_id_list"
+                                aria-activedescendant="language_languages_0_language_id_list_0"
+                                value="" /></span
+                            ><span
+                              class="ant-select-selection-item"
+                              title="Arabic"
+                              >Arabic</span
+                            >
+                          </div>
+                          <span
+                            class="ant-select-arrow"
+                            unselectable="on"
+                            aria-hidden="true"
+                            style="user-select: none"
+                            ><span
+                              role="img"
+                              aria-label="down"
+                              class="anticon anticon-down ant-select-suffix"
+                              ><svg
+                                viewBox="64 64 896 896"
+                                focusable="false"
+                                data-icon="down"
+                                width="1em"
+                                height="1em"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                ></path></svg></span
+                          ></span>
+                        </div>
+                      </div>
+                      <div class="flex flex-col grow gap-[8px] w-full">
+                        <span class="text-[16px]">Niveau</span>
+                        <div
+                          class="ant-select rounded-[4px] w-full ant-select-single ant-select-show-arrow"
+                        >
+                          <div class="ant-select-selector">
+                            <span class="ant-select-selection-search"
+                              ><input
+                                id="language_languages_0_level"
+                                autocomplete="off"
+                                type="search"
+                                class="ant-select-selection-search-input"
+                                role="combobox"
+                                aria-haspopup="listbox"
+                                aria-owns="language_languages_0_level_list"
+                                aria-autocomplete="list"
+                                aria-controls="language_languages_0_level_list"
+                                aria-activedescendant="language_languages_0_level_list_0"
+                                readonly=""
+                                unselectable="on"
+                                value=""
+                                style="opacity: 0" /></span
+                            ><span
+                              class="ant-select-selection-item"
+                              title="Native"
+                              >Native</span
+                            >
+                          </div>
+                          <span
+                            class="ant-select-arrow"
+                            unselectable="on"
+                            aria-hidden="true"
+                            style="user-select: none"
+                            ><span
+                              role="img"
+                              aria-label="down"
+                              class="anticon anticon-down ant-select-suffix"
+                              ><svg
+                                viewBox="64 64 896 896"
+                                focusable="false"
+                                data-icon="down"
+                                width="1em"
+                                height="1em"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                ></path></svg></span
+                          ></span>
+                        </div>
+                      </div>
+                      <button type="button" class="ant-btn ant-btn-link self-end">
+                        <span
+                          role="img"
+                          aria-label="delete"
+                          class="anticon anticon-delete text-grey-dark"
+                          ><svg
+                            viewBox="64 64 896 896"
+                            focusable="false"
+                            data-icon="delete"
+                            width="1em"
+                            height="1em"
+                            fill="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"
+                            ></path></svg></span>
+                      </button>
+                    </div>
+                    <div>
+                      <button type="button" class="ant-btn ant-btn-link">
+                        <span class="text-blue-regular text-[16px] self-center"
+                          ><span
+                            role="img"
+                            aria-label="plus"
+                            class="anticon anticon-plus mr-[10px]"
+                            ><svg
+                              viewBox="64 64 896 896"
+                              focusable="false"
+                              data-icon="plus"
+                              width="1em"
+                              height="1em"
+                              fill="currentColor"
+                              aria-hidden="true"
+                            >
+                              <defs><style></style></defs>
+                              <path
+                                d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+                              ></path>
+                              <path
+                                d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                              ></path></svg></span>
+                          Ajouter langue</span
+                        >
+                      </button>
+                    </div>
                   </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                  <div class="progress rounded mb-2" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Compétances-->
+  <div class="ant-divider ant-divider-horizontal my-[16px]" role="separator"></div>
+  <div class="flex text-grey-darkest">
+    <div class="flex flex-auto w-full flex-col gap-[12px]">
+      <div class="flex flex-col tablet:flex-row space-x-4">
+        <div class="text-grey-dark tablet:min-w-[160px]">Compétances</div>
+        <div class="text-[16px]">
+          Mac usage, Training, Windows PC usage, Team Management, Database
+          Administration, Databases, GIT, Internet usage, HTML, Angular,
+          Laravel, Symfony, PHP, Python, MySQL, PostgreSQL, Full Stack
+          development, Linux, Git, Problem Solving, Software Development
+          Frameworks, Software Engineering, Java, React JS, Microsoft SQL
+          Server, HTML 5, CSS, jQuery, SQL server, NoSQL, Application
+          design, Application building, Javascript, SQL
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 w-[18px] grow">
+      <button type="button" class="ant-btn ant-btn-link p-0" (click)="editMode = 'skills'">
+        <span
+          role="img"
+          aria-label="edit"
+          class="anticon anticon-edit text-blue-regular text-lg self-center"
+          ><svg
+            viewBox="64 64 896 896"
+            focusable="false"
+            data-icon="edit"
+            width="1em"
+            height="1em"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+            ></path></svg></span>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="editMode == 'skills'">
+    <div tabindex="-1" class="ant-drawer ant-drawer-right ant-drawer-open skills-drawer_skills-drawer__DQ6dv" style="">
+      <div class="ant-drawer-mask"></div>
+      <div class="ant-drawer-content-wrapper top-[75px]" style="width: 600px">
+        <div class="ant-drawer-content">
+          <div class="ant-drawer-wrapper-body">
+            <div class="ant-drawer-header">
+              <div class="ant-drawer-header-title">
+                <button type="button" aria-label="Close" class="ant-drawer-close" (click)="editMode = 'none'">
+                  <span role="img" aria-label="close" class="anticon anticon-close"
+                    ><svg viewBox="64 64 896 896" focusable="false" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg
+                  ></span>
+                </button>
+                <div class="ant-drawer-title"><div class="font-semibold tablet:font-bold text-[16px]">Gérer les compétances</div></div>
+              </div>
+              <div class="ant-drawer-extra">
+                <div class="ant-space ant-space-horizontal ant-space-align-center" style="gap: 8px">
+                  <div class="ant-space-item" style="">
+                    <button type="button" class="ant-btn" (click)="editMode = 'none'"><span>Annuler</span></button>
+                  </div>
+                  <div class="ant-space-item">
+                    <button type="button" class="ant-btn btn-primary"><span>Sauvegarder</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ant-drawer-body" style="padding-bottom: 80px; overflow-y: auto">
+              <div class="flex flex-col gap-[24px]">
+                <form id="skills" class="ant-form ant-form-vertical ant-form-hide-required-mark">
+                  <div class="flex flex-col gap-[24px] grow">
+                    <div class="flex flex-row gap-[8px] grow">
+                      <div class="flex flex-col grow gap-[8px] min-w-[230px]">
+                        <span class="text-[16px] w-full">Compétance</span>
+                        <div class="ant-select rounded-[4px] w-full ant-select-single ant-select-show-arrow ant-select-show-search">
+                          <div class="ant-select-selector">
+                            <span class="ant-select-selection-search"
+                              ><input
+                                id="skills_skills_0_skill_id"
+                                autocomplete="off"
+                                type="search"
+                                class="ant-select-selection-search-input"
+                                role="combobox"
+                                aria-haspopup="listbox"
+                                aria-owns="skills_skills_0_skill_id_list"
+                                aria-autocomplete="list"
+                                aria-controls="skills_skills_0_skill_id_list"
+                                aria-activedescendant="skills_skills_0_skill_id_list_0"
+                                value="" /></span
+                            ><span class="ant-select-selection-item" title="Mac usage">Mac usage</span>
+                          </div>
+                          <span class="ant-select-arrow" unselectable="on" aria-hidden="true" style="user-select: none"
+                            ><span role="img" aria-label="down" class="anticon anticon-down ant-select-suffix"
+                              ><svg
+                                viewBox="64 64 896 896"
+                                focusable="false"
+                                data-icon="down"
+                                width="1em"
+                                height="1em"
+                                fill="currentColor"
+                                aria-hidden="true">
+                                <path
+                                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg></span
+                          ></span>
+                        </div>
+                      </div>
+                      <div class="flex flex-col grow gap-[8px] w-full">
+                        <span class="text-[16px]">Niveau</span>
+                        <div class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow">
+                          <div class="ant-select-selector">
+                            <span class="ant-select-selection-search"
+                              ><input
+                                id="skills_skills_0_level"
+                                autocomplete="off"
+                                type="search"
+                                class="ant-select-selection-search-input"
+                                role="combobox"
+                                aria-haspopup="listbox"
+                                aria-owns="skills_skills_0_level_list"
+                                aria-autocomplete="list"
+                                aria-controls="skills_skills_0_level_list"
+                                aria-activedescendant="skills_skills_0_level_list_0"
+                                readonly=""
+                                unselectable="on"
+                                value=""
+                                style="opacity: 0" /></span
+                            ><span class="ant-select-selection-item" title="Advanced">Advanced</span>
+                          </div>
+                          <span class="ant-select-arrow" unselectable="on" aria-hidden="true" style="user-select: none"
+                            ><span role="img" aria-label="down" class="anticon anticon-down ant-select-suffix"
+                              ><svg
+                                viewBox="64 64 896 896"
+                                focusable="false"
+                                data-icon="down"
+                                width="1em"
+                                height="1em"
+                                fill="currentColor"
+                                aria-hidden="true">
+                                <path
+                                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg></span
+                          ></span>
+                        </div>
+                      </div>
+                      <button type="button" class="ant-btn ant-btn-link self-end item-start">
+                        <span role="img" aria-label="delete" class="anticon anticon-delete text-grey-dark"
+                          ><svg
+                            viewBox="64 64 896 896"
+                            focusable="false"
+                            data-icon="delete"
+                            width="1em"
+                            height="1em"
+                            fill="currentColor"
+                            aria-hidden="true">
+                            <path
+                              d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"></path></svg
+                        ></span>
+                      </button>
+                    </div>
+                    <div>
+                      <button type="button" class="ant-btn ant-btn-link">
+                        <span class="text-blue-regular text-[16px] self-center"
+                          ><span role="img" aria-label="plus" class="anticon anticon-plus mr-[10px]"
+                            ><svg
+                              viewBox="64 64 896 896"
+                              focusable="false"
+                              data-icon="plus"
+                              width="1em"
+                              height="1em"
+                              fill="currentColor"
+                              aria-hidden="true">
+                              <defs><style></style></defs>
+                              <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path>
+                              <path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"></path></svg></span
+                          >Ajouter une compétance</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Education -->
+  <div class="ant-divider ant-divider-horizontal my-[16px]" role="separator"></div>
+  <div class="flex text-grey-darkest">
+    <div class="flex flex-auto w-full flex-col gap-[12px]">
+      <div class="flex flex-col tablet:flex-row space-x-4">
+        <div class="text-grey-dark pb-[10px] tablet:min-w-[160px]">
+          Education
+        </div>
+        <div class="flex flex-col w-full grow">
+          <div class="flex w-full grow">
+            <div class="mb-[16px] w-full grow">
+              <div class="text-[16px]">Masters</div>
+              <div class="text-[16px]">
+                ISIMED, Tunisia<span
+                  class="m-2 font-extrabold text-grey-dark"
+                  >·</span
+                >Sep 2018 - May 2020
+              </div>
+              <div class="text-grey-dark text-[14px]">
+                Computer engineering, Software development and programming
+              </div>
+            </div>
+            <div class="flex-1 w-[18px] grow">
+              <button type="button" class="ant-btn ant-btn-link p-0" (click)="editMode = 'education'">
+                <span
+                  role="img"
+                  aria-label="edit"
+                  class="anticon anticon-edit text-blue-regular text-lg self-center"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="edit"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+                    ></path></svg></span>
+              </button>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="ant-btn ant-btn-link">
+              <span class="text-blue-regular text-[16px] self-center"
+                ><span
+                  role="img"
+                  aria-label="plus"
+                  class="anticon anticon-plus font-bold mr-[10px]"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="plus"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <defs><style></style></defs>
+                    <path
+                      d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+                    ></path>
+                    <path
+                      d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                    ></path></svg></span>
+                Ajouter Education</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="editMode == 'education'">
+    <div tabindex="-1" class="ant-drawer ant-drawer-right ant-drawer-open education-drawer_education-drawer__3FHJt" style="">
+      <div class="ant-drawer-mask"></div>
+      <div class="ant-drawer-content-wrapper  top-[75px]" style="width: 600px">
+        <div class="ant-drawer-content">
+          <div class="ant-drawer-wrapper-body">
+            <div class="ant-drawer-header">
+              <div class="ant-drawer-header-title">
+                <button type="button" aria-label="Close" class="ant-drawer-close" (click)="editMode = 'none'">
+                  <span role="img" aria-label="close" class="anticon anticon-close"
+                    ><svg viewBox="64 64 896 896" focusable="false" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg
+                  ></span>
+                </button>
+                <div class="ant-drawer-title"><div class="font-semibold tablet:font-bold text-[16px]">Gérer Education</div></div>
+              </div>
+              <div class="ant-drawer-extra">
+                <div class="ant-space ant-space-horizontal ant-space-align-center" style="gap: 8px">
+                  <div class="ant-space-item" style="">
+                    <button type="button" class="ant-btn"><span>Supprimer</span></button>
+                  </div>
+                  <div class="ant-space-item">
+                    <button type="button" class="ant-btn ant-btn-primary"><span>Sauvegarder</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ant-drawer-body" style="padding-bottom: 80px; overflow-y: auto">
+              <div class="flex flex-col gap-[24px]">
+                <form id="basics" class="ant-form ant-form-vertical ant-form-hide-required-mark">
+                  <div class="flex flex-col grow gap-[24px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_organisation_name" class="ant-form-item-required" title=""
+                          ><span class="text-[16px]">Nom de l'institut</span></label
+                        >
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <input autocomplete="off" class="ant-input rounded-[4px]" type="text" id="basics_organisation_name" value="ISIMED" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col grow gap-[8px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_country_id" class="ant-form-item-required" title=""><span class="text-[16px]">Country</span></label>
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <div class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow ant-select-show-search">
+                              <div class="ant-select-selector">
+                                <span class="ant-select-selection-search"
+                                  ><input
+                                    id="basics_country_id"
+                                    autocomplete="off"
+                                    type="search"
+                                    class="ant-select-selection-search-input"
+                                    role="combobox"
+                                    aria-haspopup="listbox"
+                                    aria-owns="basics_country_id_list"
+                                    aria-autocomplete="list"
+                                    aria-controls="basics_country_id_list"
+                                    aria-activedescendant="basics_country_id_list_0"
+                                    value="" /></span
+                                ><span class="ant-select-selection-item" title="Tunisia">Tunisia</span>
+                              </div>
+                              <span class="ant-select-arrow" unselectable="on" aria-hidden="true" style="user-select: none"
+                                ><span role="img" aria-label="down" class="anticon anticon-down ant-select-suffix"
+                                  ><svg
+                                    viewBox="64 64 896 896"
+                                    focusable="false"
+                                    data-icon="down"
+                                    width="1em"
+                                    height="1em"
+                                    fill="currentColor"
+                                    aria-hidden="true">
+                                    <path
+                                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg></span
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col grow gap-[8px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_study_level" class="ant-form-item-required" title=""
+                          ><span class="text-[16px]">Niveau d'études</span></label
+                        >
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <div class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow">
+                              <div class="ant-select-selector">
+                                <span class="ant-select-selection-search"
+                                  ><input
+                                    id="basics_study_level"
+                                    autocomplete="off"
+                                    type="search"
+                                    class="ant-select-selection-search-input"
+                                    role="combobox"
+                                    aria-haspopup="listbox"
+                                    aria-owns="basics_study_level_list"
+                                    aria-autocomplete="list"
+                                    aria-controls="basics_study_level_list"
+                                    aria-activedescendant="basics_study_level_list_0"
+                                    readonly=""
+                                    unselectable="on"
+                                    value=""
+                                    style="opacity: 0" /></span
+                                ><span class="ant-select-selection-item" title="Masters">Masters</span>
+                              </div>
+                              <span class="ant-select-arrow" unselectable="on" aria-hidden="true" style="user-select: none"
+                                ><span role="img" aria-label="down" class="anticon anticon-down ant-select-suffix"
+                                  ><svg
+                                    viewBox="64 64 896 896"
+                                    focusable="false"
+                                    data-icon="down"
+                                    width="1em"
+                                    height="1em"
+                                    fill="currentColor"
+                                    aria-hidden="true">
+                                    <path
+                                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg></span
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col grow gap-[8px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_backgrounds" class="ant-form-item-required" title=""><span class="text-[16px]">Département</span></label>
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <div class="ant-select rounded-[4px] ant-select-multiple ant-select-show-search">
+                              <div class="ant-select-selector">
+                                <div class="ant-select-selection-overflow">
+                                  <div class="ant-select-selection-overflow-item" style="opacity: 1">
+                                    <span class="ant-select-selection-item" title="Computer engineering"
+                                      ><span class="ant-select-selection-item-content">Computer engineering</span
+                                      ><span class="ant-select-selection-item-remove" unselectable="on" aria-hidden="true" style="user-select: none"
+                                        ><span role="img" aria-label="close" class="anticon anticon-close"
+                                          ><svg
+                                            viewBox="64 64 896 896"
+                                            focusable="false"
+                                            data-icon="close"
+                                            width="1em"
+                                            height="1em"
+                                            fill="currentColor"
+                                            aria-hidden="true">
+                                            <path
+                                              d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg></span></span
+                                    ></span>
+                                  </div>
+                                  <div class="ant-select-selection-overflow-item" style="opacity: 1">
+                                    <span class="ant-select-selection-item" title="Software development and programming"
+                                      ><span class="ant-select-selection-item-content">Software development and programming</span
+                                      ><span class="ant-select-selection-item-remove" unselectable="on" aria-hidden="true" style="user-select: none"
+                                        ><span role="img" aria-label="close" class="anticon anticon-close"
+                                          ><svg
+                                            viewBox="64 64 896 896"
+                                            focusable="false"
+                                            data-icon="close"
+                                            width="1em"
+                                            height="1em"
+                                            fill="currentColor"
+                                            aria-hidden="true">
+                                            <path
+                                              d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg></span></span
+                                    ></span>
+                                  </div>
+                                  <div class="ant-select-selection-overflow-item ant-select-selection-overflow-item-suffix" style="opacity: 1">
+                                    <div class="ant-select-selection-search" style="width: 4px">
+                                      <input
+                                        id="basics_backgrounds"
+                                        autocomplete="off"
+                                        type="search"
+                                        class="ant-select-selection-search-input"
+                                        role="combobox"
+                                        aria-haspopup="listbox"
+                                        aria-owns="basics_backgrounds_list"
+                                        aria-autocomplete="list"
+                                        aria-controls="basics_backgrounds_list"
+                                        aria-activedescendant="basics_backgrounds_list_0"
+                                        readonly=""
+                                        unselectable="on"
+                                        value=""
+                                        style="opacity: 0" /><span class="ant-select-selection-search-mirror" aria-hidden="true">&nbsp;</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-row grow gap-[8px]">
+                    <div class="flex flex-col grow gap-[8px]">
+                      <span class="text-[16px]">Date début</span>
+                      <div class="ant-row ant-form-item" style="row-gap: 0px">
+                        <div class="ant-col ant-form-item-control">
+                          <div class="ant-form-item-control-input">
+                            <div class="ant-form-item-control-input-content">
+                              <div class="ant-picker rounded-[4px] w-full">
+                                <div class="ant-picker-input">
+                                  <input
+                                    id="basics_start_date"
+                                    readonly=""
+                                    placeholder="Select date"
+                                    title="Sep 01, 2018"
+                                    size="14"
+                                    autocomplete="off"
+                                    value="Sep 01, 2018" /><span class="ant-picker-suffix"
+                                    ><span role="img" aria-label="calendar" class="anticon anticon-calendar"
+                                      ><svg
+                                        viewBox="64 64 896 896"
+                                        focusable="false"
+                                        data-icon="calendar"
+                                        width="1em"
+                                        height="1em"
+                                        fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path></svg></span
+                                  ></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex flex-col grow gap-[8px]">
+                      <span class="text-[16px]">Date fin</span>
+                      <div class="ant-row ant-form-item" style="row-gap: 0px">
+                        <div class="ant-col ant-form-item-control">
+                          <div class="ant-form-item-control-input">
+                            <div class="ant-form-item-control-input-content">
+                              <div class="ant-picker rounded-[4px] w-full">
+                                <div class="ant-picker-input">
+                                  <input
+                                    id="basics_end_date"
+                                    readonly=""
+                                    placeholder="Select date"
+                                    title="May 31, 2020"
+                                    size="14"
+                                    autocomplete="off"
+                                    value="May 31, 2020" /><span class="ant-picker-suffix"
+                                    ><span role="img" aria-label="calendar" class="anticon anticon-calendar"
+                                      ><svg
+                                        viewBox="64 64 896 896"
+                                        focusable="false"
+                                        data-icon="calendar"
+                                        width="1em"
+                                        height="1em"
+                                        fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path></svg></span
+                                  ></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Expériences -->
+  <div class="ant-divider ant-divider-horizontal my-[16px]" role="separator"></div>
+  <div class="flex text-grey-darkest">
+    <div class="flex flex-auto w-full flex-col gap-[12px]">
+      <div class="flex flex-col tablet:flex-row space-x-4">
+        <div class="text-grey-dark pb-[10px] tablet:min-w-[160px]">
+          Expérience
+        </div>
+        <div class="flex flex-col w-full grow">
+          <div class="flex w-full grow">
+            <div class="mb-[16px] w-full grow">
+              <div class="text-[16px]">Full stack web developer</div>
+              <div class="text-[16px]">
+                IOTECH, Tunisia<span
+                  class="m-2 font-extrabold text-grey-dark"
+                  >·</span
+                >Aug 2021 - Current
+              </div>
+              <div class="text-grey-dark text-[14px]">Full Time</div>
+              <div class="text-grey-dark text-[14px]">
+                I started working with "IOTECH" as a full time web
+                developer , in this position am working on both front end
+                and back end application's sides , my job is to create and
+                manage web interfaces , API's , SQL queries , user
+                interface réparation and web apps
+                maintenance.&nbsp;&nbsp;Used technologies : Angular 12/13
+                , node.js ,Express.js ,Nest.js , Laravel 8 , PGSQL ,
+                Mysql, Sql , Symfony 2/3/4 , PHP 5.6/7./8. , Ubuntu 20.* ,
+                Clarity , bootstrap, tailwind&nbsp;
+              </div>
+            </div>
+            <div class="flex-1 w-[18px] grow">
+              <div class="flex-1 w-[18px] grow">
+                <button type="button" class="ant-btn ant-btn-link p-0" (click)="editMode = 'experiences'">
+                  <span
+                    role="img"
+                    aria-label="edit"
+                    class="anticon anticon-edit text-blue-regular text-lg self-center"
+                    ><svg
+                      viewBox="64 64 896 896"
+                      focusable="false"
+                      data-icon="edit"
+                      width="1em"
+                      height="1em"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+                      ></path></svg></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="ant-btn ant-btn-link">
+              <span class="text-blue-regular text-[16px] self-center"
+                ><span
+                  role="img"
+                  aria-label="plus"
+                  class="anticon anticon-plus font-bold mr-[10px]"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="plus"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <defs><style></style></defs>
+                    <path
+                      d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+                    ></path>
+                    <path
+                      d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                    ></path></svg></span>
+                Ajouter Expérience</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="editMode == 'experiences'">
+    <div tabindex="-1" class="ant-drawer ant-drawer-right ant-drawer-open experience-drawer_experience-drawer__2Pfau" style="">
+      <div class="ant-drawer-mask"></div>
+      <div class="ant-drawer-content-wrapper top-[75px]" style="width: 600px">
+        <div class="ant-drawer-content">
+          <div class="ant-drawer-wrapper-body">
+            <div class="ant-drawer-header">
+              <div class="ant-drawer-header-title">
+                <button type="button" aria-label="Close" class="ant-drawer-close" (click)="editMode = 'none'">
+                  <span role="img" aria-label="close" class="anticon anticon-close"
+                    ><svg viewBox="64 64 896 896" focusable="false" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg
+                  ></span>
+                </button>
+                <div class="ant-drawer-title"><div class="font-semibold tablet:font-bold text-[16px]">Gérer Expérience</div></div>
+              </div>
+              <div class="ant-drawer-extra">
+                <div class="ant-space ant-space-horizontal ant-space-align-center" style="gap: 8px">
+                  <div class="ant-space-item" style="">
+                    <button type="button" class="ant-btn"><span>Supprimer</span></button>
+                  </div>
+                  <div class="ant-space-item">
+                    <button type="button" class="ant-btn ant-btn-primary"><span>Sauvegarder</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ant-drawer-body" style="padding-bottom: 80px; overflow-y: auto">
+              <div class="flex flex-col gap-[24px]">
+                <form id="basics" class="ant-form ant-form-vertical ant-form-hide-required-mark">
+                  <div class="flex flex-col grow gap-[8px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_title" class="ant-form-item-required" title=""><span class="text-[16px]">Titre</span></label>
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <input
+                              autocomplete="off"
+                              class="ant-input rounded-[4px]"
+                              maxlength="255"
+                              type="text"
+                              id="basics_title"
+                              value="Full stack web developer" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col grow gap-[8px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_work_type" class="ant-form-item-required" title=""><span class="text-[16px]">Mode d'emploi</span></label>
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <div class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow">
+                              <div class="ant-select-selector">
+                                <span class="ant-select-selection-search"
+                                  ><input
+                                    id="basics_work_type"
+                                    autocomplete="off"
+                                    type="search"
+                                    class="ant-select-selection-search-input"
+                                    role="combobox"
+                                    aria-haspopup="listbox"
+                                    aria-owns="basics_work_type_list"
+                                    aria-autocomplete="list"
+                                    aria-controls="basics_work_type_list"
+                                    aria-activedescendant="basics_work_type_list_0"
+                                    readonly=""
+                                    unselectable="on"
+                                    value=""
+                                    style="opacity: 0" /></span
+                                ><span class="ant-select-selection-item" title="Full Time">Full Time</span>
+                              </div>
+                              <span class="ant-select-arrow" unselectable="on" aria-hidden="true" style="user-select: none"
+                                ><span role="img" aria-label="down" class="anticon anticon-down ant-select-suffix"
+                                  ><svg
+                                    viewBox="64 64 896 896"
+                                    focusable="false"
+                                    data-icon="down"
+                                    width="1em"
+                                    height="1em"
+                                    fill="currentColor"
+                                    aria-hidden="true">
+                                    <path
+                                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg></span
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col grow gap-[8px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_organisation_name" class="ant-form-item-required" title=""
+                          ><span class="text-[16px]">Nom de l'organisation</span></label
+                        >
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <input class="ant-input rounded-[4px]" type="text" id="basics_organisation_name" value="IOTECH" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col grow gap-[8px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_country_id" class="ant-form-item-required" title=""><span class="text-[16px]">pays</span></label>
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <div class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow ant-select-show-search">
+                              <div class="ant-select-selector">
+                                <span class="ant-select-selection-search"
+                                  ><input
+                                    id="basics_country_id"
+                                    autocomplete="off"
+                                    type="search"
+                                    class="ant-select-selection-search-input"
+                                    role="combobox"
+                                    aria-haspopup="listbox"
+                                    aria-owns="basics_country_id_list"
+                                    aria-autocomplete="list"
+                                    aria-controls="basics_country_id_list"
+                                    aria-activedescendant="basics_country_id_list_0"
+                                    value="" /></span
+                                ><span class="ant-select-selection-item" title="Tunisia">Tunisia</span>
+                              </div>
+                              <span class="ant-select-arrow" unselectable="on" aria-hidden="true" style="user-select: none"
+                                ><span role="img" aria-label="down" class="anticon anticon-down ant-select-suffix"
+                                  ><svg
+                                    viewBox="64 64 896 896"
+                                    focusable="false"
+                                    data-icon="down"
+                                    width="1em"
+                                    height="1em"
+                                    fill="currentColor"
+                                    aria-hidden="true">
+                                    <path
+                                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg></span
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-row grow gap-[8px]">
+                    <div class="flex flex-col grow gap-[8px]">
+                      <span class="text-[16px]">Date début</span>
+                      <div class="ant-row ant-form-item" style="row-gap: 0px">
+                        <div class="ant-col ant-form-item-control">
+                          <div class="ant-form-item-control-input">
+                            <div class="ant-form-item-control-input-content">
+                              <div class="ant-picker rounded-[4px] w-full">
+                                <div class="ant-picker-input">
+                                  <input
+                                    id="basics_start_date"
+                                    readonly=""
+                                    placeholder="Select date"
+                                    title="Aug 20, 2021"
+                                    size="14"
+                                    autocomplete="off"
+                                    value="Aug 20, 2021" /><span class="ant-picker-suffix"
+                                    ><span role="img" aria-label="calendar" class="anticon anticon-calendar"
+                                      ><svg
+                                        viewBox="64 64 896 896"
+                                        focusable="false"
+                                        data-icon="calendar"
+                                        width="1em"
+                                        height="1em"
+                                        fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path></svg></span
+                                  ></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex flex-col grow gap-[8px]">
+                      <span class="text-[16px]" hidden="">Date fin</span>
+                      <div class="ant-row ant-form-item ant-form-item-hidden" style="row-gap: 0px">
+                        <div class="ant-col ant-form-item-control">
+                          <div class="ant-form-item-control-input">
+                            <div class="ant-form-item-control-input-content">
+                              <div class="ant-picker rounded-[4px] w-full">
+                                <div class="ant-picker-input">
+                                  <input
+                                    id="basics_end_date"
+                                    readonly=""
+                                    placeholder="Select date"
+                                    title=""
+                                    size="14"
+                                    autocomplete="off"
+                                    value="" /><span class="ant-picker-suffix"
+                                    ><span role="img" aria-label="calendar" class="anticon anticon-calendar"
+                                      ><svg
+                                        viewBox="64 64 896 896"
+                                        focusable="false"
+                                        data-icon="calendar"
+                                        width="1em"
+                                        height="1em"
+                                        fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path></svg></span
+                                  ></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <label
+                        class="ant-checkbox-wrapper ant-checkbox-wrapper-checked text-[14px] mt-[8px] relative top-[30px] mt-[10px] whitespace-nowrap"
+                        ><span class="ant-checkbox ant-checkbox-checked"
+                          ><input type="checkbox" class="ant-checkbox-input" value="" checked="" /><span class="ant-checkbox-inner"></span></span
+                        ><span>Encore en cette role</span></label
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-col grow gap-[8px]">
+                    <div class="ant-row ant-form-item" style="row-gap: 0px">
+                      <div class="ant-col ant-form-item-label">
+                        <label for="basics_description" class="ant-form-item-required" title=""><span class="text-[16px]">Description</span></label>
+                      </div>
+                      <div class="ant-col ant-form-item-control">
+                        <div class="ant-form-item-control-input">
+                          <div class="ant-form-item-control-input-content">
+                            <textarea id="basics_description" class="ant-input rounded-[4px]" data-gramm="false" wt-ignore-input="true">
+  &lt;p&gt;I started working with "IOTECH" as a full time web developer , in this position am working on both front end and back end application's sides , my job is to create and manage web interfaces , API's , SQL queries , user interface réparation and web apps maintenance.&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Used technologies : Angular 12/13 , node.js ,Express.js ,Nest.js , Laravel 8 , PGSQL , Mysql, Sql , Symfony 2/3/4 , PHP 5.6/7.&lt;i&gt;/8. , Ubuntu 20.* , Clarity , bootstrap, tailwind&amp;nbsp;&lt;/i&gt;&lt;/p&gt;</textarea
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- autres -->
+  <div class="ant-divider ant-divider-horizontal my-[16px]" role="separator"></div>
+  <div class="flex text-grey-darkest mt-[48px]">
+    <div class="flex flex-auto w-full flex-col gap-[10px]">
+      <div class="text-[18px] font-bold">English Proficiency</div>
+      <div class="text-grey-dark text-[14px]">
+        Test can be taken again on 02/07/2023
+      </div>
+    </div>
+  </div>
+</section>

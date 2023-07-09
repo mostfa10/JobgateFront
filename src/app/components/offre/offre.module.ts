@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { OffreRoutingModule } from './offre-routing.module';
-import { RouterModule } from '@angular/router';
 import { ListeOffreComponent } from './liste-offre/liste-offre.component';
 import { DetailoffreComponent } from './detailoffre/detailoffre.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -27,11 +26,10 @@ import { FilterComponent } from './filter/filter.component';
     FormsModule,
     ReactiveFormsModule,
     OffreRoutingModule,
-    // RouterModule,
     NgxPaginationModule,
     SharedModule
   ],
   
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class OffreModule { }

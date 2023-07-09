@@ -5,10 +5,10 @@
               <div class="col-lg-12">
                   <div class="row">
                       <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                          <input type="text" formControlName="states" class="form-control search-slt" placeholder="Chercher par ville !">
+                          <input type="text" formControlName="states" (keyup.enter)="search()" class="form-control search-slt" placeholder="Chercher par ville !">
                       </div>
                       <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                          <input type="text" formControlName="keyword" class="form-control search-slt" placeholder="Chercher par mot clés !">
+                          <input type="text" formControlName="keyword" (keyup.enter)="search()" class="form-control search-slt" placeholder="Chercher par mot clés !">
                       </div>
                       <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                           <select class="form-control search-slt" formControlName="categories" id="exampleFormControlSelect1">

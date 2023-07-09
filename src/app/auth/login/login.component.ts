@@ -30,13 +30,11 @@ export class LoginComponent implements OnInit {
   signi(){
    
     this.login.signin(this.form.value).subscribe((res:any)=>{
-      console.log("user",res)
-      Swal.fire('you are welcome') // ki 3malna login sajilna f localstoraje kol shy
       localStorage.setItem('userconnect',JSON.stringify(res)) //yraja3 user kol f string ki ta3ml signin 
       localStorage.setItem('accesstoken',res.tokens.accessToken)
       localStorage.setItem('refreshtoken',res.tokens.refreshtoken)
       localStorage.setItem('state','0') //ki yabda connecte ya3ti 0 ki ma yabdesh connecte ya3ti 1 nest3mlouha f guarde
-       this.route.navigateByUrl('/offre')
+      this.route.navigateByUrl('/')
      
     })
 

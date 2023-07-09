@@ -8,11 +8,12 @@ import { AuthGuard } from '../guardss/authe.guard';
 
 
 const routes: Routes = [
-    {path:'',component:HomeComponent},
-    {path: 'about', component: AboutComponent},
-    {path: 'contact',canActivate:[AuthGuard], component: ContactComponent},
-    {path: 'profil',canActivate:[AuthGuard],component:ProfilComponent},
-    { path: 'offre', loadChildren: () => import('./offre/offre.module').then(m => m.OffreModule) }
+  {path: 'about', component: AboutComponent},
+  {path: 'contact',canActivate:[AuthGuard], component: ContactComponent},
+  {path: "profile",canActivate:[AuthGuard],component:ProfilComponent},
+  {path: "profile/:id",canActivate:[AuthGuard],component:ProfilComponent},
+  {path: 'offre', loadChildren: () => import('./offre/offre.module').then(m => m.OffreModule) },
+  {path:'',component:HomeComponent},
 ];
 
 @NgModule({

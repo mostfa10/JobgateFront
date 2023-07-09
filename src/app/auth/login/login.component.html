@@ -21,11 +21,11 @@
                     </div>
                     <div class="form-group">
                         <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                        <input type="password" name="your_pass" id="your_pass" formControlName="password"
+                        <input type="password" name="your_pass" id="your_pass" (keyup.enter)="signi()" formControlName="password"
                         placeholder="Entrez votre mot de passe"/>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                        <input type="checkbox" name="remember-me" id="remember-me" (keyup.enter)="signi()" class="agree-term" />
                         <label for="remember-me" class="label-agree-term"><span><span></span></span>Rester connecté</label>
                     </div>
                     <a  class="btn btn-primary btn-user btn-block" (click)="signi()" >

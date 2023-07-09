@@ -1052,3 +1052,13 @@ https://templatemo.com/tm-516-known
 
   .list { font-size: 16px; line-height: 1.6; }
   .list li { margin-bottom: 15px;  }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+  .nav,.navbar-nav > ul > li > a {
+      align-items: flex-start !important;
+  }
+}

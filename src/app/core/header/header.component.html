@@ -32,28 +32,70 @@
                         <ul class="dropdown-menu dropdown-menu-right pl">
                              <li><a routerLink="/offre" [queryParams]="{states:p.place}" *ngFor="let p of places">{{p.place}}</a></li>
                         </ul>
-                   </li>
-                   
+                   </li>                   
                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">category <span class="caret"></span></a>
-                    
-                    <ul class="dropdown-menu dropdown-menu-right pl   ">
-                         <li><a routerLink="/offre" [queryParams]="{categories:cat.name}" *ngFor="let cat of categories">{{cat.name}}</a></li>
-                    </ul>
-               </li>
-               <li><a routerLink="/contact">Contact Us</a></li>
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">category <span class="caret"></span></a>
+                         <ul class="dropdown-menu dropdown-menu-right pl   ">
+                              <li>
+                                   <a routerLink="/offre" [queryParams]="{categories:cat.name}" *ngFor="let cat of categories">{{cat.name}}</a>
+                              </li>
+                         </ul>
+                    </li>
+                    <li>
+                         <span class="badge badge-pill bg-ca-accent my-auto" style="float:right;position: relative;margin-top: 17px;">1</span>
+                         <a routerLink="/messages">Messages <span class="sr-only">(current)</span></a>
+                     </li>
+                    <li><a routerLink="/contact">Contact Us</a></li>
               </ul>
-              <ul class="nav navbar-nav navbar-nav-second">
-               <li>
-                    <a routerLink="/login">S'authentifier !</a>
-               </li>
-               <li *ngIf="loggedIn">
-                     <a class="dropdown-item" (click)="Logout()" data-toggle="modal" data-target="#logoutModal">
-                          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                          Logout
-                     </a>
-               </li>
-              </ul>
+              <ul class="nav navbar-nav navbar-nav-second d-flex my-auto">
+                    <li *ngIf="!loggedIn">
+                         <a routerLink="/login">S'authentifier !</a>
+                    </li>
+                    <li *ngIf="loggedIn" class="my-auto">
+                         <a href="#" class="dropdown-toggle my-auto" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                              <svg class="my-auto mx-4 d-flex" width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M12.02 2.90991C8.70997 2.90991 6.01997 5.59991 6.01997 8.90991V11.7999C6.01997 12.4099 5.75997 13.3399 5.44997 13.8599L4.29997 15.7699C3.58997 16.9499 4.07997 18.2599 5.37997 18.6999C9.68997 20.1399 14.34 20.1399 18.65 18.6999C19.86 18.2999 20.39 16.8699 19.73 15.7699L18.58 13.8599C18.28 13.3399 18.02 12.4099 18.02 11.7999V8.90991C18.02 5.60991 15.32 2.90991 12.02 2.90991Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/> <path d="M13.87 3.19994C13.56 3.10994 13.24 3.03994 12.91 2.99994C11.95 2.87994 11.03 2.94994 10.17 3.19994C10.46 2.45994 11.18 1.93994 12.02 1.93994C12.86 1.93994 13.58 2.45994 13.87 3.19994Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M15.02 19.0601C15.02 20.7101 13.67 22.0601 12.02 22.0601C11.2 22.0601 10.44 21.7201 9.90002 21.1801C9.36002 20.6401 9.02002 19.8801 9.02002 19.0601" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"/> </svg>
+                         </a>
+                         <ul class="dropdown-menu dropdown-menu-left pl   ">
+                              <li>
+                                   <a class="cursor-pointer">lkd,lk,ds</a>
+                                   <a class="cursor-pointer" (click)="Logout()">kdnslkxw,</a>
+                              </li>
+                         </ul>
+                    </li>   
+<!-- 
+                    <div class="d-flex flex-row gap-3 justify-content-end align-items-center">
+                         <div class="dropdown ml-auto">
+                           <div class="border border-1 border-light rounded-circle p-2">
+                             <div class="d-flex flex-row align-items-center text-secondary">
+                               <span class="text-16px">
+                                 <svg aria-hidden="true" class="svg-inline--fa fa-bars" focusable="false" data-prefix="far" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                   <path fill="currentColor" d="M0 88C0 74.7 10.7 64 24 64H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H24C10.7 112 0 101.3 0 88zM0 248c0-13.3 10.7-24 24-24H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zM448 408c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24H424c13.3 0 24 10.7 24 24z"></path>
+                                 </svg>
+                               </span>
+                               <span class="avatar avatar-sm rounded-circle my-auto bg-white">
+                                 <img alt="User Profile Photo" src="/_next/image?url=https%3A%2F%2Fs3.eu-west-1.amazonaws.com%2Fgis-production-eu%2F8tLBMV7R5DrU56KFtNb1TR5S&amp;w=48&amp;q=75" decoding="async">
+                               </span>
+                             </div>
+                           </div>
+                         </div>
+                       </div> -->
+
+                    <li *ngIf="loggedIn" class="d-flex space-x-2">
+                         <a href="#" class="dropdown-toggle my-auto d-flex space-x-2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                              <span>
+                                   {{connectedUser?.isCondidat ? connectedUser.condidatId.name : connectedUser?.email}} 
+                              </span>
+                              <img src="/assets/images/profile_pic.webp" class="profile-img space-x-2 my-auto" alt="">
+                              <span class="caret my-auto space-x-1"></span>
+                         </a>
+                         <ul class="dropdown-menu dropdown-menu-right pl my-auto  ">
+                              <li >
+                                   <a [routerLink]="['/profile',connectedUser?._id]" class="cursor-pointer">Profile</a>
+                                   <a class="cursor-pointer" (click)="Logout()">Deconnecter</a>
+                              </li>
+                         </ul>
+                    </li>
+               </ul>
               
          </div>
 
