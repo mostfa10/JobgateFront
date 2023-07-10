@@ -7,7 +7,6 @@ import { DetailoffreComponent } from './detailoffre/detailoffre.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AjouterOffreComponent } from './ajouter-offre/ajouter-offre.component';
-import { CandidatureComponent } from './candidature/candidature.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FilterComponent } from './filter/filter.component';
 
@@ -18,7 +17,6 @@ import { FilterComponent } from './filter/filter.component';
    ListeOffreComponent,
     DetailoffreComponent,
     AjouterOffreComponent,
-    CandidatureComponent,
     FilterComponent
   ],
   imports: [

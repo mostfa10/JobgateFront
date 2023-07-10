@@ -28,6 +28,8 @@ export class EntrepriseComponent implements OnInit {
         email:  ['', Validators.required],
         confirmPassword:  ['', Validators.required],
         adress:  ['', Validators.required],
+        image:  ['', Validators.required],
+
         speciality:  ['', Validators.required],
         acceptTerms: [false]
       })
@@ -43,7 +45,16 @@ export class EntrepriseComponent implements OnInit {
   get f(): { [key: string]: AbstractControl } {
     return this.formE.controls;
   } //ta3ml control ala les champs
+  
 
+  onFileChange(event: any): void {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formE.patchValue({
+        image:file,
+      });
+    }
+} 
   onSubmit(): void {
     this.submitted = true;
 
@@ -55,12 +66,14 @@ export class EntrepriseComponent implements OnInit {
     formdata.append('description',this.formE.value.description)
     formdata.append('password',this.formE.value.password)
     formdata.append('email',this.formE.value.email)
+    formdata.append('image',this.formE.value.image)
+
     formdata.append('adress',this.formE.value.adress)
     
  formdata.append('speciality',this.formE.value.speciality)
  
- this.login.createentreprise(this.formE.value).subscribe((res:any)=>{
-      console.log(this.formE.value)
+ this.login.createentreprise(formdata).subscribe((res:any)=>{
+      console.log(formdata)
       Swal.fire('you are  added like employer')
       console.log('res',res)
       this.route.navigateByUrl('/CreateOffre')

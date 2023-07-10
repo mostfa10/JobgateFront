@@ -1,236 +1,290 @@
 <section>
     <div class="container">
-         <div class="row">
-              <div class="col-lg-3 col-md-3 col-xs-12">
-                   <div>
-                        <br>
+               <div class="row">
+                              <div class="col-lg-3 col-md-3 col-xs-12">
+                                                  <div>
+                                                       <br>
 
-                        <img src="assets/images/product-1-720x480.jpg" alt="" class="img-responsive wc-image">
+                                                       <img src="assets/images/product-1-720x480.jpg" alt="" class="img-responsive wc-image">
 
-                        <br>
-                   </div>
-              </div>
+                                                       <br>
+                                                  </div>
+                              </div>
 
-              <div class="col-lg-9 col-md-9 col-xs-12">
-                   <form action="#" method="post" class="form">
-                        <h2>Security Officer - Luxury Retail</h2>
+                    <div class="col-lg-9 col-md-9 col-xs-12">
+                              <form action="#" method="post" class="form">
+                                   <h2>{{ofre?.titre}}</h2>
 
-                        <p class="lead"><strong class="text-primary">$38000</strong> <small> per year</small></p>
+                                   <p class="lead"><strong class="text-primary">${{ofre?.salaire}}</strong> <small> per year</small></p>
 
-                        <p class="lead">
-                             <i class="fa fa-briefcase"></i> {{ofre?.titre}} &nbsp;&nbsp;
-                             <i class="fa fa-map-marker"></i> London &nbsp;&nbsp;
-                             <i class="fa fa-calendar"></i> 20-06-2020 &nbsp;&nbsp;
-                             <i class="fa fa-file"></i> Contract
-                        </p>
+                                   <p class="lead">
+                                        <i class="fa fa-briefcase"></i> {{ofre?.titre}} &nbsp;&nbsp;
+                                        <i class="fa fa-map-marker"></i> {{ofre?.placeId.place}} &nbsp;&nbsp;
+                                        <i class="fa fa-calendar"></i> {{ofre?.createdAt | date:'yyyy-MM-dd'}} &nbsp;&nbsp;
+                                        <i class="fa fa-file"></i> {{ofre?.contratId.type}}
+                                   </p>
 
-                        
-                   </form>
-              </div>
-         </div>
+                                   
+                              </form>
+                    </div>
+               </div>
 
-         <div class="panel panel-default">
-              <div class="panel-heading">
-                   <h4>{{ofre?.description}}</h4>
-              </div>
+               <div class="panel panel-default">
+                    <div class="panel-heading">
+                         <h4>description</h4>
+                    </div>
 
-              <div class="panel-body">
-                   <p>Pro Active Retail Security Officer required to operate in luxury retail environment. Searching for self-motivated individuals who are always looking to achieve the highest standards.</p>
+                    <div class="panel-body">
+                         {{ofre?.description}}
+                         
+                         <h4>sklis:</h4>
+                         <span *ngIf="ofre && ofre.skilsId"> <!-- vérifier s'il existe des skills dans cette offre et les parcourir-->
+                              <h4 *ngFor="let s of ofre.skilsId">{{s.name}}</h4>
+                         </span>
+                         
+                    </div>
+               </div>
 
-                   <h4>Responsibillitites:</h4>
+               <div class="panel panel-default">
+                    <div class="panel-heading">
+                         <h4>About  entreprise: {{ofre?.entrepriseId?.fullname}} </h4>
+                    </div>
 
-                   <p>Regular Report Writing, Liaison between the team and the client and head office, Door Supervision, Staff Search, Random Searches, TAG detector procedures, Risk Assessment, Fire Drills, Alarm Checks, immaculate customer services, deterrent and apprehension of offenders, liaisons with emergency services.</p>
+                    <div class="panel-body">
+                         <p>{{ofre?.entrepriseId?.description}} </p>
 
-                   <h4>Qualifications:</h4>
-                   <p>- MUST have minimum 1 year experience in RETAIL security (shops).</p>
-                   <p>- MUST be Fluent in the English Language (speaking and writing).</p>
-                   <p>- MUST hold a valid SIA Door Supervisor Licence.</p>
-              </div>
-         </div>
+                         <div class="row">
+                              <div class="col-lg-6">
+                                   
+                              </div>
 
-         <div class="panel panel-default">
-              <div class="panel-heading">
-                   <h4>About Cannon Guards Security ltd</h4>
-              </div>
+                              <div class="col-lg-6">
+                                   
+                              </div>
+                         </div>
 
-              <div class="panel-body">
-                   <p>Looking to improve the security at your place of business? If so, we will provide you with the trained security officers and professionally licensed personnel needed for any business. From a security guard for construction site security to private event security, you can be sure to get the very best from our staff. Alternatively we provide tailor-made security guard training for your existing security staff.</p>
+                         <div class="row">
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>spiciality domaine</span>
 
-                   <div class="row">
-                        <div class="col-lg-6">
-                             
-                        </div>
+                                        <br>
 
-                        <div class="col-lg-6">
-                             
-                        </div>
-                   </div>
+                                        <strong>{{ofre?.entrepriseId?.speciality}}</strong>
+                                   </p>
+                              </div>
 
-                   <div class="row">
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Company name</span>
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Contact name</span>
 
-                                  <br>
+                                        <br>
 
-                                  <strong>Cannon Guards Security Ltd</strong>
-                             </p>
-                        </div>
+                                        <strong>Paul Gordon</strong>
+                                   </p>
+                              </div>
+                         </div>
 
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Contact name</span>
+                         <div class="row">
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Phone</span>
 
-                                  <br>
+                                        <br>
 
-                                  <strong>Paul Gordon</strong>
-                             </p>
-                        </div>
-                   </div>
+                                        <strong><a href="tel:123-456-789">123-456-789</a></strong>
+                                   </p>
+                              </div>
 
-                   <div class="row">
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Phone</span>
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Mobile phone</span>
 
-                                  <br>
+                                        <br>
 
-                                  <strong><a href="tel:123-456-789">123-456-789</a></strong>
-                             </p>
-                        </div>
+                                        <strong><a href="tel:456789123">456789123</a></strong>
+                                   </p>
+                              </div>
+                         </div>
 
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Mobile phone</span>
+                         <div class="row">
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Email</span>
 
-                                  <br>
+                                        <br>
 
-                                  <strong><a href="tel:456789123">456789123</a></strong>
-                             </p>
-                        </div>
-                   </div>
+                                        <strong><a href="mailto:john@carsales.com">{{ofre?.entrepriseId?.email}}</a></strong>
+                                   </p>
+                              </div>
 
-                   <div class="row">
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Email</span>
+                              <div class="col-md-6">
+                                   <p>
+                                        <span>Website</span>
 
-                                  <br>
+                                        <br>
 
-                                  <strong><a href="mailto:john@carsales.com">john@carsales.com</a></strong>
-                             </p>
-                        </div>
+                                        <strong><a href="http://www.cannonguards.com/">http://www.cannonguards.com/</a></strong>
+                                   </p>
+                              </div>
+                         </div>
 
-                        <div class="col-md-6">
-                             <p>
-                                  <span>Website</span>
+                         <p>
+                              <span>City</span>
 
-                                  <br>
+                              <br>
 
-                                  <strong><a href="http://www.cannonguards.com/">http://www.cannonguards.com/</a></strong>
-                             </p>
-                        </div>
-                   </div>
+                              <strong>{{ofre?.entrepriseId?.adress}}</strong>
+                         </p>
+                    </div>
+               </div>
+                         <form  [formGroup]="formE" (ngSubmit)="onSubmit()">
+                         <div class="panel panel-default">
+                    
+                    
+                                   <div class="container row">
+                                   <div class="d-flex flex-column ">
+                                        <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                                             <div class="profile-image"><img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg" width="70">
+                                             </div>
+                                             <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"><i class="fa fa-sort-up fa-2x hit-voting"></i><span>127</span><i class="fa fa-sort-down fa-2x hit-voting"></i></div>
+                                             <div class="d-flex flex-column ml-3">
+                                                  <div class="d-flex flex-row post-title">
+                                                  
+                                                       <h5>Is sketch 3.9.1 stable?</h5><span class="ml-2">(Jesshead)</span></div>
+                                                  <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">video</span><span class="mr-2 comments">13 comments&nbsp;</span><span class="mr-2 dot"></span><span>6 hours ago</span></div>
+                                             </div>
+                                        </div>
+                                        <div class="coment-bottom bg-white p-2 px-4 l" *ngIf="ofre && ofre.commantaires">
+                                             <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" formControlName="contenu" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="submit">Comment</button></div>
+                                             <div
+                                                  class="commented-section mt-2" *ngFor="let com of ofre.commantaires">
+                                                  <div class="d-flex flex-row align-items-center commented-user">
+                                                       <h5 class="mr-2">{{com?.userId?.condidatId?.name}}  {{com?.userId?.condidatId?.lastname}}</h5><span class="dot mb-1"></span> <span>{{ com.createdAt | date: 'medium' }}</span>
+                                                  </div>
+                                                       <div class="comment-text-sm"><span>{{com.contenu}}</span>
+                                                       </div>
+                                                  <div
+                                                                 class="reply-section">
+                                                                 <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
+                                                                 <h6 class="ml-2 mt-1">Reply</h6>
+                                                       </div>
+                                        </div>
+                                        
 
-                   <p>
-                        <span>City</span>
+                                   </div>
+                                   <!-- <div class="commented-section mt-2">
+                                        <div class="d-flex flex-row align-items-center commented-condidatIduser">
+                                             <h5 class="mr-2">Samoya Johns</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">5 hours ago</span></div>
+                                        <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span></div>
+                                        <div class="reply-section">
+                                             <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">15</span><span class="dot ml-2"></span>
+                                                  <h6 class="ml-2 mt-1">Reply</h6>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="commented-section mt-2"> -->
+                                        <!-- <div class="d-flex flex-row align-items-center commented-user">
+                                             <h5 class="mr-2">Makhaya andrew</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">10 hours ago</span></div>
+                                        <div class="comment-text-sm"><span>Nunc sed id semper risus in hendrerit gravida rutrum. Non odio euismod lacinia at quis risus sed. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Enim facilisis gravida neque convallis a. In mollis nunc sed id. Adipiscing elit pellentesque habitant morbi tristique senectus et netus. Ultrices mi tempus imperdiet nulla malesuada pellentesque.</span></div>
+                                        <div class="reply-section">
+                                             <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">25</span><span class="dot ml-2"></span>
+                                                  <h6 class="ml-2 mt-1">Reply</h6>
+                                             </div>
+                                             
+                                   </div> -->
+                              
+                                   <!-- </div> -->
+                         
+                              </div>
+                              
+                              </div>
+                    </div>
+                         </div>
+                         </form>
 
-                        <br>
 
-                        <strong>Manchester</strong>
-                   </p>
-              </div>
-         </div>
-
-         <div class="clearfix">
-              <a class="section-btn btn btn-primary pull-left" data-toggle="modal" data-target="#exampleModalLong">Apply for this job</a>
+               <div class="clearfix">
+                    <a class="section-btn btn btn-primary pull-left" data-toggle="modal" data-target="#exampleModalLong">Apply for this job</a>
 
 
 
-      
-              <ul class="social-icon pull-right">
-                   <li><a href="#" class="fa fa-facebook"></a></li>
-                   <li><a href="#" class="fa fa-envelope-o"></a></li>
-                   <li><a href="#" class="fa fa-linkedin"></a></li>
-              </ul>
-         </div>
-                 <!-- Modal -->
-   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-           </button>
-         </div>
-         <div class="modal-body">
-          
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-    <h4 class="modal-title">						Postuler à Prof langue RUSSE chez INSPIRE TRAINING CENTER
-            </h4>
-    </div>
-    <div class="modal-body">
-    <form method="post" enctype="multipart/form-data" action="https://www.tanitjobs.com/apply-now/" id="apply-form" class="form">
-    <input type="hidden" name="is_data_submitted" value="1">
-    <input type="hidden" name="listing_id" value="1302239">
-    <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
-    <div class="form group">
-    <label>Votre nom</label><br> <br>
-    <input type="text" name="name" value="{{userconnect.condidat.name}}" class="form-control">
-    </div>
-    <div class="form-group text-center">
-    <label class="form-label">Votre email</label><br> <br>
-    <input type="email" name="email" value="{{userconnect.email}}" class="form-control">{{userconnect.email}}
-    </div>
-    <div class="form-group">
-    <label class="form-label">Sélectionnez votre CV</label><br> <br>
-    <select class="form-control" name="id_resume">
-    <option value="0">Sélectionnez votre CV</option>
-    <option selected="selected" value="735830">informaticien /technecien superieur</option>
-    </select>
-    </div>
-    <div class="form-group">
-    <label class="form-label">Télécharger votre CV</label><br> <br>
-    <input type="file" name="file_tmp" class="form-control">
-    </div>
-    <div class="form-group">
-    <label class="form-label">Lettre de Motivation</label><br> <br><br> <br><br> <br>
-    <textarea class="form-control" name="comments" rows="5"></textarea>
-    </div>
-    <div class="form-group text-center">
-    <input class="btn__submit-modal btn btn__orange btn__bold" type="submit" value="Envoyez une demande" onclick="return applySubmit();">
-    </div>
-    </form>
-    </div>
-    <script type="text/javascript">
-        function applySubmit() {
-            var options = {
-                target: '.modal-body',
-                url:  $('#apply-form').attr('action'),
-            };0
-            $('#apply-form').ajaxSubmit(options);
-            return false;
-        }
-        $('.application-redirect').click(function() {
-            $('#apply-modal').modal('hide');
-        });
-    </script>
-    </div>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           <button type="button" class="btn btn-primary">Save changes</button>
-         </div>
-       </div>
+               
+                    <ul class="social-icon pull-right">
+                         <li><a href="#" class="fa fa-facebook"></a></li>
+                         <li><a href="#" class="fa fa-envelope-o"></a></li>
+                         <li><a href="#" class="fa fa-linkedin"></a></li>
+                    </ul>
+                  </div>
+                         <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                                   <div class="modal-content">
+                                        <div class="modal-header">
+                                             <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                             </button>
+                                        </div>
+                                   <div class="modal-body">
+                                   
+                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                             <h4 class="modal-title">
+                                             </h4>
+                                   </div>
+                                   <div class="modal-body">
+                                   <form method="post" enctype="multipart/form-data"  [formGroup]="form" (ngSubmit)="onPostuler()" id="apply-form" class="form">
+                                                  <input type="hidden" name="is_data_submitted" value="1">
+                                                  <input type="hidden" name="listing_id" value="1302239">
+                                                  <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
+                                                  <div class="form group">
+                                                       <label class="top">Votre fullname</label><br> <br>
+                                                       <input type="text" value="{{userconnect.user.condidatId.name}}" formControlName="name" class="form-control" >
+                                                  </div>
+                                                       <div class="form-group text-center">
+                                                            <label class="form-label">Votre email</label><br> <br>
+                                                            <input type="email" name="email" value="{{userconnect.user.email}}" formControlName="email" class="form-control">
+                                                       </div>
+                                                  <!-- <div class="form-group">
+                                                  <label class="form-label">Sélectionnez votre post</label><br> <br>
+                                                  <select class="form-control" name="id_resume">
+                                                  <option value="0">Sélectionnez votre poste</option>
+                                                  <option selected="selected" value="735830">informaticien /technecien superieur</option>
+                                                  </select>
+                                                  </div> -->
+                                                 <div class="form-group">
+                                                  <label class="form-label">Télécharger votre CV </label> <br> <br>
+                                                  <input type="file" (change)="onFileChange($event)" [value]="form.value.cv" formControlName="cv" name="cv" class="form-control" />
+
+                                                  </div>      
+                                                  <div class="form-group ">
+                                                            <label class="form-label">Lettre de Motivation</label><br> <br><br> <br><br> <br>
+                                                            <textarea class="form-control" name="comments" rows="5" formControlName="Motivation" ></textarea>
+                                                  </div>
+                                                  <div class="form-group text-center">
+                                                       <button class="btn__submit-modal btn btn__orange btn__bold"  type="submit"> Envoyez une demande</button>
+
+                                                  </div>
+                                   </form>
+                                   </div>
+                         
+                                   <script>
+                                        function applySubmit() {
+                                          var options = {
+                                            target: '.modal-body',
+                                            url: $('#apply-form').attr('action'),
+                                          };
+                                          $('#apply-form').ajaxSubmit(options);
+                                          return false;
+                                        }
+                                        $('.application-redirect').click(function() {
+                                          $('#apply-modal').modal('hide');
+                                        });
+                                      </script>
+                              </div>
+                         </div>
+                         
+                         </div>
      </div>
-  
-
-
-    <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-     Launch demo modal
-   </button> -->
-   
    
 </section>

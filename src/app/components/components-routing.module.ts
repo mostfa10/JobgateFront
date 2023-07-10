@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'contact',canActivate:[AuthGuard], component: ContactComponent},
   {path: "profile",canActivate:[AuthGuard],component:ProfilComponent},
   {path: "profile/:id",canActivate:[AuthGuard],component:ProfilComponent},
-  {path: 'offre', loadChildren: () => import('./offre/offre.module').then(m => m.OffreModule) },
+  {path: 'offre',pathMatch: 'prefix', loadChildren: () => import('./offre/offre.module').then(m => m.OffreModule) },
   {path:'',component:HomeComponent},
 ];
 
