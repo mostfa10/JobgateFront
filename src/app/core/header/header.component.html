@@ -91,6 +91,9 @@
                          <ul class="dropdown-menu dropdown-menu-right pl my-auto  ">
                               <li >
                                    <a [routerLink]="['/profile',connectedUser?._id]" class="cursor-pointer">Profile</a>
+                                   <a  class="cursor-pointer"  routerLink="/candidatures">Mes condidatures</a>
+                                   <a  class="cursor-pointer">Mes listes favorits </a>
+
                                    <a class="cursor-pointer" (click)="Logout()">Deconnecter</a>
                               </li>
                          </ul>

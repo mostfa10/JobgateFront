@@ -9,6 +9,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SharedModule } from '../shared/shared.module';
+import { CandidaturesComponent } from './candidatures/candidatures.component';
 
 
 
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     AboutComponent,
     HomeComponent,
     ProfilComponent,
+    CandidaturesComponent,
   ],
   imports: [
     NgxPaginationModule,

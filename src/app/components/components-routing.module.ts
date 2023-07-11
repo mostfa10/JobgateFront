@@ -5,6 +5,8 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProfilComponent } from './profil/profil.component';
 import { AuthGuard } from '../guardss/authe.guard';
+import { CondidatureService } from '../services/condidature.service';
+import { CandidaturesComponent } from './candidatures/candidatures.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,9 @@ const routes: Routes = [
   {path: "profile/:id",canActivate:[AuthGuard],component:ProfilComponent},
   {path: 'offre',pathMatch: 'prefix', loadChildren: () => import('./offre/offre.module').then(m => m.OffreModule) },
   {path:'',component:HomeComponent},
+  {path:'candidatures',component:CandidaturesComponent},
+
+
 ];
 
 @NgModule({
