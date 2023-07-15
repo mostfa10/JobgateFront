@@ -66,7 +66,7 @@ export class EntrepriseComponent implements OnInit {
     formdata.append('description',this.formE.value.description)
     formdata.append('password',this.formE.value.password)
     formdata.append('email',this.formE.value.email)
-    formdata.append('image',this.formE.value.image)
+    formdata.append('image',this.formE.get('image')?.value)
 
     formdata.append('adress',this.formE.value.adress)
     

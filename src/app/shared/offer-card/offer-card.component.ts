@@ -23,8 +23,12 @@ export class OfferCardComponent implements OnInit {
   
   toggleFavorite(): void {
     this.isFavorite = !this.isFavorite;
+    const requestBody = {
+      titre: this.offer.titre,
+      entrepriseFullname: this.offer.entrepriseId.fullname
+    };
     this.http
-      .post<void>(`http://localhost:3000/user/${this.user._id}/favorite-offers/${this.offer._id}`, {})
+      .post<void>(`http://localhost:3000/user/${this.user._id}/favorite-offers/${this.offer._id}`,requestBody)
       .subscribe(
         () => {
           console.log('Offre ajoutée ou supprimée des favoris avec succès');

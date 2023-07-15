@@ -6,22 +6,25 @@
         <th scope="col">#</th>
         <th scope="col">nom de l'offre</th>
         <th scope="col">date postuler</th>
-        <th scope="col">etat</th>
+        <th scope="col">nom de l'entreprise </th>
+        <th scope="col">avis</th>
         <th scope="col">action</th>
       </tr>
     </thead>
     <tbody>
       
-      <tr *ngFor="let c of condidatures  let index=index">
+      <tr *ngFor="let c of favorites let index=index">
         <th scope="row">{{index+1}}</th>
-        <td>{{c.offreId.titre}}</td>
+        <td>{{c.titre}}</td>
         <td>{{c.createdAt}}</td>
-        <td>en attends</td>
+        <td>{{c.entrepriseFullname}}</td>
+
+        <td>ton avis sur son cette offres</td>
 
 
-        <td><button type="button" class="btn btn-danger" (click)="deleteC(c._id)"  >Delete</button>
+      
             &nbsp;<button type="button" class="btn btn-success" [routerLink]="['/offre',c.offreId._id]">details</button>
-        </td>
+       
        
     </tr>
 

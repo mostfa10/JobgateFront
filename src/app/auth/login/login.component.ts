@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formB.group(
       {
-      
         email:  ['', Validators.required],
         password:  ['', Validators.required],
       })
@@ -28,6 +27,7 @@ export class LoginComponent implements OnInit {
 
 
   signi(){
+    console.log(this.form.value)
    
     this.login.signin(this.form.value).subscribe((res:any)=>{
       localStorage.setItem('userconnect',JSON.stringify(res)) //yraja3 user kol f string ki ta3ml signin 

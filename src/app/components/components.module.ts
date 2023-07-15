@@ -10,6 +10,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SharedModule } from '../shared/shared.module';
 import { CandidaturesComponent } from './candidatures/candidatures.component';
+import { FavoritesOffresComponent } from './favorites-offres/favorites-offres.component';
+import { AjoutOffreComponent} from './ajout-offre/ajout-offre.component';
+import { OffrepourentrepriseComponent } from './offrepourentreprise/offrepourentreprise.component';
+
 
 
 
@@ -21,7 +25,9 @@ import { CandidaturesComponent } from './candidatures/candidatures.component';
     HomeComponent,
     ProfilComponent,
     CandidaturesComponent,
-  ],
+    FavoritesOffresComponent,
+AjoutOffreComponent,
+OffrepourentrepriseComponent  ],
   imports: [
     NgxPaginationModule,
     Ng2SearchPipeModule,

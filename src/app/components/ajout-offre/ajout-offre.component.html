@@ -1,0 +1,89 @@
+
+<div class="container">
+    <div class="row">
+         <div class="col-md-12 col-sm-12 top">
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label class="tP">titre</label><br><br>
+        <input
+          type="text"
+          formControlName="titre" 
+           class="form-control"> <!--formcontrolname pour affisher contenu backend -->
+      </div>
+      <div class="form-group">
+        <label class="t tP">description</label><br><br>
+        <input
+          type="text"
+          formControlName="description" 
+           class="form-control height"> <!--formcontrolname pour affisher contenu backend -->
+      </div>
+      <div class="form-group">
+        <label class="tP">number place demander:</label><br><br><br>
+        <input
+          type="text"
+          formControlName="numberP" 
+           class="form-control"> <!--formcontrolname pour affisher contenu backend -->
+      </div>
+      <div class="form-group">
+        <label class="tP">date exp:</label><br><br>
+        <input
+          type="text"
+          formControlName="datef" 
+           class="form-control"> <!--formcontrolname pour affisher contenu backend -->
+      </div>
+      <div class="form-group">
+        <label class="tP">school level:</label><br><br>
+        <input
+          type="text"
+          formControlName="schoollevel" 
+           class="form-control"> <!--formcontrolname pour affisher contenu backend -->
+      </div>
+
+      <div class="form-group">
+        <label class="tP">adress</label><br><br>
+        <select class="form-select size" name="place" formControlName="placeId">
+          <option *ngFor="let place of places" [value]="place._id">{{place.place}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="tP">nom de l'entreprise</label><br><br>
+        <input
+          type="text"
+          formControlName="entreprsieId" 
+           class="form-control" value="{{userconnect.user.entrepriseId.fullname}}"> <!--formcontrolname pour affisher contenu backend -->
+      </div>
+      <div class="form-group">
+        <label class="tP">Contrat</label><br><br>
+        <select class="form-select size" name="contrat" formControlName="contratId">
+          <option *ngFor="let contrat of contrats" [value]="contrat._id">{{contrat.type}}</option>
+        </select>
+      </div>
+    
+
+      <div class="form-group">
+        <label>competance :</label><br><br>
+        <select class="form-select size" name="skils" formControlName="skilsId">
+          <option *ngFor="let skils of skils" [value]="skils._id">{{skils.skils}}</option>
+        </select>
+      </div>
+
+    
+      
+      <div class="form-group">
+        <label>list of category</label><br><br>
+        <select class="form-select size" name="category" formControlName="categoryId">
+          <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+        </select>
+      </div>
+    
+      
+       
+     
+      <div class="form-group form-button">
+        <input type="submit" name="signup" class="form-submit" (click)="createoffre()" value="ajout offre"/>
+    </div>
+    </form>
+  </div>
+</div>
+</div>

@@ -26,7 +26,9 @@ import { LoginService } from './services/login.service';
     CommonModule,
     CoreModule,
     HttpClientModule,    
-    AuthModule
+    AuthModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

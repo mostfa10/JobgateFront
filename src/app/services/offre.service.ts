@@ -26,6 +26,10 @@ export class OffreService {
    getoffreyid(id:any){
     return this.http.get(`${environment.JobGateBD}/offre/${id}`)
    }
+   getAlloffreE(userId:any){
+    return this.http.get(`${environment.JobGateBD}/offre?entrepriseId=${userId}`);
+
+   }
    
 
 }

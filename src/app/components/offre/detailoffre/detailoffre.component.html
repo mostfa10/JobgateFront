@@ -5,7 +5,7 @@
                                                   <div>
                                                        <br>
 
-                                                       <img src="assets/images/product-1-720x480.jpg" alt="" class="img-responsive wc-image">
+                                                       <img src="http://localhost:3000/file/folder/{{ofre?.entrepriseId?.image}}"  alt="" class="img-responsive wc-image">
 
                                                        <br>
                                                   </div>
@@ -39,7 +39,7 @@
                          
                          <h4>sklis:</h4>
                          <span *ngIf="ofre && ofre.skilsId"> <!-- vérifier s'il existe des skills dans cette offre et les parcourir-->
-                              <h4 *ngFor="let s of ofre.skilsId">{{s.name}}</h4>
+                              <h4 *ngFor="let s of ofre.skilsId">{{s?.name}}</h4>
                          </span>
                          
                     </div>
@@ -162,7 +162,7 @@
                                                   <div class="d-flex flex-row align-items-center commented-user">
                                                        <h5 class="mr-2">{{com?.userId?.condidatId?.name}}  {{com?.userId?.condidatId?.lastname}}</h5><span class="dot mb-1"></span> <span>{{ com.createdAt | date: 'medium' }}</span>
                                                   </div>
-                                                       <div class="comment-text-sm"><span>{{com.contenu}}</span>
+                                                       <div class="comment-text-sm"><span>{{com?.contenu}}</span>
                                                        </div>
                                                   <div
                                                                  class="reply-section">
@@ -239,11 +239,11 @@
                                                   <input type="hidden" class="hidden hidden-resume" name="id_resume" value="735830">
                                                   <div class="form group">
                                                        <label class="top">Votre fullname</label><br> <br>
-                                                       <input type="text" value="{{userconnect.user.condidatId.name}}" formControlName="name" class="form-control" >
+                                                       <input type="text" value="{{userconnect?.user?.condidatId?.name}}" formControlName="name" class="form-control" >
                                                   </div>
                                                        <div class="form-group text-center">
                                                             <label class="form-label">Votre email</label><br> <br>
-                                                            <input type="email" name="email" value="{{userconnect.user.email}}" formControlName="email" class="form-control">
+                                                            <input type="email" name="email" value="{{userconnect?.user?.email}}" formControlName="email" class="form-control">
                                                        </div>
                                                   <!-- <div class="form-group">
                                                   <label class="form-label">Sélectionnez votre post</label><br> <br>
@@ -254,7 +254,7 @@
                                                   </div> -->
                                                  <div class="form-group">
                                                   <label class="form-label">Télécharger votre CV </label> <br> <br>
-                                                  <input type="file" (change)="onFileChange($event)" [value]="form.value.cv" formControlName="cv" name="cv" class="form-control" />
+                                                  <input type="file" (change)="onFileChange($event)" formControlName="cv"  class="form-control" />
 
                                                   </div>      
                                                   <div class="form-group ">

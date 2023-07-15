@@ -11,17 +11,19 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   signin(login:any){
-    this.loggedIn= true;
+   
     return this.http.post(`${environment.JobGateBD}/auth/signin`,login)
   }
   createCondidat(condidat:any){
     return this.http.post(`${environment.JobGateBD}/condidat`,condidat)
   }
 
+  getCondidatById(id:any) {
+    return this.http.get(`${environment.JobGateBD}/condidat/${id}`);
+  }
   createentreprise(entreprise:any){
     return this.http.post(`${environment.JobGateBD}/entreprise`,entreprise)
   }
-
 
   signup(register:any){
     console.log(register,"reg")

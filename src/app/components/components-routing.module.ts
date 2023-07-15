@@ -7,6 +7,9 @@ import { ProfilComponent } from './profil/profil.component';
 import { AuthGuard } from '../guardss/authe.guard';
 import { CondidatureService } from '../services/condidature.service';
 import { CandidaturesComponent } from './candidatures/candidatures.component';
+import { FavoritesOffresComponent } from './favorites-offres/favorites-offres.component';
+import { AjoutOffreComponent } from './ajout-offre/ajout-offre.component';
+import { OffrepourentrepriseComponent } from './offrepourentreprise/offrepourentreprise.component';
 
 
 const routes: Routes = [
@@ -17,6 +20,12 @@ const routes: Routes = [
   {path: 'offre',pathMatch: 'prefix', loadChildren: () => import('./offre/offre.module').then(m => m.OffreModule) },
   {path:'',component:HomeComponent},
   {path:'candidatures',component:CandidaturesComponent},
+  {path:'favorirte',component:FavoritesOffresComponent},
+  {path:'ajout',component:AjoutOffreComponent},
+  {path:'offrePrecie',component:OffrepourentrepriseComponent},
+
+
+
 
 
 ];

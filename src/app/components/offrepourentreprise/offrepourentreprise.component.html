@@ -1,0 +1,21 @@
+<app-top-search></app-top-search>
+<div class="container">
+     <div class="search-text" > {{totalResults}}  Offre trouvées </div>
+     <div class="search-bloc">
+         <div class="filter-bloc ">
+             <div class="bloc-border hide-sm ">
+             </div>
+         </div>
+         <div class="result-bloc">
+          <div class="row">
+               <div class="col-md-12 col-sm-12">
+                    <div class="listing-item__list "  *ngFor="let offer of offresP  | paginate:{ itemsPerPage: 10,currentPage: c} ">
+                         <app-offer-card [offer] = "offer"></app-offer-card>
+                    </div>
+                    <pagination-controls (pageChange)="c = $event"></pagination-controls>
+               </div>
+          </div>
+          </div>
+         <div id="search-footer"></div>
+     </div>
+ </div>

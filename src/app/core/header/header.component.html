@@ -41,7 +41,7 @@
                               </li>
                          </ul>
                     </li>
-                    <li>
+                    <li *ngIf="loggedIn" >
                          <span class="badge badge-pill bg-ca-accent my-auto" style="float:right;position: relative;margin-top: 17px;">1</span>
                          <a routerLink="/messages">Messages <span class="sr-only">(current)</span></a>
                      </li>
@@ -83,17 +83,20 @@
                     <li *ngIf="loggedIn" class="d-flex space-x-2">
                          <a href="#" class="dropdown-toggle my-auto d-flex space-x-2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                               <span>
-                                   {{connectedUser?.isCondidat ? connectedUser.condidatId.name : connectedUser?.email}} 
-                              </span>
-                              <img src="/assets/images/profile_pic.webp" class="profile-img space-x-2 my-auto" alt="">
-                              <span class="caret my-auto space-x-1"></span>
+                                   {{ userconnect.user.isCondidat ? userconnect.user.condidatId.name : userconnect.user.enterpriseId[0]?.fullname}}                              </span>
+                              
+                                   <img src="http://localhost:3000/file/folder/{{ userconnect.user.isCondidat ? userconnect.user.condidatId.image : userconnect.user.enterpriseId[0].image }}" class="profile-img space-x-2 my-auto" alt="">
+                                   <span class="caret my-auto space-x-1"></span>
                          </a>
                          <ul class="dropdown-menu dropdown-menu-right pl my-auto  ">
                               <li >
                                    <a [routerLink]="['/profile',connectedUser?._id]" class="cursor-pointer">Profile</a>
-                                   <a  class="cursor-pointer"  routerLink="/candidatures">Mes condidatures</a>
-                                   <a  class="cursor-pointer">Mes listes favorits </a>
+                                   <a *ngIf="userconnect.user?.isCondidat" class="cursor-pointer"  routerLink="/candidatures">Mes condidatures</a>
+                                   <a *ngIf="userconnect.user?.isCondidat"  class="cursor-pointer" routerLink="/favorirte">Mes listes favorits </a>
+                                   <a class="cursor-pointer" routerLink="/offrePrecie">Mes listes offres</a>
+                                   <a class="cursor-pointer" routerLink="/ajout">ajouter une offre</a>
 
+                                   
                                    <a class="cursor-pointer" (click)="Logout()">Deconnecter</a>
                               </li>
                          </ul>

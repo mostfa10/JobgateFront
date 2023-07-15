@@ -64,7 +64,7 @@ onPostuler(): void {
   const formData = new FormData();
   formData.append('offreId', this.ofre._id);
   formData.append('name', this.form.value.name);
-  formData.append('cv', this.form.value.cv);
+  formData.append('cv',this.form.get('cv')?.value);
   formData.append('email', this.form.value.email);
   formData.append('Motivation', this.form.value.Motivation);
   formData.append('userId', this.userconnect.user._id);
@@ -88,6 +88,7 @@ onSubmit(): void {
    
    
    const contenu=this.formE.value.contenu;
+   const i:number=0;
    
    const commentaire={
     
@@ -96,12 +97,15 @@ onSubmit(): void {
     userId:this.userconnect.user._id
    }
    this.commantaire.createcomm(commentaire).subscribe((res:any)=>{
+   
     console.log(this.formE.value)
     Swal.fire('your commantaire was added ')
     console.log('res',res)
     
-
-  })
+  
+  }
+  
+  )
 
   console.log(JSON.stringify(this.formE.value, null, 2));
 }

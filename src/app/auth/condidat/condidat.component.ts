@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-condidat',
   templateUrl: './condidat.component.html',
@@ -28,12 +29,19 @@ export class CondidatComponent implements OnInit {
         confirmPassword:  ['', Validators.required],
         adress:  ['', Validators.required],
         date_naissance:  ['', Validators.required],
-      //  file:  ['', Validators.required],
+        image:  ['', Validators.required],
 
         acceptTerms: [false]
       })
   }
-
+  onFileChange(event: any): void {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formD.patchValue({
+        image:file,
+      });
+    }
+} 
 
 
   // handleFileInput(files: any) {
@@ -51,23 +59,19 @@ export class CondidatComponent implements OnInit {
     if (this.formD.invalid) {
       return;
      }
-    let formdata=new FormData()
-    formdata.append('name',this.formD.value.name)
-    formdata.append('lastname',this.formD.value.lastname)
-    formdata.append('password',this.formD.value.password)
-    formdata.append('email',this.formD.value.email)
-    formdata.append('adress',this.formD.value.adress)
-    formdata.append('file',this.formD.value.file)
+    let formdata2=new FormData()
+    formdata2.append('name',this.formD.value.name)
+    formdata2.append('lastname',this.formD.value.lastname)
+    formdata2.append('password',this.formD.value.password)
+    formdata2.append('email',this.formD.value.email)
+    formdata2.append('adress',this.formD.value.adress)
+    formdata2.append('image',this.formD.get('image')?.value)
+    formdata2.append('date_naissance',this.formD.value.date_naissance)
 
-    // formdata.append('schoollevel',this.formD.value.schoollevel)
-
-    // formdata.append('biographie',this.formD.value.biographie)
-    formdata.append('date_naissance',this.formD.value.date_naissance)
-
-    this.login.createCondidat(this.formD.value).subscribe((res:any)=>{
+    this.login.createCondidat(formdata2).subscribe((res:any)=>{
       Swal.fire('you are  added')
       console.log('res',res)
-      this.route.navigateByUrl('/')
+
   
     })
 

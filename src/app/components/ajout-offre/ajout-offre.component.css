@@ -1,0 +1,16 @@
+.top{
+    padding-top:100px !important;
+    }
+    .size{
+        min-inline-size: -webkit-fill-available !important;
+    }
+    .height{
+        height: 80px !important;
+    }
+    .t{
+        top: 33px;
+
+    }
+    .tP{
+        border-top-style: outset;
+    }
