@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { PlaceService } from 'src/app/services/place.service';
 
 @Component({
@@ -17,14 +18,16 @@ export class HeaderComponent implements OnInit {
   condidat:boolean=true;
   connectedUser:any
   condidats:any;
-  
-  constructor(private place:PlaceService,private LoginService:LoginService, private category:CategoryService,private route:Router) {
+  notifications!:any[];
+  totalNot:number=0;
+  constructor(private place:PlaceService,private notification:NotificationService,
+    private LoginService:LoginService, private category:CategoryService,private route:Router) {
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.loggedIn = localStorage.getItem('accesstoken') ? true : false;
         console.log(localStorage.getItem('accesstoken'),this.loggedIn)
         this.connectedUser = localStorage.getItem('userconnect')
-        this.condidat=JSON.parse(this.connectedUser).user.isCondidat
+     
         this.connectedUser ? this.connectedUser = JSON.parse(this.connectedUser).user : null
       }
     });
@@ -35,7 +38,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.listville()
     this.listcategory()
+    this.getNotifications()
   }
+
+  
   getUserConnect() {
         if (this.userconnect && this.userconnect.user && this.userconnect.user.condidatId) {
      const  condidatId = this.userconnect.user.condidatId;
@@ -46,7 +52,13 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
-
+  getNotifications(): void {
+    this.notification.allnot().subscribe((res:any)=> {
+        this.notifications = res['data'];
+        console.log( this.notifications,"not")
+        this.totalNot=this.notifications.length;
+      });
+  }
 
   Logout(){
     this.loggedIn=false;
