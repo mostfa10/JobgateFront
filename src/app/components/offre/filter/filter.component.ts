@@ -119,7 +119,7 @@ export class FilterComponent implements OnInit {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const body = { minSalaire: this.minSalaireRange, maxSalaire: this.maxSalaireRange };
 
-    this.http.post<any[]>('http://localhost:3000/offres/filter', body, { headers })
+    this.http.post<any[]>('http://localhost:3000/offre/filter', body, { headers })
       .subscribe((data) => {
         this.offres = data;
       });

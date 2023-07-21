@@ -67,6 +67,8 @@ export class CondidatComponent implements OnInit {
     formdata2.append('adress',this.formD.value.adress)
     formdata2.append('image',this.formD.get('image')?.value)
     formdata2.append('date_naissance',this.formD.value.date_naissance)
+    
+
 
     this.login.createCondidat(formdata2).subscribe((res:any)=>{
       Swal.fire('you are  added')

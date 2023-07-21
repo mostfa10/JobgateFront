@@ -41,13 +41,8 @@ export class AjoutOffreComponent implements OnInit {
           placeId:  ['', Validators.required],
           numberP:  ['', Validators.required],
           contratId:  ['', Validators.required],
-          entreprsieId:['', Validators.required]
-  
-  
-  
-  
-  
-  
+          entrepriseId: [this.userconnect?.user?.entrepriseId[0]._id] // Set the entrepriseId using userconnect data
+
   
         })
   
@@ -94,6 +89,37 @@ export class AjoutOffreComponent implements OnInit {
   
   
   }
+  // onSubmit(): void {
+    
+
+  //   if (this.form.invalid) {
+  //     return;
+  //    }
+  //   let formdata2=new FormData()
+  //   formdata2.append('titre',this.form.value.titre)
+  //   formdata2.append('description',this.form.value.description)
+  //   formdata2.append('categoryId',this.form.value.categoryId)
+  //   formdata2.append('datef',this.form.value.schoollevel)
+  //   formdata2.append('schoollevel',this.form.value.schoollevel)
+  //   formdata2.append('skilsId',this.form.value.skilsId)
+  //   formdata2.append('numberP',this.form.value.numberP)
+  //   formdata2.append('contratId',this.form.value.contratId)
+  //   formdata2.append('placeId',this.form.value.placeId)
+
+
+    
+
+
+  //   this.offre.createOffre(formdata2).subscribe((res:any)=>{
+  //     Swal.fire('votre condidature a bien envoyee')
+  //     console.log('res',res)
+
+  
+  //   })
+
+  //   console.log(JSON.stringify(this.form.value, null, 2));
+  // }
+
   createoffre(){
     this.offre.createOffre(this.form.value).subscribe((res:any)=>{
      

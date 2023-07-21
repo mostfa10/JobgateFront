@@ -15,19 +15,18 @@ export class OffrepourentrepriseComponent implements OnInit {
   constructor(private offre:OffreService) { }
 
   ngOnInit(): void {
+    this.getOffresForCurrentUser();
   }
-  listeoffresPrecises() {
-    const userConnectId = this.userconnect.user.entepriseId;
-
-    this.offre.getAlloffreE(userConnectId).subscribe(
+  getOffresForCurrentUser() {
+    this.offre.getOffresForCurrentUser().subscribe(
       (res: any) => {
-        this.offresP = res.data;
-        console.log("Liste des offres", this.offresP);
-        this.totalResults=this.offresP.length;
+        this.offresP = res["data"];
+        console.log('Liste des offres', this.offresP);
       },
       (error: any) => {
-        console.error("Erreur lors de la récupération des offres", error);
+        console.error('Error while getting offers:', error);
       }
     );
   }
 }
+

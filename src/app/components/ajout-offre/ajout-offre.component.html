@@ -46,13 +46,13 @@
         </select>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label class="tP">nom de l'entreprise</label><br><br>
         <input
           type="text"
           formControlName="entreprsieId" 
            class="form-control" value="{{userconnect.user.entrepriseId.fullname}}"> <!--formcontrolname pour affisher contenu backend -->
-      </div>
+      <!-- </div> --> -->
       <div class="form-group">
         <label class="tP">Contrat</label><br><br>
         <select class="form-select size" name="contrat" formControlName="contratId">
@@ -64,7 +64,7 @@
       <div class="form-group">
         <label>competance :</label><br><br>
         <select class="form-select size" name="skils" formControlName="skilsId">
-          <option *ngFor="let skils of skils" [value]="skils._id">{{skils.skils}}</option>
+          <option *ngFor="let skils of skils" [value]="skils._id">{{skils.name}}</option>
         </select>
       </div>
 

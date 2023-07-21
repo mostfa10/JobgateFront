@@ -1,211 +1,207 @@
 <section>
     <div class="container">
                <div class="row">
-                              <div class="col-lg-3 col-md-3 col-xs-12">
-                                                  <div>
-                                                       <br>
+                                   <div class="col-lg-3 col-md-3 col-xs-12">
+                                                       <div>
+                                                            <br>
+                                          <img src="http://localhost:3000/file/folder/{{ofre?.entrepriseId?.image}}"  alt="" class="img-responsive wc-image">
+                                                                   <br>
+                                                       </div>
+                                   </div>
 
-                                                       <img src="http://localhost:3000/file/folder/{{ofre?.entrepriseId?.image}}"  alt="" class="img-responsive wc-image">
+                                   <div class="col-lg-9 col-md-9 col-xs-12">
+                                                  <form action="#" method="post" class="form">
+                                                       <h2>{{ofre?.titre}}</h2>
 
-                                                       <br>
-                                                  </div>
-                              </div>
-
-                    <div class="col-lg-9 col-md-9 col-xs-12">
-                              <form action="#" method="post" class="form">
-                                   <h2>{{ofre?.titre}}</h2>
-
-                                   <p class="lead"><strong class="text-primary">${{ofre?.salaire}}</strong> <small> per year</small></p>
-
-                                   <p class="lead">
-                                        <i class="fa fa-briefcase"></i> {{ofre?.titre}} &nbsp;&nbsp;
-                                        <i class="fa fa-map-marker"></i> {{ofre?.placeId.place}} &nbsp;&nbsp;
-                                        <i class="fa fa-calendar"></i> {{ofre?.createdAt | date:'yyyy-MM-dd'}} &nbsp;&nbsp;
-                                        <i class="fa fa-file"></i> {{ofre?.contratId.type}}
-                                   </p>
-
-                                   
-                              </form>
-                    </div>
+                                                       <p class="lead"><strong class="text-primary">${{ofre?.salaire}}</strong> <small> per year</small></p>
+                                                       <p class="lead">
+                                                            <i class="fa fa-briefcase"></i> {{ofre?.titre}} &nbsp;&nbsp;
+                                                            <i class="fa fa-map-marker"></i> {{ofre?.placeId.place}} &nbsp;&nbsp;
+                                                            <i class="fa fa-calendar"></i> {{ofre?.createdAt | date:'yyyy-MM-dd'}} &nbsp;&nbsp;
+                                                            <i class="fa fa-file"></i> {{ofre?.contratId.type}}
+                                                       </p>    
+                                                  </form>
+                                   </div>
                </div>
 
                <div class="panel panel-default">
-                    <div class="panel-heading">
-                         <h4>description</h4>
-                    </div>
+                                        <div class="panel-heading">
+                                             <h4>description</h4>
+                                        </div>
 
-                    <div class="panel-body">
-                         {{ofre?.description}}
-                         
-                         <h4>sklis:</h4>
-                         <span *ngIf="ofre && ofre.skilsId"> <!-- vérifier s'il existe des skills dans cette offre et les parcourir-->
-                              <h4 *ngFor="let s of ofre.skilsId">{{s?.name}}</h4>
-                         </span>
-                         
-                    </div>
+                              <div class="panel-body">
+                                   {{ofre?.description}}
+                                   
+                                             <h4>sklis:</h4>
+                                             <span *ngIf="ofre && ofre.skilsId"> <!-- vérifier s'il existe des skills dans cette offre et les parcourir-->
+                                                  <h4 *ngFor="let s of ofre.skilsId">{{s?.name}}</h4>
+                                             </span>
+                                             
+                              </div>
                </div>
 
                <div class="panel panel-default">
-                    <div class="panel-heading">
-                         <h4>About  entreprise: {{ofre?.entrepriseId?.fullname}} </h4>
-                    </div>
+                                   <div class="panel-heading">
+                                        <h4>About  entreprise: {{ofre?.entrepriseId?.fullname}} </h4>
+                                   </div>
 
-                    <div class="panel-body">
-                         <p>{{ofre?.entrepriseId?.description}} </p>
+                         <div class="panel-body">
+                              <p>{{ofre?.entrepriseId?.description}} </p>
 
-                         <div class="row">
-                              <div class="col-lg-6">
-                                   
-                              </div>
-
-                              <div class="col-lg-6">
-                                   
-                              </div>
-                         </div>
-
-                         <div class="row">
-                              <div class="col-md-6">
-                                   <p>
-                                        <span>spiciality domaine</span>
-
-                                        <br>
-
-                                        <strong>{{ofre?.entrepriseId?.speciality}}</strong>
-                                   </p>
-                              </div>
-
-                              <div class="col-md-6">
-                                   <p>
-                                        <span>Contact name</span>
-
-                                        <br>
-
-                                        <strong>Paul Gordon</strong>
-                                   </p>
-                              </div>
-                         </div>
-
-                         <div class="row">
-                              <div class="col-md-6">
-                                   <p>
-                                        <span>Phone</span>
-
-                                        <br>
-
-                                        <strong><a href="tel:123-456-789">123-456-789</a></strong>
-                                   </p>
-                              </div>
-
-                              <div class="col-md-6">
-                                   <p>
-                                        <span>Mobile phone</span>
-
-                                        <br>
-
-                                        <strong><a href="tel:456789123">456789123</a></strong>
-                                   </p>
-                              </div>
-                         </div>
-
-                         <div class="row">
-                              <div class="col-md-6">
-                                   <p>
-                                        <span>Email</span>
-
-                                        <br>
-
-                                        <strong><a href="mailto:john@carsales.com">{{ofre?.entrepriseId?.email}}</a></strong>
-                                   </p>
-                              </div>
-
-                              <div class="col-md-6">
-                                   <p>
-                                        <span>Website</span>
-
-                                        <br>
-
-                                        <strong><a href="http://www.cannonguards.com/">http://www.cannonguards.com/</a></strong>
-                                   </p>
-                              </div>
-                         </div>
-
-                         <p>
-                              <span>City</span>
-
-                              <br>
-
-                              <strong>{{ofre?.entrepriseId?.adress}}</strong>
-                         </p>
-                    </div>
-               </div>
-                         <form  [formGroup]="formE" (ngSubmit)="onSubmit()">
-                         <div class="panel panel-default">
-                    
-                    
-                                   <div class="container row">
-                                   <div class="d-flex flex-column ">
-                                        <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
-                                             <div class="profile-image"><img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg" width="70">
-                                             </div>
-                                             <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"><i class="fa fa-sort-up fa-2x hit-voting"></i><span>127</span><i class="fa fa-sort-down fa-2x hit-voting"></i></div>
-                                             <div class="d-flex flex-column ml-3">
-                                                  <div class="d-flex flex-row post-title">
+                                        <div class="row">
+                                             <div class="col-lg-6">
                                                   
-                                                       <h5>Is sketch 3.9.1 stable?</h5><span class="ml-2">(Jesshead)</span></div>
-                                                  <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">video</span><span class="mr-2 comments">13 comments&nbsp;</span><span class="mr-2 dot"></span><span>6 hours ago</span></div>
                                              </div>
-                                        </div>
-                                        <div class="coment-bottom bg-white p-2 px-4 l" *ngIf="ofre && ofre.commantaires">
-                                             <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" formControlName="contenu" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="submit">Comment</button></div>
-                                             <div
-                                                  class="commented-section mt-2" *ngFor="let com of ofre.commantaires">
-                                                  <div class="d-flex flex-row align-items-center commented-user">
-                                                       <h5 class="mr-2">{{com?.userId?.condidatId?.name}}  {{com?.userId?.condidatId?.lastname}}</h5><span class="dot mb-1"></span> <span>{{ com.createdAt | date: 'medium' }}</span>
-                                                  </div>
-                                                       <div class="comment-text-sm"><span>{{com?.contenu}}</span>
-                                                       </div>
-                                                  <div
-                                                                 class="reply-section">
-                                                                 <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
-                                                                 <h6 class="ml-2 mt-1">Reply</h6>
-                                                       </div>
-                                        </div>
-                                        
 
-                                   </div>
-                                   <!-- <div class="commented-section mt-2">
-                                        <div class="d-flex flex-row align-items-center commented-condidatIduser">
-                                             <h5 class="mr-2">Samoya Johns</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">5 hours ago</span></div>
-                                        <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span></div>
-                                        <div class="reply-section">
-                                             <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">15</span><span class="dot ml-2"></span>
-                                                  <h6 class="ml-2 mt-1">Reply</h6>
+                                             <div class="col-lg-6">
+                                                  
                                              </div>
+                         </div>
+
+                         <div class="row">
+                                        <div class="col-md-6">
+                                                  <p>
+                                                       <span>spiciality domaine</span>
+
+                                                       <br>
+
+                                                       <strong>{{ofre?.entrepriseId?.speciality}}</strong>
+                                                  </p>
                                         </div>
+
+                                        <div class="col-md-6">
+                                             <p>
+                                                  <span>Contact name</span>
+
+                                                  <br>
+
+                                                  <strong>Paul Gordon</strong>
+                                             </p>
+                                        </div>
+                         </div>
+
+                         <div class="row">
+                                   <div class="col-md-6">
+                                        <p> <span>Phone</span><br>
+                                        <strong><a href="tel:123-456-789">123-456-789</a></strong>
+                                        </p>
                                    </div>
-                                   <div class="commented-section mt-2"> -->
-                                        <!-- <div class="d-flex flex-row align-items-center commented-user">
-                                             <h5 class="mr-2">Makhaya andrew</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">10 hours ago</span></div>
-                                        <div class="comment-text-sm"><span>Nunc sed id semper risus in hendrerit gravida rutrum. Non odio euismod lacinia at quis risus sed. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Enim facilisis gravida neque convallis a. In mollis nunc sed id. Adipiscing elit pellentesque habitant morbi tristique senectus et netus. Ultrices mi tempus imperdiet nulla malesuada pellentesque.</span></div>
-                                        <div class="reply-section">
-                                             <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">25</span><span class="dot ml-2"></span>
-                                                  <h6 class="ml-2 mt-1">Reply</h6>
+
+                                   <div class="col-md-6">
+                                        <p> <span>Mobile phone</span>  <br>
+
+                                             <strong><a href="tel:456789123">456789123</a></strong>
+                                        </p>
+                                   </div>
+                         </div>
+
+                         <div class="row">
+                                   <div class="col-md-6">
+                                        <p>  <span>Email</span> <br>
+                                             <strong><a href="mailto:john@carsales.com">{{ofre?.entrepriseId?.email}}</a></strong>
+                                        </p>
+                                   </div>
+
+                                   <div class="col-md-6">
+                                        <p> <span>Website</span>  <br>
+                                                  <strong><a href="http://www.cannonguards.com/">http://www.cannonguards.com/</a></strong>
+                                        </p>
+                                   </div>
+                         </div>
+
+                              <p> <span>City</span><br>
+                                   <strong>{{ofre?.entrepriseId?.adress}}</strong>
+                              </p>
+                    </div>
+               </div>
+          <form  [formGroup]="formE" (ngSubmit)="onSubmit()">
+                     <div class="panel panel-default">
+                                   
+                                   
+                           <div class="container row">
+                                  <div class="d-flex flex-column ">
+                                      <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                                             <div class="profile-image"><img class="rounded-circle"  src="http://localhost:3000/file/folder/{{ofre.entrepriseId.image}}" width="70">
+                                   </div>
+                                         <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"><i class="fa fa-sort-up fa-2x hit-voting"></i><span>{{ofre.commantaires.length}}</span><i class="fa fa-sort-down fa-2x hit-voting"></i></div>
+                                                            <div class="d-flex flex-column ml-3">
+                                                                 <div class="d-flex flex-row post-title">
+                                                                 
+                                                                      <h5>{{ofre.entrepriseId.fullname}} </h5><span class="ml-2">({{ofre.entrepriseId.adress}})</span></div>
+                                                                 <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">video</span><span class="mr-2 comments">{{ofre.commantaires.length}}&nbsp;</span><span class="mr-2 dot"></span><span>il ya {{hours}} jours</span></div>
+                                                            </div>
+                                                       </div>
+                                                       <div class="coment-bottom bg-white p-2 px-4 l" *ngIf="ofre && ofre.commantaires">
+                                                            <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2"  src="http://localhost:3000/file/folder/{{ userconnect.user.isCondidat ? userconnect.user.condidatId.image : (userconnect.user.entrepriseId && userconnect.user.entrepriseId.length > 0 ? userconnect.user.entrepriseId[0].image : '')}}" width="38"><input type="text" formControlName="contenu" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="submit">Comment</button></div>
+                                                            <div
+                                                                 class="commented-section mt-2" *ngFor="let com of ofre.commantaires let i=index">
+                                                                 <div class="d-flex flex-row align-items-center commented-user">
+                                                                      <h5 class="mr-2" data-toggle="modal" data-target="#exampleModalLong2" (click)="showCandidateDetails(com)">
+                                                                           {{com?.userId?.condidatId?.name}}  {{com?.userId?.condidatId?.lastname}}
+                                                                      </h5>
+                                                                           <span class="dot mb-1"></span> <span>{{ com.createdAt | date: 'medium' }}</span>
+                                                                 </div>
+                                                                      <div class="comment-text-sm"><span>{{com?.contenu}}</span>
+                                                                      </div>
+                                                                 <div
+                                                                                class="reply-section">
+                                                                                <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">{{filteredResponses.length}}</span><span class="dot ml-2"></span>
+                                                                                <h6 class="ml-2 mt-1" (click)="toggleReplyInput(i)">Reply</h6>
+                                                                      </div>
+                                                                      
+                                                       </div>
+                                                       <form [formGroup]="formR" (ngSubmit)="onReponse(i)">
+                                                            <div *ngIf="showReplyInput[i]" class="mt-2 d-flex align-items-center">
+                                                              <input type="text" [(ngModel)]="replyContent[i]" class="form-control" placeholder="Type your reply" formControlName="contenu">
+                                                              <button class="btn btn-primary mt-2" type="submit">Repondre</button>
+                                                            </div>
+                                                          
+                                                            <div *ngIf="showReplyInput[i]" class="replies-container">
+                                                              <div *ngFor="let response of filteredResponses" class="d-flex flex-row align-items-center commented-user">
+                                                                <h5 class="mr-2" data-toggle="modal" data-target="#exampleModalLong2" style="margin-left: 100px;"><span class="dot ml-2"></span>{{response.condidatId.name}}</h5>
+                                                                <span>{{response.createdAt | date: 'medium' }}</span>
+                                                              </div>
+                                                              <div class="comment-text-sm">
+                                                                <span *ngFor="let response of filteredResponses" style="margin-left: 105px;">{{response?.contenu}}</span>
+                                                              </div>
+                                                            </div>
+                                                          </form>
+                                                       
+
+                                                  </div>
+                                                  <!-- <div class="commented-section mt-2">
+                                                       <div class="d-flex flex-row align-items-center commented-condidatIduser">
+                                                            <h5 class="mr-2">Samoya Johns</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">5 hours ago</span></div>
+                                                       <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span></div>
+                                                       <div class="reply-section">
+                                                            <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">15</span><span class="dot ml-2"></span>
+                                                                 <h6 class="ml-2 mt-1">Reply</h6>
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="commented-section mt-2"> -->
+                                                       <!-- <div class="d-flex flex-row align-items-center commented-user">
+                                                            <h5 class="mr-2">Makhaya andrew</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">10 hours ago</span></div>
+                                                       <div class="comment-text-sm"><span>Nunc sed id semper risus in hendrerit gravida rutrum. Non odio euismod lacinia at quis risus sed. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Enim facilisis gravida neque convallis a. In mollis nunc sed id. Adipiscing elit pellentesque habitant morbi tristique senectus et netus. Ultrices mi tempus imperdiet nulla malesuada pellentesque.</span></div>
+                                                       <div class="reply-section">
+                                                            <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">25</span><span class="dot ml-2"></span>
+                                                                 <h6 class="ml-2 mt-1">Reply</h6>
+                                                            </div>
+                                                            
+                                                  </div> -->
+                                             
+                                                  <!-- </div> -->
+                                        
                                              </div>
                                              
-                                   </div> -->
-                              
-                                   <!-- </div> -->
-                         
-                              </div>
-                              
-                              </div>
-                    </div>
-                         </div>
-                         </form>
+                                             </div>
+                                   </div>
+                     </div>
+          </form>
 
 
                <div class="clearfix">
-                    <a class="section-btn btn btn-primary pull-left" data-toggle="modal" data-target="#exampleModalLong">Apply for this job</a>
+                    <a *ngIf="userconnect.user?.isCondidat" class="section-btn btn btn-primary pull-left" data-toggle="modal" data-target="#exampleModalLong">Apply for this job</a>
 
 
 
@@ -283,6 +279,74 @@
                                       </script>
                               </div>
                          </div>
+                         
+                         </div>
+
+                              <!-- Modal 2-->
+                    <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle2" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                                   <div class="modal-content" style="margin-top: 200px;">
+                                   <!-- <div class="modal-body"> -->
+                                        <section class="vh-100" style="background-color: #9de2ff;">
+                                             <div class="container py-5 h-100" style="margin-bottom: -55px; margin-top: -55px;">
+                                               <div class="row d-flex  align-items-center h-100">
+                                                 <div class="col col-md-9 col-lg-7 col-xl-5">
+                                                   <div class="card" style="border-radius: 15px; margin-left: 43px; width: 50rem;">
+                                                     <div class="card-body p-4">
+                                                       <div class="d-flex text-black">
+                                                         <div class="flex-shrink-0">
+                                                           <img src="http://localhost:3000/file/folder/{{selectedCandidate?.userId.condidatId.image}}"  
+                                                             alt="Generic placeholder image" class="img-fluid"
+                                                             style="width: 180px; border-radius: 10px;">
+                                                         </div>
+                                                         <div class="flex-grow-1 ms-3">
+                                                           <h5 class="mb-1"   >{{selectedCandidate?.userId.condidatId.name}} {{selectedCandidate?.userId.condidatId.lastname}}</h5>
+                                                           <p class="mb-2 pb-1" style="color: #2b2a2a;">email: {{selectedCandidate?.userId.email}}</p>
+                                                           <div class="d-flex justify-content-start rounded-3 p-2 mb-2" 
+                                                             style="background-color: #efefef; margin-left: 40px;">
+                                                             <div>
+                                                               <p class="small text-muted mb-1">Articles</p>
+                                                               <p class="mb-0">41</p>
+                                                             </div>
+                                                             <div class="px-3">
+                                                               <p class="small text-muted mb-1">Followers</p>
+                                                               <p class="mb-0">976</p>
+                                                             </div>
+                                                             <div>
+                                                               <p class="small text-muted mb-1">Rating</p>
+                                                               <p class="mb-0">8.5</p>
+                                                             </div>
+                                                           </div>
+                                                           <div class="d-flex pt-1" style="    margin-left: 59px ">
+                                                             <button type="button" class="btn btn-outline-primary me-1 flex-grow-1">Chat</button>
+                                                             <button type="button" class="btn btn-primary flex-grow-1">Follow</button>
+                                                           </div>
+                                                         </div>
+                                                       </div>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                             </div>
+                                           </section>
+                                   
+                                   </div>
+                         
+                                   <script>
+                                        function applySubmit() {
+                                          var options = {
+                                            target: '.modal-body',
+                                            url: $('#apply-form').attr('action'),
+                                          };
+                                          $('#apply-form').ajaxSubmit(options);
+                                          return false;
+                                        }
+                                        $('.application-redirect').click(function() {
+                                          $('#apply-modal').modal('hide');
+                                        });
+                                      </script>
+                              </div>
+                         <!-- </div> -->
                          
                          </div>
      </div>

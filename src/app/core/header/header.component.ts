@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   connectedUser:any
   condidats:any;
   notifications!:any[];
+ 
   totalNot:number=0;
   constructor(private place:PlaceService,private notification:NotificationService,
     private LoginService:LoginService, private category:CategoryService,private route:Router) {
@@ -36,9 +37,10 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.listville()
-    this.listcategory()
-    this.getNotifications()
+    this.listville();
+    this.listcategory();
+    this.getNotifications();
+    this.getStoredNotifications();
   }
 
   
@@ -53,16 +55,51 @@ export class HeaderComponent implements OnInit {
     }
   }
   getNotifications(): void {
-    this.notification.allnot().subscribe((res:any)=> {
-        this.notifications = res['data'];
-        console.log( this.notifications,"not")
-        this.totalNot=this.notifications.length;
-      });
+    const entreprise = this.userconnect.user.entrepriseId[0]._id;
+    console.log(entreprise,"hh")
+    const filteredNotifications: any[] = [];
+  
+    if (!entreprise) {
+      // If entrepriseId is not available, don't make the API call and return
+      return;
+    }
+  
+    this.notification.allnot().subscribe((res: any) => {
+      this.notifications = res['data'];
+  
+      for (let i = 0; i < this.notifications.length; i++) {
+        const notification = this.notifications[i];
+      
+  
+        // Check if the entrepriseId matches
+        if (notification.offreId && notification.offreId.entrepriseId=== entreprise) {
+          filteredNotifications.push(notification);
+          console.log(filteredNotifications,"aa")
+        }
+      }
+  
+      this.notifications = filteredNotifications;
+      console.log(this.notifications)
+      this.totalNot = this.notifications.length;
+      localStorage.setItem('totalNot', this.totalNot.toString());
+    });
+  }
+  openDropdown(): void {
+    this.totalNot = 0;  // Set totalNot to 0 when the dropdown is opened or clicked
+   
+    localStorage.setItem('totalNot', this.totalNot.toString());
+
+  }
+  
+  getStoredNotifications(): void {
+    const storedTotalNot = localStorage.getItem('totalNot');
+    this.totalNot = storedTotalNot ? parseInt(storedTotalNot, 10) : 0;
   }
 
   Logout(){
     this.loggedIn=false;
     localStorage.clear()
+    localStorage.removeItem('totalNot');
     this.route.navigateByUrl('/')
   }
 

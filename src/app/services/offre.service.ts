@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class OffreService {
+  private apiUrl = 'http://localhost:3000/offres/userconnect'; // L'URL de l'API côté backend pour récupérer les offres associées à l'entreprise de l'utilisateur connecté
+
   public search = new BehaviorSubject<string>("");
 
   constructor(private http:HttpClient) { }
@@ -25,11 +27,11 @@ export class OffreService {
    }
    getoffreyid(id:any){
     return this.http.get(`${environment.JobGateBD}/offre/${id}`)
+    
    }
-   getAlloffreE(userId:any){
-    return this.http.get(`${environment.JobGateBD}/offre?entrepriseId=${userId}`);
-
-   }
-   
+  
+   getOffresForCurrentUser(){
+    return this.http.get(`${environment.JobGateBD}/offre/userconnect`);
+  }
 
 }
