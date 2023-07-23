@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
 import { RecherchePipe } from './recherche/recherche.pipe';
 import { LoginService } from './services/login.service';
+import { Ng5SliderModule } from 'ng5-slider';
 
 
 
@@ -21,6 +22,8 @@ import { LoginService } from './services/login.service';
  
   ],
   imports: [
+    Ng5SliderModule,
+    
     BrowserModule,
     AppRoutingModule, 
     CommonModule,
@@ -28,7 +31,8 @@ import { LoginService } from './services/login.service';
     HttpClientModule,    
     AuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

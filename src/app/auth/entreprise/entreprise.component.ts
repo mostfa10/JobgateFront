@@ -29,18 +29,10 @@ export class EntrepriseComponent implements OnInit {
         confirmPassword:  ['', Validators.required],
         adress:  ['', Validators.required],
         image:  ['', Validators.required],
-
         speciality:  ['', Validators.required],
         acceptTerms: [false]
       })
   }
-
-
-
-  // handleFileInput(files: any) {
-  //   this.fileToUpload = <Array<File>>files.target.files;
-  //   console.log(this.fileToUpload);
-  // }// bsh ndaakhlou image f cote front 
 
   get f(): { [key: string]: AbstractControl } {
     return this.formE.controls;
@@ -54,10 +46,9 @@ export class EntrepriseComponent implements OnInit {
         image:file,
       });
     }
-} 
-  onSubmit(): void {
-    this.submitted = true;
+  } 
 
+  onSubmit(): void {
     if (this.formE.invalid) {
       return;
      }
@@ -67,44 +58,17 @@ export class EntrepriseComponent implements OnInit {
     formdata.append('password',this.formE.value.password)
     formdata.append('email',this.formE.value.email)
     formdata.append('image',this.formE.get('image')?.value)
-
     formdata.append('adress',this.formE.value.adress)
-    
- formdata.append('speciality',this.formE.value.speciality)
+    formdata.append('speciality',this.formE.value.speciality)
  
- this.login.createentreprise(formdata).subscribe((res:any)=>{
-      console.log(formdata)
-      Swal.fire('you are  added like employer')
-      console.log('res',res)
-      this.route.navigateByUrl('/CreateOffre')
-  
+    this.login.createentreprise(formdata).subscribe((res:any)=>{
+        this.submitted = true;
+        this.route.navigateByUrl('/login')
     })
-
-    console.log(JSON.stringify(this.formE.value, null, 2));
   }
 
   onReset(): void {
     this.submitted = false;
     this.formE.reset();
   }
-
-  // addUser(){
-  
-  //   let formdata=new formdata()
-  //   formdata.append('name',this.form.value.name)
-  //   formdata.append('lastname',this.form.value.username)
-  //   formdata.append('password',this.form.value.password)
-  //   formdata.append('email',this.form.value.email)
-   
-
-   
-    
-  //   this.login.signup(formdata).subscribe((res:any)=>{
-  //     Swal.fire('user added')
-  //     console.log('res',res)
-
-  //   })
-
-
-  // }
 }

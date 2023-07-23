@@ -43,12 +43,6 @@ export class CondidatComponent implements OnInit {
     }
 } 
 
-
-  // handleFileInput(files: any) {
-  //   this.fileToUpload = <Array<File>>files.target.files;
-  //   console.log(this.fileToUpload);
-  // }// bsh ndaakhlou image f cote front 
-
   get f(): { [key: string]: AbstractControl } {
     return this.formD.controls;
   } //ta3ml control ala les champs
@@ -70,12 +64,11 @@ export class CondidatComponent implements OnInit {
     
 
 
-    this.login.createCondidat(formdata2).subscribe((res:any)=>{
-      Swal.fire('you are  added')
-      console.log('res',res)
-
-  
-    })
+    this.login.createCondidat(formdata2).subscribe(
+      (res:any)=>{
+         this.route.navigate(['/login']);
+      }
+    )
 
     console.log(JSON.stringify(this.formD.value, null, 2));
   }
@@ -85,27 +78,4 @@ export class CondidatComponent implements OnInit {
     this.formD.reset();
   }
 
-  addC(){
-  
-    let formdata=new FormData()
-    formdata.append('name',this.formD.value.name)
-    formdata.append('lastname',this.formD.value.username)
-    formdata.append('password',this.formD.value.password)
-    formdata.append('email',this.formD.value.email)
-    // formdata.append('file',this.formD.value.file)
-    formdata.append('date_naissance',this.formD.value.date_naissance)
-
-
-   
-
-   
-    
-    this.login.createCondidat(formdata).subscribe((res:any)=>{
-      Swal.fire('condidat added')
-      console.log('res',res)
-
-    })
-
-
-   }
 }

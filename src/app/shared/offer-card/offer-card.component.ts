@@ -18,6 +18,7 @@ export class OfferCardComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    console.log(this.offer)
     this.user =   JSON.parse(localStorage.getItem("userconnect")!)['user'];
   }
   

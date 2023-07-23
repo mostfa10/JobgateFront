@@ -5,14 +5,16 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class SkilsService {
+export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  allskils(){
-    return this.http.get(`${environment.JobGateBD}/skills`)
-   }
-   createskils(skils:any){
-    return this.http.post(`${environment.JobGateBD}/skills`,skils)
-   }
+
+  getUserById(id:string){
+    return this.http.get(`${environment.JobGateBD}/user/${id}`)
   }
+
+  updateProfile(id:string,obj:any){
+    return this.http.put(`${environment.JobGateBD}/condidat/profile/${id}`,obj)
+   }
+}

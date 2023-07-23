@@ -133,10 +133,6 @@ onPostuler(): void {
   formData.append('userId', this.userconnect.user._id);
   formData.append('condidatId', this.userconnect.user.condidatId._id);
 
-
-
-
-
   this.condidature.createcondidature(formData).subscribe((res: any) => {
     Swal.fire('Your candidature was added');
     console.log('res', res);

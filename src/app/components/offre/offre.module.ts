@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AjouterOffreComponent } from './ajouter-offre/ajouter-offre.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FilterComponent } from './filter/filter.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 
 
@@ -20,12 +21,17 @@ import { FilterComponent } from './filter/filter.component';
     FilterComponent
   ],
   imports: [
+    Ng5SliderModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+     ReactiveFormsModule,
     OffreRoutingModule,
     NgxPaginationModule,
     SharedModule
+  ],
+  exports: [
+    FilterComponent,
+    // Export other components from the OffreModule if any
   ],
   
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
