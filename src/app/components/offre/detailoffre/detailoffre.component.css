@@ -11,6 +11,20 @@ body {
 .pg{
   margin-top:-127px;
 }
+
+#chat-component {
+  position: inherit;
+  /* bottom: 10px; */
+  right: 0px;
+  margin-left: 50rem;
+  width: 400px; /* Vous pouvez ajuster la largeur du composant */
+  height: 500px; /* Vous pouvez ajuster la hauteur du composant */
+  border: 1px solid #ccc;
+  background-color: #fff;
+  /* Cachez le composant de chat par défaut */
+  display: none;
+  overflow-y: auto; /* Pour ajouter une barre de défilement si le contenu dépasse */
+}
 .bdge {
   height: 21px;
   background-color: orange;

@@ -189,6 +189,14 @@ onSubmit(): void {
     contenu:contenu,
     userId:this.userconnect.user._id
    }
+  //  const notification={
+  //   condidatId:this.userconnect.user.condidatId._id,
+  //   contenu:this.userconnect.user.condidatId.name +'a postuler '+this.ofre.titre,
+  //   offreId:this.ofre._id
+  //  }
+  //  this.commantaire.createNot(notification).subscribe((res:any)=>{
+  //   Swal.fire('your not was  added')
+  //  })
    this.commantaire.createcomm(commentaire).subscribe((res:any)=>{
    
     console.log(this.formE.value)
@@ -207,8 +215,17 @@ onSubmit(): void {
   
 }
 
+ toggleChat() {
+  var chatComponent = document.getElementById('chat-component')!;
 
-
+  if (chatComponent.classList.contains('chat-hidden')) {
+    chatComponent.style.display = 'block';
+    chatComponent.classList.remove('chat-hidden');
+  } else {
+    chatComponent.style.display = 'none';
+    chatComponent.classList.add('chat-hidden');
+  }
+}
 
 onReponse(index:number):void{
   if (this.formR.invalid) {
@@ -233,6 +250,7 @@ onReponse(index:number):void{
     
   
   }
+
   
   
   );

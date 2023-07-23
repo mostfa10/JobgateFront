@@ -10,6 +10,8 @@ import { CandidaturesComponent } from './candidatures/candidatures.component';
 import { FavoritesOffresComponent } from './favorites-offres/favorites-offres.component';
 import { AjoutOffreComponent } from './ajout-offre/ajout-offre.component';
 import { OffrepourentrepriseComponent } from './offrepourentreprise/offrepourentreprise.component';
+import { MessageComponent } from './message/message.component';
+import { BoxmessageComponent } from './boxmessage/boxmessage.component';
 
 
 const routes: Routes = [
@@ -23,6 +25,10 @@ const routes: Routes = [
   {path:'favorirte',component:FavoritesOffresComponent},
   {path:'ajout',component:AjoutOffreComponent},
   {path:'offrePrecie',component:OffrepourentrepriseComponent},
+  {path:'message',component:MessageComponent},
+  {path:'box',component:BoxmessageComponent}
+
+  
 
 
 

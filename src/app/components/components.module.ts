@@ -13,6 +13,8 @@ import { CandidaturesComponent } from './candidatures/candidatures.component';
 import { FavoritesOffresComponent } from './favorites-offres/favorites-offres.component';
 import { AjoutOffreComponent} from './ajout-offre/ajout-offre.component';
 import { OffrepourentrepriseComponent } from './offrepourentreprise/offrepourentreprise.component';
+import { MessageComponent } from './message/message.component';
+import { BoxmessageComponent } from './boxmessage/boxmessage.component';
 
 
 
@@ -27,7 +29,9 @@ import { OffrepourentrepriseComponent } from './offrepourentreprise/offrepourent
     CandidaturesComponent,
     FavoritesOffresComponent,
 AjoutOffreComponent,
-OffrepourentrepriseComponent  ],
+OffrepourentrepriseComponent,
+MessageComponent,
+BoxmessageComponent  ],
   imports: [
     NgxPaginationModule,
     Ng2SearchPipeModule,
