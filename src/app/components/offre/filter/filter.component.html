@@ -88,8 +88,15 @@
     
     
 </button>
-<input type="range" class="form-range" id="minSalaireRange" [(ngModel)]="minSalaireRange" (change)="filterBySalaireRange()">
-
+<div class="filter-widget">
+    <h4 class="fw-title">Price</h4>
+    <ng5-slider 
+        [(ngModel)]="priceselection"
+        [options]="options"
+        (mouseup)="changePrice()"
+    ></ng5-slider>
+    <a href="#" class="filter-btn">Filter</a>
+</div>
 <div class="collapbody" [ngClass]="{'opened-collapse':collapsedSalary}">
   
     <br>
