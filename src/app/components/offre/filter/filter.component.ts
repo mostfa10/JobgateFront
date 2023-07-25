@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { ContratService } from 'src/app/services/contrat.service';
+import { OffreService } from 'src/app/services/offre.service';
 import { PlaceService } from 'src/app/services/place.service';
-import { Options } from 'ng5-slider';
-
+import { Options } from '@angular-slider/ngx-slider';
 
 
 
@@ -18,24 +18,22 @@ export class FilterComponent implements OnInit {
   minSalaireRange: number = 0;
 maxSalaireRange: number = 100000;
    
-  priceselection="";
-  // minSalaireRange: number = 1000;
-  // maxSalaireRange: number = 10000; 
-  offres!: any[]; 
-  offresFiltrees!: any[]; // Liste pour stocker les offres filtrées
-
-    // maxValue: number = 10000;
-    options: Options = {
-      // Customize the slider options here as needed
-      floor: 0,
-      ceil: 200000,
-    };
+  priceselection=""
+  minValue: number = 500;
+  maxValue: number = 5000;
+  options: Options = {
+    floor: 500,
+    ceil: 5000,
+} 
 
   contracts:any = []
   categories:any = []
   states:any
   term:any
+  offres!: any[];
+  offresAll!:any[];
   totalResults:number = 0
+
   
   collapsedSalary: boolean = false;
   collapsedCategories: boolean = true;
@@ -45,6 +43,7 @@ maxSalaireRange: number = 100000;
   hideAllState: boolean = true;
   filterInitialzed : boolean  = false
   constructor(
+    private offre:OffreService,
     private contract:ContratService,
     private category:CategoryService,
     private place:PlaceService,
@@ -60,14 +59,30 @@ maxSalaireRange: number = 100000;
   ngOnInit(): void {
     this.getFilters()
   }
-  // filterBySalaireRange() {
-  //   // Filtrer les offres en fonction du salaire
-  //   this.offresFiltrees = this.offres.filter((offre) => {
-  //     return offre.salaire >= this.minSalaireRange && offre.salaire <= this.maxSalaireRange;
-  //   });
-  // }
+  changePrice() {
+    console.log('price change', this.priceselection);
+    const event = this.priceselection; // event ta5th vide
+    console.log(event, "22");
   
-
+    if (event !== undefined) {
+      this.offre.getOffers().subscribe((res: any) => {
+        console.log(res,"offres")
+        this.offresAll = res["data"];
+        const listproductByprice = this.offresAll.filter((element: any) => {
+         
+          console.log(event[0],"hhj")
+          return element.salaire >= event[0] && element.salaire <= event[1];
+          
+        });
+        this.offresAll = listproductByprice;
+        console.log('filter by price', this.offresAll);
+      });
+    } else {
+      // Handle the case when this.priceselection is undefined
+      // For example, you could reset the list of offers or handle it in another way.
+      console.log('this.priceselection is undefined');
+    }
+  }
   async getFilters() {
     try {
       const [places, categories, contracts] = await Promise.all([
@@ -127,21 +142,7 @@ maxSalaireRange: number = 100000;
     }
     this.router.navigateByUrl(urlTree); 
   }
-  filterBySalaireRange() {
-    // Filtrer les offres en fonction du salaire
-    this.offresFiltrees = this.offres.filter((offre) => {
-      return offre.salaire >= this.minSalaireRange && offre.salaire <= this.maxSalaireRange;
-    });
-  }
-  // filterBySalaireRange() {
-  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  //   const body = { minSalaire: this.minSalaireRange, maxSalaire: this.maxSalaireRange };
-
-  //   this.http.post<any[]>('http://localhost:3000/offres/filter', body, { headers })
-  //     .subscribe((data) => {
-  //       this.offres = data;
-  //     });
-  // }
+ 
  
 
 
