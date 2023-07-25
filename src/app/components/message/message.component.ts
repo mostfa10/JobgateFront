@@ -15,6 +15,21 @@ export class MessageComponent implements OnInit {
     this.messagebycondidat()
   
   }
+  showMessage(message: any) {
+    // Find the corresponding message element by ID
+    const messageElement = document.getElementById(`inbox-message-${message.id}`);
+    console.log(messageElement,"ju")
+
+    // Mark the clicked message as active (you can customize the styling)
+    const activeMessage = document.querySelector('.message.active');
+    if (activeMessage) {
+      activeMessage.classList.remove('active');
+    }
+    if (messageElement) {
+      messageElement.classList.add('active');
+    }
+  }
+
   messagebycondidat() {
     this.message.getmessage().subscribe((res: any) => {
       console.log(res,"kkk")

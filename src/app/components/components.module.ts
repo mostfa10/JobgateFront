@@ -25,7 +25,6 @@ import { BoxmessageComponent } from './boxmessage/boxmessage.component';
     ContactComponent,
     AboutComponent,
     HomeComponent,
-    ProfilComponent,
     CandidaturesComponent,
     FavoritesOffresComponent,
 AjoutOffreComponent,

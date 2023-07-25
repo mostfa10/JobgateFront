@@ -9,8 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AjouterOffreComponent } from './ajouter-offre/ajouter-offre.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FilterComponent } from './filter/filter.component';
-import { Ng5SliderModule } from '@angular-slider/ngx-slider';
-
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
 
@@ -22,7 +21,7 @@ import { Ng5SliderModule } from '@angular-slider/ngx-slider';
     FilterComponent
   ],
   imports: [
-    Ng5SliderModule,
+    NgxSliderModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

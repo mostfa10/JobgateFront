@@ -17,11 +17,11 @@ import { Options } from '@angular-slider/ngx-slider';
 export class FilterComponent implements OnInit {
    
   priceselection=""
-  minValue: number = 100;
-  maxValue: number = 10000;
+  minValue: number = 500;
+  maxValue: number = 5000;
   options: Options = {
-    floor: 0,
-    ceil: 10000,
+    floor: 500,
+    ceil: 5000,
 } 
 
   contracts:any = []
@@ -31,8 +31,7 @@ export class FilterComponent implements OnInit {
   offres!: any[];
   offresAll!:any[];
   totalResults:number = 0
-  minSalaireRange!: number;
-  maxSalaireRange!: number;
+
   
   collapsedSalary: boolean = false;
   collapsedCategories: boolean = true;
@@ -58,21 +57,29 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {
     this.getFilters()
   }
-  changePrice(){
-    console.log('price change',this.priceselection)
-    let event=this.priceselection//event ta5th vide
-    this.offre.getall().subscribe((res:any)=>{
-      this.offresAll=res["data"]
-      if(event !== undefined){// etha event mch far8a
-        const listproductByprice=this.offresAll.filter((element:any)=> element.salaire >= event[0] && element.salaire <= event[1])
-        this.offresAll=listproductByprice
-        console.log('filter by price',this.offresAll)
-        //owel haja order chatgbt
-      
-        //tzid subcategorie id f produit ykoun andou categorieid ref to  categorie
-        // tzid champs lil produit coleurs
-      }
-    })
+  changePrice() {
+    console.log('price change', this.priceselection);
+    const event = this.priceselection; // event ta5th vide
+    console.log(event, "22");
+  
+    if (event !== undefined) {
+      this.offre.getOffers().subscribe((res: any) => {
+        console.log(res,"offres")
+        this.offresAll = res["data"];
+        const listproductByprice = this.offresAll.filter((element: any) => {
+         
+          console.log(event[0],"hhj")
+          return element.salaire >= event[0] && element.salaire <= event[1];
+          
+        });
+        this.offresAll = listproductByprice;
+        console.log('filter by price', this.offresAll);
+      });
+    } else {
+      // Handle the case when this.priceselection is undefined
+      // For example, you could reset the list of offers or handle it in another way.
+      console.log('this.priceselection is undefined');
+    }
   }
   async getFilters() {
     try {
@@ -133,15 +140,7 @@ export class FilterComponent implements OnInit {
     }
     this.router.navigateByUrl(urlTree); 
   }
-  filterBySalaireRange() {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const body = { minSalaire: this.minSalaireRange, maxSalaire: this.maxSalaireRange };
-
-    this.http.post<any[]>('http://localhost:3000/offre/filter', body, { headers })
-      .subscribe((data) => {
-        this.offres = data;
-      });
-  }
+ 
  
 
 

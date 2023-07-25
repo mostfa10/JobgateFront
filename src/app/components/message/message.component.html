@@ -19,8 +19,8 @@
                                 <div class="message-count"> 1 </div>
                                 <img alt="" class="img-circle medium-image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
 
-                                <div class="vcentered info-combo">
-                                    <h3 class="no-margin-bottom name"> {{m.sender.fullname}} </h3>
+                                <div class="vcentered info-combo"  (click)="showMessage(m)">
+                                    <h3 class="no-margin-bottom name" > {{m.sender.fullname}} </h3>
                                     <h5 class="message-text" data-id="{{m.id}}"> {{m.contenu}}</h5>
                                 </div>
                                 <div class="contacts-add">
