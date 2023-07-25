@@ -1,18 +1,12 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
+<div class="message-container">
     <div class="panel messages-panel">
         <div class="contacts-list">
-            <div class="inbox-categories">
-                <div data-toggle="tab" data-target="#inbox" class="active"> Inbox </div>
-                <div data-toggle="tab" data-target="#sent"> Sent </div>
-              
-            </div>
             <div class="tab-content">
                 <div id="inbox" class="contacts-outter-wrapper tab-pane active">
-                    <form class="panel-search-form info form-group has-feedback no-margin-bottom">
+                    <!-- <form class="panel-search-form info form-group has-feedback no-margin-bottom">
                         <input type="text" class="form-control" name="search" placeholder="Search">
                         <span class="fa fa-search form-control-feedback"></span>
-                    </form>
+                    </form> -->
                     <div class="contacts-outter">
                         <ul class="list-unstyled contacts">
                             <li data-toggle="tab" data-target="#inbox-message-1" class="active"  *ngFor="let m of discussions" [class.active]="m.id === activeMessageId"  (click)="setCurrentDiscussionInfos(m);fetchConversationMessages(m.sender,m.receiver)">
@@ -49,7 +43,7 @@
         <div class="tab-content">
             <div class="tab-pane message-body active" id="inbox-message-1">
                 <div class="message-top">
-                    <a class="btn btn btn-success new-message"> <i class="fa fa-envelope"></i> {{partner?.fullName}} </a>
+                    <a class="btn btn btn-success new-message" style="float: left;"> <i class="fa fa-envelope"></i> {{partner?.fullName}} </a>
 
                     <!-- <div class="new-message-wrapper">
                         <div class="form-group">
@@ -66,13 +60,13 @@
 
                 <div class="message-chat">
                     <div class="chat-body">
-                        <div class="message" [ngClass]="{'info': checkIfMyMsg(message) , 'my-message': checkIfMyMsg(message)}" *ngFor="let message of conversationMessages;let i=index">
-                            <img alt="" class="img-circle medium-image" src="http://localhost:3000/file/folder/{{message.sender == partner._id || message.receiver == partner._id ? partner.image : (userconnect.user.isCondidat ? userconnect.user.condidatId.image : userconnect.user.entrepriseId.image)}}">
+                        <div class="message" [ngClass]="{'info': !checkIfMyMsg(message) , 'my-message': checkIfMyMsg(message)}" *ngFor="let message of conversationMessages;let i=index">
+                            <img alt="" class="img-circle medium-image" src="http://localhost:3000/file/folder/{{!checkIfMyMsg(message) ? partner.image : (userconnect.user.isCondidat ? userconnect.user.condidatId.image : userconnect.user.entrepriseId.image)}}">
 
                             <div class="message-body">
                                 <div class="message-body-inner">
                                     <div class="message-info">
-                                        <h4> {{message.sender == partner._id || message.receiver == partner._id ? partner.fullName : userconnect.user.isCondidat ? userconnect.user.condidatId.name : userconnect.user.entrepriseId.fullname}} </h4>
+                                        <h4> {{!checkIfMyMsg(message) ? partner.fullName : (userconnect.user.isCondidat ? userconnect.user.condidatId.name : userconnect.user.entrepriseId.fullname)}} </h4>
                                         <h5> <i class="fa fa-clock-o"></i> {{message.createdAt | date: 'h:mm a'}} </h5>
                                     </div>
                                     <hr>
@@ -115,18 +109,4 @@
             </div> 
         </div>
     </div>
-    <script>
-        // When the document is ready, add the click event listener to each message content
-        $(document).ready(function() {
-            $('.message-text').click(function() {
-                // Get the ID of the clicked message content
-                var messageId = $(this).data('id');
-                // Find the corresponding message element by ID
-                var messageElement = $('#' + messageId);
-                // Mark the clicked message as active (you can customize the styling)
-                $('.message.active').removeClass('active');
-                messageElement.addClass('active');
-            });
-        });
-    </script>
 </div>

@@ -65,9 +65,9 @@ export class MessageComponent implements OnInit {
   getDiscussionName(discussion:any){
     if(discussion.participants != null){
       if(discussion.participants.sender && discussion.participants.sender.userId != this.userconnect.user._id){
-        return discussion.participants.sender.name + discussion.participants.sender.lastname
+        return discussion.participants.sender.name +' '+ discussion.participants.sender.lastname
       }else if(discussion.participants.receiver && discussion.participants.receiver.userId != this.userconnect.user._id){
-        return discussion.participants.sender.name + discussion.participants.sender.lastname
+        return discussion.participants.sender.name +' '+ discussion.participants.sender.lastname
       }
     }
       if(discussion.participantsEnterprise.sender && discussion.participantsEnterprise.sender.userId != this.userconnect.user._id){
@@ -92,13 +92,13 @@ export class MessageComponent implements OnInit {
       if(discussion.participants.sender && discussion.participants.sender.userId != this.userconnect.user._id){
         this.partner = {
           _id : discussion.participants.sender.userId,
-          fullName : discussion.participants.sender.name + discussion.participants.sender.lastname,
+          fullName : discussion.participants.sender.name +' '+ discussion.participants.sender.lastname,
           image : discussion.participants.sender.image
         } 
       }else if(discussion.participants.receiver && discussion.participants.receiver.userId != this.userconnect.user._id){
         this.partner = {
           _id : discussion.participants.receiver.userId,
-          fullName : discussion.participants.receiver.name + discussion.participants.receiver.lastname,
+          fullName : discussion.participants.receiver.name +' '+ discussion.participants.receiver.lastname,
           image : discussion.participants.receiver.image
         } 
       }
@@ -117,8 +117,8 @@ export class MessageComponent implements OnInit {
         } 
       }
   }
+
   checkIfMyMsg(message:any){
-    console.log(message.sender == this.partner._id || message.receiver == this.partner._id)
-    return message.sender == this.partner._id || message.receiver == this.partner._id
+    return message.sender != this.partner._id
   }
 }
