@@ -6,6 +6,12 @@ body{
     font-size:12px;    
 }
 
+.name {
+  font-size:12px;    
+  margin-top: auto;
+  margin-bottom: auto;
+  height: auto;
+}
 .contacts li .message-time {
     text-align: right;
     display: block;
@@ -462,6 +468,7 @@ body{
   margin-bottom: 30px;
   padding: 30px 5px 5px 5px;
   overflow-y: scroll;
+  max-height: 400px;
 }
 
 .message {

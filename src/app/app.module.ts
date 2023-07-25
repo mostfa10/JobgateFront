@@ -5,13 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from './core/core.module';
-import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
 import { RecherchePipe } from './recherche/recherche.pipe';
 import { LoginService } from './services/login.service';
-import { Ng5SliderModule } from 'ng5-slider';
 
 
 
@@ -21,9 +19,7 @@ import { Ng5SliderModule } from 'ng5-slider';
     RecherchePipe
  
   ],
-  imports: [
-    Ng5SliderModule,
-    
+  imports: [    
     BrowserModule,
     AppRoutingModule, 
     CommonModule,

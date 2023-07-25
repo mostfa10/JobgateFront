@@ -34,4 +34,8 @@ export class OffreService {
     return this.http.get(`${environment.JobGateBD}/offre/userconnect`);
   }
 
+  getall(){
+    return this.http.get(`${environment.JobGateBD}/offre`)
+  }
+
 }

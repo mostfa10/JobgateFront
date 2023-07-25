@@ -16,70 +16,109 @@ export class MessageComponent implements OnInit {
   condidatId!: string;
   descussion!:any[];
   messageId!: string;
-
+  discussions:any = []
   activeMessageId: string | null = null;
+  conversationMessages:any = []
+  discussionName!:string
+  partner!:any
   constructor(private message:MessageService, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.messagebycondidat();
-  
-    this.route.params.subscribe(params => {
-      this.sender = params['sender'];
-      console.log(this.sender, "sender");
-  
-      this.condidatId = params['condidatId'];
-      console.log(this.condidatId, "condidatId");
-  
-      this.messageId = params['id'];
-      console.log(this.messageId, "messageId");
-  
-      this.loadMessage(this.messageId);
-      this.loadDiscussionMessages();
-    });
-  }
-  loadMessage(id: string): void {
-    this.message.getMessageById(id).subscribe(
-      (msg) => {
-        this.msg = msg;
-      console.log(msg,"msg")
-
-      },
-      (error) => {
-        console.error('Failed to load message', error);
-      }
-    );
+    if(this.userconnect){
+      this.loadDiscussion()
+    }
   }
   
   showMessageDetails(messageId: string): void {
-    console.log(messageId,"5")
     this.activeMessageId = messageId;
     this.message.getMessageById(messageId).subscribe((res:any) => {
       this.descussion=res["data"]
       console.log(" descussion",this.descussion)
     });
   }
-  loadDiscussionMessages(): void {
-    this.message.getDiscussionMessages(this.sender, this.condidatId).subscribe(
-      (messagesD:any) => {
-        this.messages = messagesD;
-      },
-      (error:any) => {
-        console.error('Failed to load discussion messages', error);
-      }
-    );
+
+
+  loadDiscussion(){
+    this.message.getDiscussions(this.userconnect.user._id).subscribe((res: any) => {
+      this.discussions = res; 
+      console.log(this.discussions)
+    });
   }
 
-  messagebycondidat() {
-    this.message.getmessage().subscribe((res: any) => {
-      console.log(res,"kkk")
-      // Filter messages where condidatId and sender match the userconnect's condidatId
-      this.messages = res.data.filter((message: any) => {
-        return (
-          message.condidatId === this.userconnect.user.condidatId._id
-          // message.sender === this.userconnect.user.condidatId
-        );
+  getDiscussionImg(discussion:any){
+    if(discussion.participants != null){
+      if(discussion.participants.sender && discussion.participants.sender.userId != this.userconnect.user._id){
+        return discussion.participants.sender.image
+      }else if(discussion.participants.receiver && discussion.participants.receiver.userId != this.userconnect.user._id){
+        return discussion.participants.receiver.image
+      }
+    }
+      if(discussion.participantsEnterprise.sender && discussion.participantsEnterprise.sender.userId != this.userconnect.user._id){
+        return discussion.participantsEnterprise.sender.image
+      }else if(discussion.participantsEnterprise.receiver && discussion.participantsEnterprise.receiver.userId != this.userconnect.user._id){
+        return discussion.participantsEnterprise.receiver.image
+
+      }
+    
+  }
+
+  getDiscussionName(discussion:any){
+    if(discussion.participants != null){
+      if(discussion.participants.sender && discussion.participants.sender.userId != this.userconnect.user._id){
+        return discussion.participants.sender.name + discussion.participants.sender.lastname
+      }else if(discussion.participants.receiver && discussion.participants.receiver.userId != this.userconnect.user._id){
+        return discussion.participants.sender.name + discussion.participants.sender.lastname
+      }
+    }
+      if(discussion.participantsEnterprise.sender && discussion.participantsEnterprise.sender.userId != this.userconnect.user._id){
+        return discussion.participantsEnterprise.sender.fullname
+      }else if(discussion.participantsEnterprise.receiver && discussion.participantsEnterprise.receiver.userId != this.userconnect.user._id){
+        return discussion.participantsEnterprise.receiver.fullname
+
+      }
+  }
+
+  fetchConversationMessages(senderId: string,receiverId: string) {
+    this.message
+      .getMessagesForConversation(senderId, receiverId)
+      .subscribe((messages: any[]) => {
+        console.log(messages);
+        this.conversationMessages = messages;
       });
-      console.log("messages", this.messages);
-    });
+  }
+
+  setCurrentDiscussionInfos(discussion:any){
+    if(discussion.participants != null){
+      if(discussion.participants.sender && discussion.participants.sender.userId != this.userconnect.user._id){
+        this.partner = {
+          _id : discussion.participants.sender.userId,
+          fullName : discussion.participants.sender.name + discussion.participants.sender.lastname,
+          image : discussion.participants.sender.image
+        } 
+      }else if(discussion.participants.receiver && discussion.participants.receiver.userId != this.userconnect.user._id){
+        this.partner = {
+          _id : discussion.participants.receiver.userId,
+          fullName : discussion.participants.receiver.name + discussion.participants.receiver.lastname,
+          image : discussion.participants.receiver.image
+        } 
+      }
+    }
+      if(discussion.participantsEnterprise.sender && discussion.participantsEnterprise.sender.userId != this.userconnect.user._id){
+        this.partner = {
+          _id : discussion.participantsEnterprise.sender.userId,
+          fullName : discussion.participantsEnterprise.sender.fullname,
+          image : discussion.participantsEnterprise.sender.image
+        } 
+      }else if(discussion.participantsEnterprise.receiver && discussion.participantsEnterprise.receiver.userId != this.userconnect.user._id){
+        this.partner = {
+          _id : discussion.participantsEnterprise.receiver.userId,
+          fullName : discussion.participantsEnterprise.receiver.fullname,
+          image : discussion.participantsEnterprise.receiver.image
+        } 
+      }
+  }
+  checkIfMyMsg(message:any){
+    console.log(message.sender == this.partner._id || message.receiver == this.partner._id)
+    return message.sender == this.partner._id || message.receiver == this.partner._id
   }
 }

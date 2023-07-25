@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -17,4 +18,13 @@ export class MessageService {
   getMessageById(id: string) {
     return this.http.get(`${environment.JobGateBD}/message/${id}`);
   }
+
+  getDiscussions(userId:string){
+    return this.http.get(`${environment.JobGateBD}/message/conversations/${userId}`)
+  }
+
+  getMessagesForConversation(senderId: string, receiverId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.JobGateBD}/message/${senderId}/${receiverId}`);
+  }
+
 }
