@@ -15,11 +15,11 @@
                     </form>
                     <div class="contacts-outter">
                         <ul class="list-unstyled contacts">
-                            <li data-toggle="tab" data-target="#inbox-message-1" class="active"  *ngFor="let m of messages">
+                            <li data-toggle="tab" data-target="#inbox-message-1" class="active"  *ngFor="let m of messages" [class.active]="m.id === activeMessageId"  (click)="showMessageDetails(m._id)">
                                 <div class="message-count"> 1 </div>
-                                <img alt="" class="img-circle medium-image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                                <img alt="" class="img-circle medium-image" src="http://localhost:3000/file/folder/{{m?.sender?.image}}">
 
-                                <div class="vcentered info-combo"  (click)="showMessage(m)">
+                                <div class="vcentered info-combo">
                                     <h3 class="no-margin-bottom name" > {{m.sender.fullname}} </h3>
                                     <h5 class="message-text" data-id="{{m.id}}"> {{m.contenu}}</h5>
                                 </div>
