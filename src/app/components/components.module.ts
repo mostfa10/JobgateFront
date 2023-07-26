@@ -31,7 +31,7 @@ import { BoxmessageComponent } from './boxmessage/boxmessage.component';
     OffrepourentrepriseComponent,
     MessageComponent,
     BoxmessageComponent,
-    ProfilComponent
+    ProfilComponent,
   ],
   imports: [
     NgxPaginationModule,

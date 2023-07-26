@@ -35,4 +35,7 @@ export class MessageService {
     return this.http.get<any[]>(`${environment.JobGateBD}/message/${senderId}/${receiverId}`);
   }
 
+  createMessage(message:any,type:string){
+    
+  }
 }

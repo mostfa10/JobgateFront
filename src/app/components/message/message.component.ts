@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { environment } from 'src/environments/environment';
@@ -24,6 +24,9 @@ export class MessageComponent implements OnInit {
   conversationMessages:any = []
   discussionName!:string
   partner!:any
+
+  @ViewChild('scroller') private scroller!: ElementRef;
+
   constructor(private message:MessageService,private http: HttpClient, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -70,7 +73,7 @@ export class MessageComponent implements OnInit {
       if(discussion.participants.sender && discussion.participants.sender.userId != this.userconnect.user._id){
         return discussion.participants.sender.name +' '+ discussion.participants.sender.lastname
       }else if(discussion.participants.receiver && discussion.participants.receiver.userId != this.userconnect.user._id){
-        return discussion.participants.sender.name +' '+ discussion.participants.sender.lastname
+        return discussion.participants.receiver.name +' '+ discussion.participants.receiver.lastname
       }
     }
       if(discussion.participantsEnterprise.sender && discussion.participantsEnterprise.sender.userId != this.userconnect.user._id){
@@ -85,8 +88,8 @@ export class MessageComponent implements OnInit {
     this.message
       .getMessagesForConversation(senderId, receiverId)
       .subscribe((messages: any[]) => {
-        console.log(messages);
         this.conversationMessages = messages;
+        this.scrollToBottom();
       });
   }
   fetchDiscussionsWithUnreadCount(): void {
@@ -94,6 +97,7 @@ export class MessageComponent implements OnInit {
       this.discussionsWithUnreadCount = res;
     });
   }
+
   fetchUnreadCountForDiscussions(): void {
     this.discussionsWithUnreadCount.forEach((discussion) => {
       this.http
@@ -142,14 +146,23 @@ export class MessageComponent implements OnInit {
       return; // Ne pas envoyer de message vide
     }
 
-    // Utilisez l'ID de l'utilisateur connecté (this.userconnect.user._id) et l'ID du partenaire (this.partner._id)
-    // pour envoyer le nouveau message.
     this.message.sendNewMessage(this.userconnect.user._id, this.partner._id, contenu)
       .subscribe((res) => {
-        // Ici, vous pouvez mettre à jour la liste des messages après l'envoi réussi
-        console.log('Message sent successfully!');
+        this.msg = ''
+        this.fetchConversationMessages(this.userconnect.user._id, this.partner._id);
       }, (error) => {
         console.error('Failed to send message:', error);
       });
+  }
+
+
+  scrollToBottom(): void {
+    this.scroller.nativeElement.scrollTop
+    = this.scroller.nativeElement.scrollHeight;
+  }
+
+  ngAfterViewChecked(): void {
+    // Scroll to the bottom after new messages are added
+    this.scrollToBottom();
   }
 }

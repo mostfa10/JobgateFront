@@ -3,10 +3,6 @@
         <div class="contacts-list">
             <div class="tab-content">
                 <div id="inbox" class="contacts-outter-wrapper tab-pane active">
-                    <!-- <form class="panel-search-form info form-group has-feedback no-margin-bottom">
-                        <input type="text" class="form-control" name="search" placeholder="Search">
-                        <span class="fa fa-search form-control-feedback"></span>
-                    </form> -->
                     <div class="contacts-outter">
                         <ul class="list-unstyled contacts">
                             <li data-toggle="tab" data-target="#inbox-message-1" class="active"  *ngFor="let m of discussions" [class.active]="m.id === activeMessageId"  (click)="setCurrentDiscussionInfos(m);fetchConversationMessages(m.sender,m.receiver)">
@@ -21,8 +17,6 @@
                                 </div>
                                 <div class="contacts-add">
                                     <span class="message-time"> {{m.createdAt | date: 'h:mm a'}} </span>
-                                    <!-- <i class="fa fa-trash-o"></i>
-                                    <i class="fa fa-paperclip"></i> -->
                                 </div>
                             </li>
                             
@@ -41,25 +35,13 @@
         </div>
 
         <div class="tab-content">
-            <div class="tab-pane message-body active" id="inbox-message-1">
+            <div class="tab-pane message-body active" id="inbox-message-1" #feedContainer>
                 <div class="message-top">
                     <a class="btn btn btn-success new-message" style="float: left;"> <i class="fa fa-envelope"></i> {{partner?.fullName}} </a>
-
-                    <!-- <div class="new-message-wrapper">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Send message to...">
-                            <a class="btn btn-danger close-new-message" href="#"><i class="fa fa-times"></i></a>
-                        </div>
-
-                        <div class="chat-footer new-message-textarea">
-                            <textarea class="send-message-text"></textarea>
-                            <button type="button" class="send-message-button btn-info"> <i class="fa fa-send"></i> </button>
-                        </div>
-                    </div> -->
                 </div>
 
-                <div class="message-chat">
-                    <div class="chat-body">
+                <div class="message-chat" >
+                    <div class="chat-body" style="height: 600px; overflow-y: auto;" #scroller>
                         <div class="message" [ngClass]="{'info': !checkIfMyMsg(message) , 'my-message': checkIfMyMsg(message)}" *ngFor="let message of conversationMessages;let i=index">
                             <img alt="" class="img-circle medium-image" src="http://localhost:3000/file/folder/{{!checkIfMyMsg(message) ? partner.image : (userconnect.user.isCondidat ? userconnect.user.condidatId.image : userconnect.user.entrepriseId.image)}}">
 
@@ -77,33 +59,11 @@
                             </div>
                             <br>
                         </div>
-
-                        <!-- <div class="message my-message"  *ngIf="message.sender == userconnect.user._id || message.receiver == userconnect.user._id">
-                            <img alt="" class="img-circle medium-image" src="http://localhost:3000/file/folder/{{userconnect.user.isCondidat ? userconnect.user.condidatId.image : userconnect.user.entrepriseId.image}}">
-
-                            <div class="message-body">
-                                <div class="message-body-inner">
-                                    <div class="message-info">
-                                        <h4> {{userconnect.user.isCondidat ? userconnect.user.condidatId.name : userconnect.user.entrepriseId.fullname}} </h4>
-                                        <h5> <i class="fa fa-clock-o"></i> {{message.createdAt | date: 'h:mm a'}} </h5>
-                                    </div>
-                                    <hr>
-                                    <div class="message-text">
-                                        {{message.contenu}}
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                        </div> -->
                     </div>
 
                     <div class="chat-footer">
                         <form (ngSubmit)="sendMessage(msg)" #msgForm="ngForm">
-                          <textarea [(ngModel)]="msg" name="msg" class="send-message-text" required></textarea>
-                          <!-- <label class="upload-file">
-                              <input type="file" required="">
-                              <i class="fa fa-paperclip"></i>
-                          </label> -->
+                          <textarea [(ngModel)]="msg" name="msg" (keyup.enter)="sendMessage(msg)" class="send-message-text" required></textarea>
                           <button type="submit" class="send-message-button btn-info"> <i class="fa fa-send"></i> </button>
                         </form>
                       </div>

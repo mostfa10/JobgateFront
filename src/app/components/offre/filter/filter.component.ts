@@ -59,28 +59,19 @@ maxSalaireRange: number = 100000;
   ngOnInit(): void {
     this.getFilters()
   }
+
   changePrice() {
-    console.log('price change', this.priceselection);
     const event = this.priceselection; // event ta5th vide
-    console.log(event, "22");
   
     if (event !== undefined) {
+      let urlTree = this.router.parseUrl(this.router.url);
+      urlTree.queryParams['minSalary'] =  event[0]
+      urlTree.queryParams['maxSalary'] =  event[1]
+
       this.offre.getOffers().subscribe((res: any) => {
-        console.log(res,"offres")
         this.offresAll = res["data"];
-        const listproductByprice = this.offresAll.filter((element: any) => {
-         
-          console.log(event[0],"hhj")
-          return element.salaire >= event[0] && element.salaire <= event[1];
-          
-        });
-        this.offresAll = listproductByprice;
-        console.log('filter by price', this.offresAll);
+        this.router.navigateByUrl(urlTree); 
       });
-    } else {
-      // Handle the case when this.priceselection is undefined
-      // For example, you could reset the list of offers or handle it in another way.
-      console.log('this.priceselection is undefined');
     }
   }
   async getFilters() {
@@ -131,9 +122,7 @@ maxSalaireRange: number = 100000;
 
 
   onChangeFilter(block:any,filter:string,attr:string) {
-    console.log('66')
     const checkedTypes = block.data.filter((item:any) => item.checked === true).map((item:any) => item[attr]);
-    console.log(checkedTypes)
     let urlTree = this.router.parseUrl(this.router.url);
     if (checkedTypes.length > 0) {
       urlTree.queryParams[filter] =  checkedTypes.join()
