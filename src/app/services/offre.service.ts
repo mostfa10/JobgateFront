@@ -12,6 +12,9 @@ export class OffreService {
   public search = new BehaviorSubject<string>("");
 
   constructor(private http:HttpClient) { }
+  getall(){
+    return this.http.get(`${environment.JobGateBD}/offre`)
+   }
 
   getOffers(query:string = ''){
     return this.http.get(`${environment.JobGateBD}/offre?${query}`)
@@ -33,9 +36,7 @@ export class OffreService {
    getOffresForCurrentUser(){
     return this.http.get(`${environment.JobGateBD}/offre/userconnect`);
   }
-
-  getall(){
-    return this.http.get(`${environment.JobGateBD}/offre`)
-  }
+ 
+ 
 
 }

@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   getNotifications(): void {
-    const entreprise = this.userconnect.user.entrepriseId[0]._id;
+    const entreprise = this.userconnect.user.entrepriseId[0]?._id;
     console.log(entreprise,"hh")
     const filteredNotifications: any[] = [];
   

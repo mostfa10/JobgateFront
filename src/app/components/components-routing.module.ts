@@ -26,7 +26,8 @@ const routes: Routes = [
   {path:'ajout',component:AjoutOffreComponent},
   {path:'offrePrecie',component:OffrepourentrepriseComponent},
   {path:'message',component:MessageComponent},
-  {path:'box',component:BoxmessageComponent}
+  {path:'box',component:BoxmessageComponent},
+  { path: 'messages/:sender/:condidatId/:id', component: MessageComponent },
 
   
 

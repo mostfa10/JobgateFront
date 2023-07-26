@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-message',
@@ -10,6 +12,7 @@ import { MessageService } from 'src/app/services/message.service';
 export class MessageComponent implements OnInit {
   userconnect = JSON.parse(localStorage.getItem("userconnect")!);
   messages!:any[];
+  discussionsWithUnreadCount: any[] = [];
   messagesD!:any[];
   msg: any | null = null;
   sender!: string;
@@ -21,7 +24,7 @@ export class MessageComponent implements OnInit {
   conversationMessages:any = []
   discussionName!:string
   partner!:any
-  constructor(private message:MessageService, private readonly route: ActivatedRoute) { }
+  constructor(private message:MessageService,private http: HttpClient, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
     if(this.userconnect){
@@ -86,7 +89,20 @@ export class MessageComponent implements OnInit {
         this.conversationMessages = messages;
       });
   }
-
+  fetchDiscussionsWithUnreadCount(): void {
+    this.http.get<any[]>('${environment.JobGateBD}/message/discussions').subscribe((res: any[]) => {
+      this.discussionsWithUnreadCount = res;
+    });
+  }
+  fetchUnreadCountForDiscussions(): void {
+    this.discussionsWithUnreadCount.forEach((discussion) => {
+      this.http
+        .get<number>(`${environment.JobGateBD}/message/unread-count/${discussion.sender}/${discussion.receiver}`)
+        .subscribe((unreadCount) => {
+          discussion.unreadCount = unreadCount;
+        });
+    });
+  }
   setCurrentDiscussionInfos(discussion:any){
     if(discussion.participants != null){
       if(discussion.participants.sender && discussion.participants.sender.userId != this.userconnect.user._id){
@@ -120,5 +136,20 @@ export class MessageComponent implements OnInit {
 
   checkIfMyMsg(message:any){
     return message.sender != this.partner._id
+  }
+  sendMessage(contenu: string): void {
+    if (!contenu.trim()) {
+      return; // Ne pas envoyer de message vide
+    }
+
+    // Utilisez l'ID de l'utilisateur connecté (this.userconnect.user._id) et l'ID du partenaire (this.partner._id)
+    // pour envoyer le nouveau message.
+    this.message.sendNewMessage(this.userconnect.user._id, this.partner._id, contenu)
+      .subscribe((res) => {
+        // Ici, vous pouvez mettre à jour la liste des messages après l'envoi réussi
+        console.log('Message sent successfully!');
+      }, (error) => {
+        console.error('Failed to send message:', error);
+      });
   }
 }

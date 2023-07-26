@@ -12,6 +12,14 @@ export class MessageService {
   getmessage(){
     return this.http.get(`${environment.JobGateBD}/message`)
   }
+  sendNewMessage(sender: string, receiver: string, contenu: string): Observable<any> {
+    const message = {
+      sender,
+      receiver,
+      contenu,
+    };
+    return this.http.post<any>(`${environment.JobGateBD}/message`,message);
+  }
   getDiscussionMessages(sender: string, condidatId: string) {
     return this.http.get(`${environment.JobGateBD}/messages/discussion/${sender}/${condidatId}`);
   }

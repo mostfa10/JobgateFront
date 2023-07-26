@@ -10,7 +10,7 @@
                     <div class="contacts-outter">
                         <ul class="list-unstyled contacts">
                             <li data-toggle="tab" data-target="#inbox-message-1" class="active"  *ngFor="let m of discussions" [class.active]="m.id === activeMessageId"  (click)="setCurrentDiscussionInfos(m);fetchConversationMessages(m.sender,m.receiver)">
-                                <div class="message-count"> 1 </div>
+                                <div class="message-count"> {{m.unreadCount}} </div>
                                 <div class="d-flex">
                                     <img alt="" class="img-circle medium-image" src="http://localhost:3000/file/folder/{{getDiscussionImg(m)}}">
                                     <h3 class="no-margin-bottom name" > {{getDiscussionName(m)}} </h3>
@@ -98,13 +98,15 @@
                     </div>
 
                     <div class="chat-footer">
-                        <textarea class="send-message-text"></textarea>
-                        <!-- <label class="upload-file">
-                            <input type="file" required="">
-                            <i class="fa fa-paperclip"></i>
-                        </label> -->
-                        <button type="button" class="send-message-button btn-info"> <i class="fa fa-send"></i> </button>
-                    </div>
+                        <form (ngSubmit)="sendMessage(msg)" #msgForm="ngForm">
+                          <textarea [(ngModel)]="msg" name="msg" class="send-message-text" required></textarea>
+                          <!-- <label class="upload-file">
+                              <input type="file" required="">
+                              <i class="fa fa-paperclip"></i>
+                          </label> -->
+                          <button type="submit" class="send-message-button btn-info"> <i class="fa fa-send"></i> </button>
+                        </form>
+                      </div>
                 </div>
             </div> 
         </div>
