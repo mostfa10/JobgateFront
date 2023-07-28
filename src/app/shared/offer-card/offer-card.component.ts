@@ -21,6 +21,13 @@ export class OfferCardComponent implements OnInit {
     console.log(this.offer)
     this.user =   JSON.parse(localStorage.getItem("userconnect")!)['user'];
   }
+  truncateDescription(description: string, maxLength: number): string {
+    if (description.length > maxLength) {
+      return description.substring(0, maxLength) + '...';
+    }
+    return description;
+  }
+
   
   toggleFavorite(): void {
     this.isFavorite = !this.isFavorite;

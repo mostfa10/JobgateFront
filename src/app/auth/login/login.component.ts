@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   form!:FormGroup
+  email: string = '';
  
   
 

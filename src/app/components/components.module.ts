@@ -15,6 +15,7 @@ import { AjoutOffreComponent} from './ajout-offre/ajout-offre.component';
 import { OffrepourentrepriseComponent } from './offrepourentreprise/offrepourentreprise.component';
 import { MessageComponent } from './message/message.component';
 import { BoxmessageComponent } from './boxmessage/boxmessage.component';
+import { TestComponent } from './test/test.component';
 
 
 
@@ -32,6 +33,7 @@ import { BoxmessageComponent } from './boxmessage/boxmessage.component';
     MessageComponent,
     BoxmessageComponent,
     ProfilComponent,
+    TestComponent,
   ],
   imports: [
     NgxPaginationModule,

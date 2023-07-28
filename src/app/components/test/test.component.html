@@ -1,0 +1,89 @@
+<section class="PT">
+    <div class="container">
+        <div class="row">
+           
+                <div class="start_btn"     style="text-align: -webkit-center;">
+                   <button (click)="showWarningPopup()" style="border: double;" >start Quiz</button>
+                </div>  
+        <div class="info_box"  [ngClass]="showWorning ? 'activeInfo':''">
+                    <div class="info_title"><span style="font-weight: bolder;
+                        font-family: unset;">some Rules of this quiz</span></div>
+                            <div class="info_list">
+                                <div class="info"><span style="font-weight: bolder;
+                                    font-family: unset;">1</span>.you will have only<span>15 seconds</span> per eash question </div>
+                                <div class="info"><span style="font-weight: bolder;
+                                    font-family: unset;">2</span>.Once you select your answer it can be undone </div>
+                                <div class="info"><span style="font-weight: bolder;
+                                    font-family: unset;">3</span>.you can't select any option once time gooes off  </div>
+                                <div class="info"><span style="font-weight: bolder;
+                                    font-family: unset;">4</span>.you can't exit from the quiz Once  Started   </div>
+
+                            </div>
+                            <div class="buttons">
+                                <button class="quit" >Exit Quiz</button>
+                                <button class="resart" (click)="startQuiz()">Continue</button>
+
+                                
+                            </div>
+
+                    </div>
+
+  <div class="quiz_box" [ngClass]="isQuizstarted ? 'activeQuiz':''">
+      <header>
+        <div class="title"> Awesome quiz application</div>
+        <div class="timer">
+            <div class="time_left_txt">Time off</div>
+            <div class="timer_sec">{{remainingTime}}</div>
+        </div>
+        <div class="time_line" style="width: 550px;"></div>
+    
+
+      </header>
+      <section *ngIf="isQuizstarted">
+          <div class="que_text"><span>{{currentQuestionNo+1}}.{{questionsList[currentQuestionNo].question}}</span></div>
+          <div class="option_list">
+            <div class="option" [ngClass]="{'disabled':isOptionSelected(questionsList[currentQuestionNo].options),
+                'correct':option.isSelected && option.isCorrect,
+            'incorrect':option.isSelected && !option.isCorrect}" (click)="selectOption(option)" *ngFor="let option of questionsList[currentQuestionNo].options">
+                <span>{{option.answer}}</span>
+             </div>
+             
+          </div>
+
+
+
+
+      </section>
+
+      <footer>
+         <div class="total_que">
+               <span><p>{{currentQuestionNo+1}}</p>of<p>{{questionsList.length}}</p>Questions</span>
+         </div>
+         <button *ngIf="currentQuestionNo+1 !== questionsList.length" class="next_btn show" (click)="nextQuestion()">Next Question</button>
+         <button *ngIf="currentQuestionNo+1 == questionsList.length" class="next_btn show" (click)="finish()">finish</button>
+         
+        </footer>
+
+
+
+  </div>
+
+  <div class="result_box" [ngClass]="isQuizEnded?'activeResult':''      ">
+       <div class="icon">
+          <i class="fas fa-crown"></i>
+       </div>
+<div class="complete_text"> you ve finich the quiz </div>
+<div class="score_text">
+       <span> and congrats!,you got <p>{{correctAnswerCount}}</p> out of <p>{{questionsList.length}}</p></span>
+</div>
+<div class="buttons">
+        <button class="next_btn show">Exit</button>
+</div>
+  </div>
+
+        </div>
+</div>
+
+</section>
+
+

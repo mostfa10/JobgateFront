@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OffreService } from 'src/app/services/offre.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { CommantaireService } from 'src/app/services/commantaire.service';
@@ -31,7 +31,8 @@ export class DetailoffreComponent implements OnInit {
   hours!:number; // Déclarer la variable hours
   constructor(private offre:OffreService, private condidature:CondidatureService,
     private commantaire:CommantaireService ,private reponse:ReponseService
-     ,private Activeroute:ActivatedRoute,private formB:FormBuilder
+     ,private Activeroute:ActivatedRoute,private formB:FormBuilder,
+     private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -89,6 +90,10 @@ this.hours = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
         })
        
+}
+navigateToTest() {
+  // Naviguez vers le composant TestComponent avec l'ID de l'offre en tant que paramètre de requête
+  this.router.navigate(['/test'], { queryParams: { offreId: this.ofre._id } });
 }
 toggleReplyInput(index: number) {
   // Toggle the visibility of the reply input field for the comment at the specified index

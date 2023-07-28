@@ -202,7 +202,8 @@
 
                <div class="clearfix">
                     <a *ngIf="userconnect.user?.isCondidat" class="section-btn btn btn-primary pull-left" data-toggle="modal" data-target="#exampleModalLong">Apply for this job</a>
-
+                    <a *ngIf="userconnect.user?.isCondidat" class="section-btn btn btn pull-left" (click)="navigateToTest()" >tester for this job</a>
+                    
 
 
                

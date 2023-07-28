@@ -12,6 +12,7 @@ import { AjoutOffreComponent } from './ajout-offre/ajout-offre.component';
 import { OffrepourentrepriseComponent } from './offrepourentreprise/offrepourentreprise.component';
 import { MessageComponent } from './message/message.component';
 import { BoxmessageComponent } from './boxmessage/boxmessage.component';
+import { TestComponent } from './test/test.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,8 @@ const routes: Routes = [
   {path:'message',component:MessageComponent},
   {path:'box',component:BoxmessageComponent},
   { path: 'messages/:sender/:condidatId/:id', component: MessageComponent },
+  { path: 'test', component: TestComponent }
+
 
   
 

@@ -1,0 +1,243 @@
+[
+    {
+      "questionId": 1,
+      "offreId":"64a2a6d8cabd2f35fa86a6cf",
+      "question": "Which of the following is correct about TypeScript?", 
+      "options": [
+          {
+              "answer": "Angular is based on TypeScript",
+              "isCorrect": false
+          },
+          {
+              "answer": "This is a superset of JavaScript.",
+              "isCorrect": false
+          },
+          {
+              "answer": "TypeScript is maintained by Microsoft.",
+              "isCorrect": false
+          },
+          {
+              "answer": "All of the above.",
+              "isCorrect": true
+          }
+      ]
+    },
+    {
+      "questionId": 2,
+      "offreId":"64a2a6d8cabd2f35fa86a6cf",
+
+      "question": "What does AOT stand for?", 
+      "options": [
+          {
+              "answer": "ahead-of-time compilation",
+              "isCorrect": true
+          },
+          {
+              "answer": "Angular Object Templates",
+              "isCorrect": false
+          },
+          {
+              "answer": "Both",
+              "isCorrect": false
+          },
+          {
+              "answer": "None",
+              "isCorrect": false
+          }
+      ]
+    },
+    {
+      "questionId": 3,
+      "offreId":"64a2a6d8cabd2f35fa86a6cf",
+
+      "question": "Which of the following is not a hook application life cycle?", 
+      "options": [
+          {
+              "answer": "ngOnChanges",
+              "isCorrect": false
+          },
+          {
+              "answer": "ngViewStart",
+              "isCorrect": true
+          },
+          {
+              "answer": "ngOnInit",
+              "isCorrect": false
+          },
+          {
+              "answer": "None of above",
+              "isCorrect": false
+          }
+      ]
+    },
+    {
+      "questionId": 4,
+      "offreId":"64a2a6d8cabd2f35fa86a6cf",
+
+      "question": "What is the decorator used for configuring your module class", 
+      "options": [
+          {
+              "answer": "@NgApp",
+              "isCorrect": false
+          },
+          {
+              "answer": "@NgModule",
+              "isCorrect": true
+          },
+          {
+              "answer": "Both",
+              "isCorrect": false
+          },
+          {
+              "answer": "None of above",
+              "isCorrect": false
+          }
+      ]
+    },
+    {
+      "questionId": 5,
+      "offreId":"64a2a6d8cabd2f35fa86a6cf",
+
+      "question": "Router is part of which of the following module", 
+     
+      "options": [
+          {
+              "answer": "@angular/core",
+              "isCorrect": false
+          },
+          {
+              "answer": "@angular/router",
+              "isCorrect": true
+          },
+          {
+              "answer": "Both",
+              "isCorrect": false
+          },
+          {
+              "answer": "None of above",
+              "isCorrect": false
+          }
+      ]
+    },
+    {
+        "questionId": 6,
+        "question": "Que signifie HTML ?", 
+        "offreId":"64a2a809cabd2f35fa86a6db",
+        "options": [
+            {
+                "answer": " HomeTabulation of Mailing List",
+                "isCorrect": false
+            },
+            {
+                "answer": "HyperText Markup Language",
+                "isCorrect": true
+            },
+            {
+                "answer": " Hyperspace TradeMark Language.",
+                "isCorrect": false
+            },
+            {
+                "answer": "XpTdr Mdr Lol",
+                "isCorrect": false
+            }
+        ]
+      },
+      {
+        "questionId": 7,
+        "question": "En quelle année est né HTML ?", 
+        "offreId":"64a2a809cabd2f35fa86a6db",
+
+        "options": [
+            {
+                "answer": " Dans les années 70, avec Arpanet",
+                "isCorrect": false
+            },
+            {
+                "answer": "Entre 1986 et 1988, avec le Club Dorothée",
+                "isCorrect": true
+            },
+            {
+                "answer": "  En 1990 exactement, avec la naissance d'Emma Watson",
+                "isCorrect": false
+            },
+            {
+                "answer": "Plutôt en 1993 non ? Sous le mandat Bill Clinton",
+                "isCorrect": false
+            }
+        ]
+      },
+      {
+        "questionId": 8,
+        "question": "À quoi sert HTML ?", 
+        "offreId":"64a2a809cabd2f35fa86a6db",
+
+        "options": [
+            {
+                "answer": "  À mettre en forme des pages web",
+                "isCorrect": false
+            },
+            {
+                "answer": "À structurer du contenu dans une page web",
+                "isCorrect": true
+            },
+            {
+                "answer": "  À créer des pages dynamiques",
+                "isCorrect": false
+            },
+            {
+                "answer": "À concurrencer Google et Facebook",
+                "isCorrect": false
+            }
+        ]
+      },
+      {
+        "questionId": 9,
+        "question": "Qu'est ce qu'un navigateur web ?", 
+        "offreId":"64a2a809cabd2f35fa86a6db",
+
+        "options": [
+            {
+                "answer": " Un logiciel capable d'interpréter et d'afficher du code HTML",
+                "isCorrect": false
+            },
+            {
+                "answer": "Un outil permettant d'accéder à Internet",
+                "isCorrect": true
+            },
+            {
+                "answer": " Un réseau social global",
+                "isCorrect": false
+            },
+            {
+                "answer": " Une interface pour lire et recevoir des e-mails",
+                "isCorrect": false
+            }
+        ]
+      },
+      {
+        "questionId": 10,
+        "question": "Comment représenter un paragraphe en HTML ?", 
+        "offreId":"64a2a809cabd2f35fa86a6db",
+
+        "options": [
+            {
+                "answer": " <ul>",
+                "isCorrect": false
+            },
+            {
+                "answer": " <p>",
+                "isCorrect": true
+            },
+            {
+                "answer": " <h1>",
+                "isCorrect": false
+            },
+            {
+                "answer": " <li>",
+                "isCorrect": false
+            }
+        ]
+      }
+      
+  ]
+  

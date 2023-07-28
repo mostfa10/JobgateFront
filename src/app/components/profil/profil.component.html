@@ -155,9 +155,9 @@
                               " />
                           </span>
                           <img
-                            (click)="changeImg()"
+                             (click)="changeImg()"
                             alt="avatar"
-                            src="{{imgChanged ? user.image.name : 'http://localhost:3000/file/folder/' + user.image}}"
+                            [src]="imgChanged ? avatarUrl : 'http://localhost:3000/file/folder/' + user.image"
                             decoding="async"
                             data-nimg="intrinsic"
                             class="rounded-[4px] pt-[4px]"
@@ -176,6 +176,7 @@
                               min-height: 100%;
                               max-height: 100%;
                             " />
+                          
                           </span>
                       </span>
                     </div>

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SkilsService } from 'src/app/services/skils.service';
 import { UserService } from 'src/app/services/user.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-profil',
@@ -15,6 +17,8 @@ export class ProfilComponent implements OnInit {
   user!:any
   isProfileEdible : boolean = false
   editMode:string = "none";
+  avatarUrl: string | null = null;
+  selectedImage: File | null = null;
 
   skills!:any
   languages : any = [
@@ -37,6 +41,7 @@ export class ProfilComponent implements OnInit {
     private route: ActivatedRoute, 
     private skillsService: SkilsService,
     private userService: UserService,
+    private sanitizer: DomSanitizer
   ) {
    }
 
@@ -150,9 +155,15 @@ export class ProfilComponent implements OnInit {
   onImgChange(event: any): void {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log(file)
-      this.user.image = file
-      this.imgChanged =true
+      console.log(file);
+  
+      // Extract the file name from the File object
+      const fileName = file.name;
+  
+      this.user.image = fileName; // Update the user.image with the file name
+      this.imgChanged = true;
+      this.avatarUrl = URL.createObjectURL(file);
+      console.log(this.avatarUrl, "222");
     }
-} 
+  }
 }
