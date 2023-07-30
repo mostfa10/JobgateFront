@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
+import { CandidatureService } from 'src/app/services/candidature.service';
 
 @Component({
   selector: 'app-test',
@@ -29,7 +30,8 @@ export class TestComponent implements OnInit {
     DeptId: 0,
     DepartmentName: ''
   }
-  constructor(private http: HttpClient,private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpClient,private activatedRoute: ActivatedRoute,
+    private candidature:CandidatureService) {
    
    }
 
@@ -55,7 +57,7 @@ export class TestComponent implements OnInit {
       this.correctAnswerCount ++;
     }
     option.isSelected=true;
-
+    this.candidature.setScore(this.correctAnswerCount);
   }
   isOptionSelected(options:any){
     const isSelectionCount=options.filter((m:any)=>m.isSelected == true).length;
@@ -74,6 +76,7 @@ export class TestComponent implements OnInit {
     if(this.currentQuestionNo < this.questionsList.length-1){
     this.currentQuestionNo ++;
     this.remainingTime=10;
+    
 
   }
   else{

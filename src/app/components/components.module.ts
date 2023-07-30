@@ -16,6 +16,8 @@ import { OffrepourentrepriseComponent } from './offrepourentreprise/offrepourent
 import { MessageComponent } from './message/message.component';
 import { BoxmessageComponent } from './boxmessage/boxmessage.component';
 import { TestComponent } from './test/test.component';
+import { CandidatureentrepriseComponent } from './candidatureentreprise/candidatureentreprise.component';
+import { CandidauredetailsComponent } from './candidauredetails/candidauredetails.component';
 
 
 
@@ -34,6 +36,8 @@ import { TestComponent } from './test/test.component';
     BoxmessageComponent,
     ProfilComponent,
     TestComponent,
+    CandidatureentrepriseComponent,
+    CandidauredetailsComponent,
   ],
   imports: [
     NgxPaginationModule,

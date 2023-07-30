@@ -1,0 +1,21 @@
+
+<div class="row" style="padding-top: 46px; padding-left: 20px;">
+    <div class="col-sm-6"  *ngFor="let c of candidatures">
+      <div class="card" style="    border: groove; padding-top: 18px;">
+        <div class="d-flex justify-between mb-3">
+        <div class="card-body">
+           
+
+          <h5 class="card-title"     style="text-align: center; padding-left: 280px;">{{c.offreId.titre}}</h5>
+          <h4 class="card-text" style="    border-left: dashed; text-align: left;"> Condidat: &nbsp; {{c.userId.condidatId.name}} {{c.userId.condidatId.lastname}}</h4>
+          <h4 class="card-text" style="    border-left: dashed; text-align: left;"> score:{{score}} </h4>
+          
+          <h4 class="card-text" style="    border-left: dashed; text-align: left;">lettre Motivation :</h4><p style="padding-left: 34px;
+          text-align: left;">{{c.Motivation}}</p>
+           <button style="align-items: center;     border-bottom: dotted;" (click)="viewCV(c._id)" >Voir CV</button>
+               </div>
+               <a  class="section-btn btn btn pull-left" style="color: black;padding-top: 60px;"  >confirmed</a>  
+      </div>
+    </div>
+  
+  </div>

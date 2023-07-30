@@ -91,7 +91,7 @@
                               <span>
                                    {{ userconnect.user.isCondidat ? userconnect.user.condidatId.name : (userconnect.user.entrepriseId && userconnect.user.entrepriseId.length > 0 ? userconnect.user.entrepriseId[0].fullname : '') }}
                               </span>
-                                   <img src="http://localhost:3000/file/folder/{{ userconnect.user.isCondidat ? userconnect.user.condidatId.image : (userconnect.user.entrepriseId && userconnect.user.entrepriseId.length > 0 ? userconnect.user.entrepriseId[0].image : '')}}" class="profile-img space-x-2 my-auto" alt="">
+                                   <img src="http://localhost:3000/file/folder/{{ userconnect.user.isCondidat ? userconnect?.user.condidatId.image : (userconnect.user.entrepriseId && userconnect.user.entrepriseId.length > 0 ? userconnect.user.entrepriseId[0].image : '')}}" class="profile-img space-x-2 my-auto" alt="">
                                    <span class="caret my-auto space-x-1"></span>
                               
                          </a>
@@ -102,6 +102,8 @@
                                    <a *ngIf="userconnect.user?.isCondidat"  class="cursor-pointer" routerLink="/favorirte">Mes listes favorits </a>
                                    <a  *ngIf="!(userconnect.user?.isCondidat)" class="cursor-pointer" routerLink="offrePrecie">Mes listes offres</a>
                                    <a *ngIf="!(userconnect.user?.isCondidat)" class="cursor-pointer" routerLink="/ajout">ajouter une offre</a>
+                                   <a *ngIf="!(userconnect.user?.isCondidat)" class="cursor-pointer" routerLink="/candidature">mes candidatures recent</a>
+
 
                                    
                                    <a class="cursor-pointer" (click)="Logout()">Deconnecter</a>
