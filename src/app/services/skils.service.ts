@@ -10,9 +10,9 @@ export class SkilsService {
   constructor(private http:HttpClient) { }
 
   allskils(){
-    return this.http.get(`${environment.JobGateBD}/skills`)
+    return this.http.get(`${environment.JobGateBD}/skils`)
    }
    createskils(skils:any){
-    return this.http.post(`${environment.JobGateBD}/skills`,skils)
+    return this.http.post(`${environment.JobGateBD}/skils`,skils)
    }
   }

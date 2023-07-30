@@ -93,12 +93,12 @@
             <div class="ant-drawer-extra">
               <div class="ant-space ant-space-horizontal ant-space-align-center" style="gap: 8px">
                 <div class="ant-space-item">
-                  <button type="button" class="ant-btn"  (click)="editMode = 'none'">
+                  <button type="button" class="ant-btn btn"  (click)="editMode = 'none'">
                     <span>Annuler</span>
                   </button>
                 </div>
                 <div class="ant-space-item">
-                  <button type="button" class="ant-btn btn-primary" (click)="saveProfileDetails('basics')">
+                  <button type="button" class="ant-btn bg-primary" (click)="saveProfileDetails('basics')">
                     <span>Sauvegarder</span>
                   </button>
                 </div>
@@ -387,7 +387,7 @@
                     </button>
                   </div>
                   <div class="ant-space-item">
-                    <button type="button" class="ant-btn btn-primary" (click)="saveProfileDetails('languages')">
+                    <button type="button" class="ant-btn bg-primary" (click)="saveProfileDetails('languages')">
                       <span>Sauvegarder</span>
                     </button>
                   </div>
@@ -411,7 +411,7 @@
                           class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow ant-select-show-search"
                         >
                             <select name="select-languages" id="countries_disabled" [(ngModel)]="language.name" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                              <option  id="{{op}}" selected="{{op == language.name}}"  *ngFor="let op of filteredSelectList(languages,'languages')">{{op}}</option>
+                              <option  id="{{op}}" selected="{{op == language.name}}"  *ngFor="let op of languages">{{op}}</option>
                             </select>
                         </div>
                       </div>
@@ -536,7 +536,7 @@
                     <button type="button" class="ant-btn" (click)="editMode = 'none'"><span>Annuler</span></button>
                   </div>
                   <div class="ant-space-item">
-                    <button type="button" class="ant-btn btn-primary" (click)="saveProfileDetails('skills')"><span>Sauvegarder</span></button>
+                    <button type="button" class="ant-btn bg-primary" (click)="saveProfileDetails('skills')"><span>Sauvegarder</span></button>
                   </div>
                 </div>
               </div>
@@ -550,7 +550,7 @@
                         <span class="text-[16px] w-full">Compétance</span>
                         <div class="ant-select rounded-[4px] w-full ant-select-single ant-select-show-arrow ant-select-show-search">
                           <select name="select-languages" id="countries_disabled" [(ngModel)]="skill.name" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                            <option  id="{{op}}" selected="{{op == skill.name}}"  *ngFor="let op of filteredSelectList(skills,'skills')">{{op}}</option>
+                            <option  id="{{op}}" selected="{{op == skill.name}}"  *ngFor="let op of skills">{{op}}</option>
                           </select>
                         </div>
                       </div>
@@ -703,7 +703,7 @@
                     <button type="button" class="ant-btn" (click)="deleteProfileData('studies',selectedStudyIdx)"><span>Supprimer</span></button>
                   </div>
                   <div class="ant-space-item">
-                    <button type="button" class="ant-btn btn-primary" (click)="saveStudy()"><span>Sauvegarder</span></button>
+                    <button type="button" class="ant-btn bg-primary" (click)="saveStudy()"><span>Sauvegarder</span></button>
                   </div>
                 </div>
               </div>
@@ -754,7 +754,7 @@
                             <div class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow">
                              
                               <select class="ant-select rounded-[4px] ant-select-single ant-select-show-arrow" name="select-studyLevel" [(ngModel)]="selectedStudy.level" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                <option  id="{{op}}" selected="{{op == selectedStudy.level}}"  *ngFor="let op of filteredSelectList(studyLevels,'studies','level')">{{op}}</option>
+                                <option  id="{{op}}" selected="{{op == selectedStudy.level}}"  *ngFor="let op of studyLevels">{{op}}</option>
                               </select>
 
                             </div>
@@ -938,7 +938,7 @@
                     <button type="button" class="ant-btn" (click)="deleteProfileData('experiences',selectedExpIdx)"><span>Supprimer</span></button>
                   </div>
                   <div class="ant-space-item">
-                    <button type="button" class="ant-btn btn-primary" (click)="saveExp()"><span>Sauvegarder</span></button>
+                    <button type="button" class="ant-btn bg-primary" (click)="saveExp()"><span>Sauvegarder</span></button>
                   </div>
                 </div>
               </div>

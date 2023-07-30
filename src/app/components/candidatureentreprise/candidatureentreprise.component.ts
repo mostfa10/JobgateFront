@@ -82,8 +82,18 @@ export class CandidatureentrepriseComponent implements OnInit {
   showCondidature(condidature:any){
     this.selectedCondidature = condidature;
     this.showCandidature = true
-    console.log("654654")
   }
   
+  confirm(condidature:any){
+    this.candidatureService.updateCondidature({...condidature,status:'confirmed'}).subscribe((res : any) => {
+      this.selectedCondidature = res.data
+    })
+  }
+    
+  reject(condidature:any){
+    this.candidatureService.updateCondidature({...condidature,status:'rejected'}).subscribe((res : any) => {
+      this.selectedCondidature.status = res.data.status
+    })
+  }
 
 }

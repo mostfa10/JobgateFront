@@ -37,5 +37,9 @@ export class CandidatureService {
     const url = `${environment.JobGateBD}/condidature/${id}/cv`;
     return this.http.get(url, { responseType: 'arraybuffer' });
   }
+
+  updateCondidature(candidature: any){
+    return this.http.put(`${environment.JobGateBD}/condidature/${candidature._id}`, candidature);
+  }
   }
 

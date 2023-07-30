@@ -63,11 +63,11 @@ export class ProfilComponent implements OnInit {
   saveProfileDetails(name:string){
     if(name == 'basics'){
       this.userService.updateProfile(this.user._id,this.user).subscribe((res:any) =>{
-        // this.user = res.data
+        this.resetLocalStorage(res.data)
       })
     }else {
       this.userService.updateProfile(this.user._id,{[name]:this.user[name]}).subscribe((res:any) =>{
-        // this.user = res.data
+        this.resetLocalStorage(res.data)
       })
     }
   }
@@ -120,7 +120,7 @@ export class ProfilComponent implements OnInit {
   saveStudy(){
     this.user.studies[this.selectedStudyIdx] = this.selectedStudy
     this.userService.updateProfile(this.user._id,{studies:this.user.studies}).subscribe((res:any) =>{
-      // this.user = res.data
+      this.resetLocalStorage(res.data)
     })
   }
 
@@ -144,7 +144,7 @@ export class ProfilComponent implements OnInit {
   saveExp(){
     this.user.experiences[this.selectedExpIdx] = this.selectedExperience
     this.userService.updateProfile(this.user._id,{experiences:this.user.experiences}).subscribe((res:any) =>{
-      // this.user = res.data
+      this.resetLocalStorage(res.data)
     })
   }
 
@@ -160,10 +160,23 @@ export class ProfilComponent implements OnInit {
       // Extract the file name from the File object
       const fileName = file.name;
   
-      this.user.image = fileName; // Update the user.image with the file name
+      // this.user.image = fileName; // Update the user.image with the file name
       this.imgChanged = true;
       this.avatarUrl = URL.createObjectURL(file);
-      console.log(this.avatarUrl, "222");
+      let formdata2=new FormData()
+      formdata2.append('image',file)
+
+      this.userService.updateProfile(this.user._id,formdata2).subscribe(
+        (res:any) => {
+          this.resetLocalStorage(res.data)
+          window.location.reload()
+        }
+      )
     }
+  }
+
+  resetLocalStorage(obj:any){
+    this.userconnect.user.condidatId = obj
+    localStorage.setItem('userconnect',JSON.stringify(this.userconnect))
   }
 }

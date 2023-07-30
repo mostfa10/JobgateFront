@@ -10,6 +10,11 @@
     background-color: rgba(0,0,0,0.6);
   }
   
+  .pending {
+    background-color: orange ;
+    color: white;
+    border: 1px white solid;
+  }
   .confirmed {
     background-color: #29ca8e ;
     color: white;
