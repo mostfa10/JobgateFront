@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { CandidatureService } from 'src/app/services/candidature.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-test',
@@ -30,8 +31,13 @@ export class TestComponent implements OnInit {
     DeptId: 0,
     DepartmentName: ''
   }
-  constructor(private http: HttpClient,private activatedRoute: ActivatedRoute,
-    private candidature:CandidatureService) {
+
+  constructor(
+    private http: HttpClient,
+    private activatedRoute: ActivatedRoute, 
+    private location:Location,
+    private candidature:CandidatureService
+  ) {
    
    }
 
@@ -49,7 +55,7 @@ export class TestComponent implements OnInit {
   finish(){
     this.isQuizEnded=true;
     this.isQuizstarted=false;
-
+    console.log(this.correctAnswerCount)
   }
   
   selectOption(option:any){
@@ -103,6 +109,10 @@ export class TestComponent implements OnInit {
     })
     )
     
+}
+
+exitQuiz(){
+  this.location.back()
 }
 loadQuestions() {
   this.http.get<any[]>('assets/question.json').subscribe((questions: any[]) => {

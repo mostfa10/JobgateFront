@@ -56,10 +56,10 @@ export class DetailoffreComponent implements OnInit {
 
 
             this.formR=this.formB.group({contenu: ['',Validators.required]})
-            if (this.ofre.commantaires && this.ofre.commantaires.length > 0) {
-      this.showReplyInput = new Array(this.ofre.commantaires.length).fill(false);
-    }
-      
+            if (this.ofre && this.ofre.commantaires && this.ofre.commantaires.length > 0) {
+              this.showReplyInput = new Array(this.ofre.commantaires.length).fill(false);
+            }
+          
 
   }
     onFileChange(event: any): void {
@@ -71,10 +71,8 @@ export class DetailoffreComponent implements OnInit {
       offrebyid(){
         this.offre.getoffreyid(this.id).subscribe((res:any)=>{
           this.ofre=res["data"]
-          console.log(" offre",this.ofre)
           
           const commentCreationTimestamp = new Date(this.ofre.createdAt).getTime();
-    console.log(this.ofre.createdAt,'date')
     const currentTimestamp = new Date().getTime();
     const timeDifference = currentTimestamp - commentCreationTimestamp;
     
@@ -85,48 +83,25 @@ this.hours = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   
    
   
-    console.log(`Time elapsed: ${this.hours} hours`);
   
 
         })
        
 }
 navigateToTest() {
-  // Naviguez vers le composant TestComponent avec l'ID de l'offre en tant que paramètre de requête
   this.router.navigate(['/test'], { queryParams: { offreId: this.ofre._id } });
 }
 toggleReplyInput(index: number) {
-  // Toggle the visibility of the reply input field for the comment at the specified index
   this.showReplyInput[index] = !this.showReplyInput[index];
   if (!this.showReplyInput[index]) {
-    // If the reply input is hidden, clear the reply content for that comment
     this.replyContent[index] = '';
   }
 }
-
-submitReply(index: number) {
-  const reply = this.replyContent[index].trim();
-  if (reply === '') {
-    // Prevent submitting an empty reply
-    return;
-  }
-
-  // Here, you can handle the submission of the reply content (e.g., send it to the server)
-  console.log('Submitted Reply for comment at index', index, ':', reply);
-
-  // Clear the reply input field and hide it after submission
-  this.replyContent[index] = '';
-  this.showReplyInput[index] = false;
-}
-
-
 
   
 
 onPostuler(): void {
   this.submitted = true;
-  console.log( this.userconnect.user.condidatId,"hgghfgh")
-
   const formData = new FormData();
   formData.append('offreId', this.ofre._id);
   formData.append('titreOffre', this.ofre.titre);
@@ -139,24 +114,20 @@ onPostuler(): void {
   formData.append('condidatId', this.userconnect.user.condidatId._id);
 
   this.condidature.createcondidature(formData).subscribe((res: any) => {
-    Swal.fire('Your candidature was added');
-    console.log('res', res);
+    document.getElementById('exampleModalLong')?.classList.add('hidden'); // enlever le modal de condidature
+    document.getElementsByClassName('modal-backdrop fade in')?.item(0)?.classList.add('hidden'); // enelever le background condidature
   });
 }
 getResponsesForCommantaire(commantaireId: string): void {
   this.reponse.getResponsesByCommantaireId(commantaireId).subscribe(
     (responses: any) => {
-      console.log(commantaireId, "ali");
 
       this.rep = responses['data'];
-      console.log(this.rep, "reponses");
-      console.log(this.selectedCandidate._id, "vv");
 
       this.filteredResponses = this.rep.filter(
         (response: any) => response.commentaireId === this.selectedCandidate._id
       );
 
-      console.log(this.filteredResponses, 'filteredResponses');
     },
     (error: any) => {
       console.error('Error fetching responses:', error);
@@ -167,8 +138,6 @@ getResponsesForCommantaire(commantaireId: string): void {
 
 showCandidateDetails(candidate: any) {
   this.selectedCandidate = candidate; // Store the selected candidate in the variable
-  console.log('Selected Candidate:', this.selectedCandidate);
-  console.log(this.selectedCandidate._id,"id de comm")
   this.getResponsesForCommantaire(this.selectedCandidate._id);  // Here, you can display the candidate details in a modal or any other format you prefer
 }
 
@@ -190,29 +159,16 @@ onSubmit(): void {
     contenu:contenu,
     userId:this.userconnect.user._id
    }
-  //  const notification={
-  //   condidatId:this.userconnect.user.condidatId._id,
-  //   contenu:this.userconnect.user.condidatId.name +'a postuler '+this.ofre.titre,
-  //   offreId:this.ofre._id
-  //  }
-  //  this.commantaire.createNot(notification).subscribe((res:any)=>{
-  //   Swal.fire('your not was  added')
-  //  })
+
    this.commantaire.createcomm(commentaire).subscribe((res:any)=>{
-   
-    console.log(this.formE.value)
-    Swal.fire('your commantaire was added ')
-    console.log('res',res)
-    
-    
-  
+      this.ofre.commantaires.unshift(res.data)
+      this.formE.reset({contenu:''})
   }
   
   
   );
 
  
-  console.log(JSON.stringify(this.formE.value, null, 2));
   
 }
 
@@ -233,32 +189,22 @@ onReponse(index:number):void{
     return;
    }
    const contenu=this.formR.value.contenu;
-   const i:number=0;
    
+   let comment = this.ofre.commantaires[index]
    const reponse={
-    commentaireId:this.selectedCandidate._id,
+    commentaireId:comment._id,
     contenu:contenu,
-    condidatId:this.userconnect.user.condidatId._id
+    image: this.userconnect.user.isCondidat ? this.userconnect.user.condidatId.image : this.userconnect.user.entrepriseId.image,
+    username : this.userconnect.user.isCondidat ? this.userconnect.user.condidatId.name +' ' + this.userconnect.user.condidatId.lastname : this.userconnect.user.entrepriseId.fullname
    }
+
    this.reponse.createR(reponse).subscribe((res:any)=>{
-   
-    console.log(this.formE.value)
-    Swal.fire('your reponse was added ')
-    console.log('res',res)
+    this.ofre.commantaires[index].reponses.push(res.data)
+    this.replyContent[index] = '';
+    // this.showReplyInput[index] = false;
+   });
 
-    this.filteredResponses.push(reponse);
-    
-    
-  
-  }
-
-  
-  
-  );
-  this.replyContent[index] = '';
-  this.showReplyInput[index] = false;
  
-  console.log(JSON.stringify(this.formE.value, null, 2));
   
 
 }

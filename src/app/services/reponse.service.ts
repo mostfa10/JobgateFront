@@ -10,7 +10,6 @@ export class ReponseService {
   constructor(private http:HttpClient) { }
 
   createR(comm:any){
-    console.log(comm)
     return this.http.post(`${environment.JobGateBD}/reponse`,comm)
    }
    getResponsesByCommantaireId(commantaireId: string) {

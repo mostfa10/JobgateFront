@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('accesstoken',res.tokens.accessToken)
       localStorage.setItem('refreshtoken',res.tokens.refreshtoken)
       localStorage.setItem('state','0') //ki yabda connecte ya3ti 0 ki ma yabdesh connecte ya3ti 1 nest3mlouha f guarde
-      this.route.navigateByUrl('/')
+      window.location.href =  '/'
      
     })
 

@@ -15,6 +15,8 @@ export class CandidatureentrepriseComponent implements OnInit {
   score:number=0;
   userconnect = JSON.parse(localStorage.getItem("userconnect")!);
   entreprise= this.userconnect.user.entrepriseId[0]._id
+  showCandidature: boolean = false;
+  selectedCondidature: any;
   constructor(private candidatureService:CandidatureService,private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -23,12 +25,8 @@ export class CandidatureentrepriseComponent implements OnInit {
  loadCandidatures() {
     // Appelez le service pour récupérer toutes les candidatures
     this.candidatureService.getAllCandidatures().subscribe((res: any) => {
-      this.listCondidature=res['data']
-      console.log(this.listCondidature[0].offreId.entrepriseId._id,"uu");  // Vous pouvez utiliser les candidatures filtrées dans votre application
-
-
-      this.candidatures = this.listCondidature.filter(condidature => condidature.offreId.entrepriseId._id === this.entreprise);
-       console.log(this.candidatures,"o");  // Vous pouvez utiliser les candidatures filtrées dans votre application
+        this.listCondidature=res['data']
+        this.candidatures = this.listCondidature.filter(condidature => condidature.offreId.entrepriseId._id === this.entreprise);
     });
   }
   getscoore(s:number){
@@ -55,6 +53,36 @@ export class CandidatureentrepriseComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  deleteC(id:any){
+    // Swal.fire({
+    //   title: 'Are you sure?',
+    //   text: "You won't be able to revert this!",
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Yes, delete it!'
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     this.condidature.deleteC(id).subscribe((res:any)=>{ // subscribe pour donne l accees ala BD
+    //       console.log(res)
+    //       this.listecondidatures()
+    //     })
+    //     Swal.fire(
+    //       'Deleted!',
+    //       'Your file has been deleted.',
+    //       'success'
+    //     )
+    //   }
+    // })
+  }
+
+  showCondidature(condidature:any){
+    this.selectedCondidature = condidature;
+    this.showCandidature = true
+    console.log("654654")
   }
   
 

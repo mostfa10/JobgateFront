@@ -2233,8 +2233,15 @@ label.valid {
   .btn-primary {
       border-color: #a4c639;
       background-color: #a4c639;
+      color: white !important;
   }
-  
+    
+  .btn-secondary {
+    border-color: #1da0f2;
+    background-color: #1da0f2;
+    color: white !important;
+  }
+
   .btn-primary:hover,
   .btn-primary:focus,
   .btn-primary:active,
@@ -4671,6 +4678,7 @@ a {
 
 .card {
   text-align: center;
+  padding: 10px;
   border: 1px solid #EDEDED;
 }
 

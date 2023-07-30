@@ -17,6 +17,11 @@ export class CandidatureService {
   getAllCandidatures(){
     return this.http.get(`${environment.JobGateBD}/condidature/all`)
    }
+
+   getCandidaturesByUserId(userId:string){
+    return this.http.get(`${environment.JobGateBD}/condidature/entrepriseId/${userId}`)
+   }
+
    setScore(score: number) {
     
     this.score = score;
