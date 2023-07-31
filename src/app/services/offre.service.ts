@@ -28,6 +28,10 @@ export class OffreService {
    lastoffres(){
     return this.http.get(`${environment.JobGateBD}/offre/all`)
    }
+   updateOfferScore(offerId: any, data:any) {
+    // Faites une requête HTTP PUT ou POST pour mettre à jour le score de l'offre avec les informations du candidat
+    return this.http.put(`${environment.JobGateBD}/offre/${offerId}/updateScore`, data);
+  }
    getoffreyid(id:any){
     return this.http.get(`${environment.JobGateBD}/offre/${id}`)
     

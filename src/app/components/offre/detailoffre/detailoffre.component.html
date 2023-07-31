@@ -188,8 +188,8 @@
 
 
                <div class="clearfix">
-                    <a *ngIf="userconnect.user?.isCondidat" class="section-btn btn btn-primary pull-left cursor-pointer" data-toggle="modal" data-target="#exampleModalLong">Postuler</a>
-                    <a *ngIf="userconnect.user?.isCondidat" class="section-btn btn  btn-secondary btn pull-left cursor-pointer" style="margin-left: 10px;" (click)="navigateToTest()" >Passer un test</a>
+                    <button *ngIf="userconnect.user?.isCondidat" class="section-btn btn btn-primary pull-left cursor-pointer" [disabled]="!couldPostule" data-toggle="modal" data-target="#exampleModalLong">Postuler</button>
+                    <button *ngIf="userconnect.user?.isCondidat" class="section-btn btn  btn-secondary btn pull-left cursor-pointer" [disabled]="couldPostule" style="margin-left: 10px;" (click)="navigateToTest()" >Passer un test</button>
                   </div>
                          <!-- Modal -->
                     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

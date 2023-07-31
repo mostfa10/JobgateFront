@@ -29,6 +29,7 @@ export class DetailoffreComponent implements OnInit {
   replyContent: { [key: string]: string } = {}; // Object to store the reply content for each comment
 
   hours!:number; // Déclarer la variable hours
+  couldPostule : boolean = false;
   constructor(private offre:OffreService, private condidature:CondidatureService,
     private commantaire:CommantaireService ,private reponse:ReponseService
      ,private Activeroute:ActivatedRoute,private formB:FormBuilder,
@@ -36,8 +37,6 @@ export class DetailoffreComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    
-   
           this.offrebyid();
           this.formE= this.formB.group({contenu:  ['', Validators.required]})
 
@@ -68,147 +67,142 @@ export class DetailoffreComponent implements OnInit {
         this.form.patchValue({cv: file});
       }
   }  
-      offrebyid(){
-        this.offre.getoffreyid(this.id).subscribe((res:any)=>{
-          this.ofre=res["data"]
-          
-          const commentCreationTimestamp = new Date(this.ofre.createdAt).getTime();
-    const currentTimestamp = new Date().getTime();
-    const timeDifference = currentTimestamp - commentCreationTimestamp;
-    
-  
-    // Convert the time difference to hours and days
-this.hours = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-   
-  
-   
-  
-  
-
-        })
+    offrebyid(){
+      this.offre.getoffreyid(this.id).subscribe((res:any)=>{
+      this.ofre=res["data"]
+      this.checkIfCouldPostule()
+      const commentCreationTimestamp = new Date(this.ofre.createdAt).getTime();
+      const currentTimestamp = new Date().getTime();
+      const timeDifference = currentTimestamp - commentCreationTimestamp;
+      this.hours = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      })
        
-}
-navigateToTest() {
-  this.router.navigate(['/test'], { queryParams: { offreId: this.ofre._id } });
-}
-toggleReplyInput(index: number) {
-  this.showReplyInput[index] = !this.showReplyInput[index];
-  if (!this.showReplyInput[index]) {
-    this.replyContent[index] = '';
-  }
-}
+    }
+    navigateToTest() {
+      this.router.navigate(['/test'], { queryParams: { offreId: this.ofre._id } });
+    }
+    toggleReplyInput(index: number) {
+      this.showReplyInput[index] = !this.showReplyInput[index];
+      if (!this.showReplyInput[index]) {
+        this.replyContent[index] = '';
+      }
+    }
 
   
 
-onPostuler(): void {
-  this.submitted = true;
-  const formData = new FormData();
-  formData.append('offreId', this.ofre._id);
-  formData.append('titreOffre', this.ofre.titre);
+    onPostuler(): void {
+      this.submitted = true;
+      const formData = new FormData();
+      formData.append('offreId', this.ofre._id);
+      formData.append('titreOffre', this.ofre.titre);
 
-  formData.append('name', this.form.value.name);
-  formData.append('cv',this.form.get('cv')?.value);
-  formData.append('email', this.form.value.email);
-  formData.append('Motivation', this.form.value.Motivation);
-  formData.append('userId', this.userconnect.user._id);
-  formData.append('condidatId', this.userconnect.user.condidatId._id);
+      formData.append('name', this.form.value.name);
+      formData.append('cv',this.form.get('cv')?.value);
+      formData.append('email', this.form.value.email);
+      formData.append('Motivation', this.form.value.Motivation);
+      formData.append('userId', this.userconnect.user._id);
+      formData.append('condidatId', this.userconnect.user.condidatId._id);
 
-  this.condidature.createcondidature(formData).subscribe((res: any) => {
-    document.getElementById('exampleModalLong')?.classList.add('hidden'); // enlever le modal de condidature
-    document.getElementsByClassName('modal-backdrop fade in')?.item(0)?.classList.add('hidden'); // enelever le background condidature
-  });
-}
-getResponsesForCommantaire(commantaireId: string): void {
-  this.reponse.getResponsesByCommantaireId(commantaireId).subscribe(
-    (responses: any) => {
+      this.condidature.createcondidature(formData).subscribe((res: any) => {
+        document.getElementById('exampleModalLong')?.classList.add('hidden'); // enlever le modal de condidature
+        document.getElementsByClassName('modal-backdrop fade in')?.item(0)?.classList.add('hidden'); // enelever le background condidature
+      });
+    }
+    getResponsesForCommantaire(commantaireId: string): void {
+      this.reponse.getResponsesByCommantaireId(commantaireId).subscribe(
+        (responses: any) => {
 
-      this.rep = responses['data'];
+          this.rep = responses['data'];
 
-      this.filteredResponses = this.rep.filter(
-        (response: any) => response.commentaireId === this.selectedCandidate._id
+          this.filteredResponses = this.rep.filter(
+            (response: any) => response.commentaireId === this.selectedCandidate._id
+          );
+
+        },
+        (error: any) => {
+          console.error('Error fetching responses:', error);
+        }
+      );
+    }
+
+
+    showCandidateDetails(candidate: any) {
+      this.selectedCandidate = candidate; // Store the selected candidate in the variable
+      this.getResponsesForCommantaire(this.selectedCandidate._id);  // Here, you can display the candidate details in a modal or any other format you prefer
+    }
+
+
+    onSubmit(): void {
+      this.submitted = true;
+
+      if (this.formE.invalid) {
+        return;
+      }
+      
+      
+      
+      const contenu=this.formE.value.contenu;
+      const i:number=0;
+      
+      const commentaire={
+        offreId:this.ofre._id,
+        contenu:contenu,
+        userId:this.userconnect.user._id
+      }
+
+      this.commantaire.createcomm(commentaire).subscribe((res:any)=>{
+          this.ofre.commantaires.unshift(res.data)
+          this.formE.reset({contenu:''})
+      }
+      
+      
       );
 
-    },
-    (error: any) => {
-      console.error('Error fetching responses:', error);
+    
+      
     }
-  );
-}
 
+    toggleChat() {
+      var chatComponent = document.getElementById('chat-component')!;
 
-showCandidateDetails(candidate: any) {
-  this.selectedCandidate = candidate; // Store the selected candidate in the variable
-  this.getResponsesForCommantaire(this.selectedCandidate._id);  // Here, you can display the candidate details in a modal or any other format you prefer
-}
+      if (chatComponent.classList.contains('chat-hidden')) {
+        chatComponent.style.display = 'block';
+        chatComponent.classList.remove('chat-hidden');
+      } else {
+        chatComponent.style.display = 'none';
+        chatComponent.classList.add('chat-hidden');
+      }
+    }
 
+    onReponse(index:number):void{
+      if (this.formR.invalid) {
+        return;
+      }
+      const contenu=this.formR.value.contenu;
+      
+      let comment = this.ofre.commantaires[index]
+      const reponse={
+        commentaireId:comment._id,
+        contenu:contenu,
+        image: this.userconnect.user.isCondidat ? this.userconnect.user.condidatId.image : this.userconnect.user.entrepriseId.image,
+        username : this.userconnect.user.isCondidat ? this.userconnect.user.condidatId.name +' ' + this.userconnect.user.condidatId.lastname : this.userconnect.user.entrepriseId.fullname
+      }
 
-onSubmit(): void {
-  this.submitted = true;
+      this.reponse.createR(reponse).subscribe((res:any)=>{
+        this.ofre.commantaires[index].reponses.push(res.data)
+        this.replyContent[index] = '';
+        // this.showReplyInput[index] = false;
+      });
 
-  if (this.formE.invalid) {
-    return;
-   }
-   
-   
-   
-   const contenu=this.formE.value.contenu;
-   const i:number=0;
-   
-   const commentaire={
-    offreId:this.ofre._id,
-    contenu:contenu,
-    userId:this.userconnect.user._id
-   }
+    
+      
 
-   this.commantaire.createcomm(commentaire).subscribe((res:any)=>{
-      this.ofre.commantaires.unshift(res.data)
-      this.formE.reset({contenu:''})
-  }
-  
-  
-  );
+    }
 
- 
-  
-}
-
- toggleChat() {
-  var chatComponent = document.getElementById('chat-component')!;
-
-  if (chatComponent.classList.contains('chat-hidden')) {
-    chatComponent.style.display = 'block';
-    chatComponent.classList.remove('chat-hidden');
-  } else {
-    chatComponent.style.display = 'none';
-    chatComponent.classList.add('chat-hidden');
-  }
-}
-
-onReponse(index:number):void{
-  if (this.formR.invalid) {
-    return;
-   }
-   const contenu=this.formR.value.contenu;
-   
-   let comment = this.ofre.commantaires[index]
-   const reponse={
-    commentaireId:comment._id,
-    contenu:contenu,
-    image: this.userconnect.user.isCondidat ? this.userconnect.user.condidatId.image : this.userconnect.user.entrepriseId.image,
-    username : this.userconnect.user.isCondidat ? this.userconnect.user.condidatId.name +' ' + this.userconnect.user.condidatId.lastname : this.userconnect.user.entrepriseId.fullname
-   }
-
-   this.reponse.createR(reponse).subscribe((res:any)=>{
-    this.ofre.commantaires[index].reponses.push(res.data)
-    this.replyContent[index] = '';
-    // this.showReplyInput[index] = false;
-   });
-
- 
-  
-
-}
-
-
+    checkIfCouldPostule(){
+      let condidatId = this.userconnect.user.condidatId._id
+      let score = this.ofre.score.filter((s:any) => s.candidatId === condidatId)
+      this.couldPostule = score.length > 0;
+    }
 }
 

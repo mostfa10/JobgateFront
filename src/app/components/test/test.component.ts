@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { Location } from '@angular/common'
+import { OffreService } from 'src/app/services/offre.service';
 
 @Component({
   selector: 'app-test',
@@ -12,6 +13,7 @@ import { Location } from '@angular/common'
 })
 export class TestComponent implements OnInit {
   showWorning: boolean = false;
+  userconnect=JSON.parse(localStorage.getItem("userconnect")!)//tjib les contenu de userconnect de localstorege enregistree lors de login
 
   isQuizstarted: boolean = false;
   isQuizEnded: boolean = false;
@@ -36,7 +38,7 @@ export class TestComponent implements OnInit {
     private http: HttpClient,
     private activatedRoute: ActivatedRoute, 
     private location:Location,
-    private candidature:CandidatureService
+    private offre:OffreService
   ) {
    
    }
@@ -44,26 +46,38 @@ export class TestComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       this.currentOfferId = params['offreId'] || ''; // Utilisez une valeur par défaut appropriée si l'ID n'est pas trouvé
-      console.log('ID de l\'offre :', this.currentOfferId);
-      // Utilisez l'ID de l'offre ici pour effectuer les actions nécessaires dans le composant TestComponent
     });
   
     this.loadQuestions()
     
    
   }
-  finish(){
-    this.isQuizEnded=true;
-    this.isQuizstarted=false;
-    console.log(this.correctAnswerCount)
+
+  finish() {
+    this.isQuizEnded = true;
+    this.isQuizstarted = false;
+
+    if (this.currentOfferId && this.correctAnswerCount > 0) {
+     const userconnect=JSON.parse(localStorage.getItem("userconnect")!)//tjib les contenu de userconnect de localstorege enregistree lors de login
+      const candidatId = userconnect.user.condidatId._id;   
+      let data = {candidatId, score:this.correctAnswerCount}
+      this.offre.updateOfferScore(this.currentOfferId, data).subscribe(
+        (response:any) => {
+          // Vous pouvez effectuer des actions supplémentaires ici, par exemple, afficher un message de réussite, etc.
+        },
+        (error:any) => {
+          console.error('Une erreur s\'est produite lors de la mise à jour du score :', error);
+          // Gérez les erreurs ici, par exemple, afficher un message d'erreur.
+        }
+      );
+    }
   }
-  
   selectOption(option:any){
     if(option.isCorrect){
       this.correctAnswerCount ++;
     }
     option.isSelected=true;
-    this.candidature.setScore(this.correctAnswerCount);
+ 
   }
   isOptionSelected(options:any){
     const isSelectionCount=options.filter((m:any)=>m.isSelected == true).length;
@@ -128,44 +142,7 @@ loadQuestions() {
   });
 }
 
-// ... Autres méthodes ...
+
 }
-// loadQuestions(){
-//   this.http.get("assets/question.json").subscribe((questions:any[])=>{
- 
-//     this.questionsList=questions.filter(question => question.offreId ==this.currentOfferId);
-//     this.questionsList=this.questionsList;
-//     console.log( this.questionsList)
-//   })
-// }
-  // selectOption(option: any) {
-  //   if(option.isCorrect) {
-  //     this.correctAnswerCount ++;
-  //   }
-  //   option.isSelected = true;
-  // }
-  // isOptionSelected(options: any) {
-  //   const selectionCount = options.filter((m:any)=>m.isSelected == true).length;
-  //   if(selectionCount == 0) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
-  // startQuiz() {
-  //   this.showWarning = false;
-  //   this.isQuizStarted = true;  
-  //  this.subscription.push(this.timer.subscribe(res=> {
-  //     console.log(res);
-  //     if(this.remainingTime != 0) {
-  //       this.remainingTime --;
-  //     } 
-  //     if(this.remainingTime == 0) {
-  //       this.nextQuestion();
-  //       this.remainingTime = 10;
-  //     } 
-  //   })
-  //  )
-  // }
 
 

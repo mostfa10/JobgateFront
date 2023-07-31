@@ -10,11 +10,12 @@ export class CondidatureService {
 
   constructor(private http:HttpClient) { }
 
-
+  
   createcondidature(con:any){
     console.log(con)
     return this.http.post(`${environment.JobGateBD}/condidature`,con)
    }
+  
    uploadFile(formData: FormData) {
     return this.http.post(`${environment.JobGateBD}/upload`, formData);
   }
@@ -22,6 +23,9 @@ export class CondidatureService {
     return this.http.get(`${environment.JobGateBD}/condidature?userId=${userId}`);
   }
   
+  getTestByCandidatId(candidatId: string): Observable<any> {
+    return this.http.get<any>(`${environment.JobGateBD}/offre/${candidatId}/test`);
+  }
   getFavoriteOffers(userId: string): Observable<any> {
     return this.http.get(`$${environment.JobGateBD}/user/${userId}/favorite-offers`);
   }

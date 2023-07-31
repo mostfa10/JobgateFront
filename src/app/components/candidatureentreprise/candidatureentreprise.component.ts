@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./candidatureentreprise.component.css']
 })
 export class CandidatureentrepriseComponent implements OnInit {
+ 
   candidatures: any[] = []; 
   listCondidature!:any[];
   score:number=0;
@@ -20,8 +21,12 @@ export class CandidatureentrepriseComponent implements OnInit {
   constructor(private candidatureService:CandidatureService,private http:HttpClient) { }
 
   ngOnInit(): void {
+  
+   
+  
     this. loadCandidatures();
   }
+ 
  loadCandidatures() {
     // Appelez le service pour récupérer toutes les candidatures
     this.candidatureService.getAllCandidatures().subscribe((res: any) => {
@@ -29,10 +34,7 @@ export class CandidatureentrepriseComponent implements OnInit {
         this.candidatures = this.listCondidature.filter(condidature => condidature.offreId.entrepriseId._id === this.entreprise);
     });
   }
-  getscoore(s:number){
-    this.score = this.candidatureService.setScore(s);
-    console.log(this.score,"lll")
-  }
+  
   viewCV(id: string) {
     this.candidatureService.downloadCV(id).subscribe(
       (data: ArrayBuffer) => {
@@ -55,33 +57,10 @@ export class CandidatureentrepriseComponent implements OnInit {
     );
   }
 
-  deleteC(id:any){
-    // Swal.fire({
-    //   title: 'Are you sure?',
-    //   text: "You won't be able to revert this!",
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Yes, delete it!'
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     this.condidature.deleteC(id).subscribe((res:any)=>{ // subscribe pour donne l accees ala BD
-    //       console.log(res)
-    //       this.listecondidatures()
-    //     })
-    //     Swal.fire(
-    //       'Deleted!',
-    //       'Your file has been deleted.',
-    //       'success'
-    //     )
-    //   }
-    // })
-  }
-
   showCondidature(condidature:any){
     this.selectedCondidature = condidature;
-    this.showCandidature = true
+    this.showCandidature = true;
+    const user = this.selectedCondidature.userId.condidatId._id;
   }
   
   confirm(condidature:any){
@@ -96,4 +75,8 @@ export class CandidatureentrepriseComponent implements OnInit {
     })
   }
 
+  getScore(scores:any,condidatId:string):any {
+    let score = scores.filter((s:any) => s.candidatId === condidatId)
+    return score.length > 0 ?  score[0].score : null;
+  }
 }

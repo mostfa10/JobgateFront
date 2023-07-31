@@ -7,11 +7,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CandidatureService {
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-  score: number = 0;
-  
 
   constructor(private http:HttpClient) { }
   getAllCandidatures(){
@@ -21,18 +16,11 @@ export class CandidatureService {
    getCandidaturesByUserId(userId:string){
     return this.http.get(`${environment.JobGateBD}/condidature/entrepriseId/${userId}`)
    }
-
-   setScore(score: number) {
-    
-    this.score = score;
-    console.log(this.score,"s")
-    return this.score;
-   
+   getScoreByCandidatId(candidatId: string): Observable<number> {
+    const url = `${environment.JobGateBD}/offre/${candidatId}/score`;
+    return this.http.get<number>(url); // Assume the API returns the score as a number
   }
-
-  getScore() {
-    return this.score;
-  }
+  
    downloadCV(id: string): Observable<ArrayBuffer> {
     const url = `${environment.JobGateBD}/condidature/${id}/cv`;
     return this.http.get(url, { responseType: 'arraybuffer' });
