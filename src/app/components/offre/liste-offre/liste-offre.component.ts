@@ -27,7 +27,7 @@ export class ListeOffreComponent implements OnInit {
   listoffre(){
     this.offres = []
     let paramMap = this.router.parseUrl(this.router.url).queryParams;
-    let querySearch = Object.keys(paramMap).map(key => key + '=' + paramMap[key]).join('&')
+    let querySearch = 'confirmed=true&'+ Object.keys(paramMap).map(key => key + '=' + paramMap[key]).join('&')
     this.offre.getOffers(querySearch).subscribe((res:any)=>{
       this.offres=res["data"]
       this.totalResults = this.offres.length  
